@@ -1,0 +1,48 @@
+image: inovex/gitlab-ci-android
+
+stages:
+  - build
+  - deploy
+
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+  - export GRADLE_USER_HOME=$(pwd)/.gradle
+  - chmod +x ./gradlew
+
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+    - .gradle/
+
+lint:
+  stage: build
+  tags:
+    - docker
+  script:
+    - ./gradlew -Pci --console=plain detekt
+
+build:
+  stage: build
+  tags:
+    - docker
+  script:
+    - ./gradlew assembleDebug
+
+deploy:
+  stage: deploy
+  image: fastlanetools/fastlane
+  before_script:
+    - gem install bundler
+    - bundle install
+  tags:
+    - docker
+  script:
+    - bundle exec fastlane distribute_android
+  only:
+    - /^release/
+    - master
+    - main
