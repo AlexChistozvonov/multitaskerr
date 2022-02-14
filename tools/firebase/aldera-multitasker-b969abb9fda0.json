@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "aldera-multitasker",
+  "private_key_id": "b969abb9fda0911999d3ef8f4c50e6bd71e023b6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC4zpQiAv6AnTFG\nee0qf9yqXEtY8gOV2Ba57v7EeK5GD+Or4+ZsS8dbp7KECte4UADPZHtGHGeNBU4X\nOhg+rpSKhDMDK4zJ9J6f3hcEQxXq/PLh4mksiTwIbSQiDYf+e7P8IfwOTyOWfO09\n3yqgJboor/n/AomrTlFBk2UPJd/xNA+FB1Tw8m5uqfEEtsvow9uD0ZexG+2UPcCH\n3a+KFepZw8t4v/zmdLkOiXh7IZAu8Xz62HyP/MgmZQJoloqDgBuQnt29oLb2P24+\nzq5NqHm/SXVfkx2kuO1SgM8VDg4nrNHuo282NFBDEgEnvZdQlo/U6634mA3Mj2Ip\nzDSaGV9XAgMBAAECggEAOO3mIw4SEVObFM9FeHSX6ODykw1GfnfpFFDjqWlVoh6N\n72sOlejIGltv+g4PAueeQET/Vos0ePQb6LrMMi78cikkP8NAJQxWev/izjzOOSu/\ntEbXSFFkLWJVoanSbVn1CWP8rfnCCD8mpAslqdzFWnhPRjelaiB/lnhNxttPf5EY\nUo5wGFmpMuACQUN0R9E/vFwYW5xV7/05dyp5U+mZMCTrQ4OGhxyzTq1a9zcFrvMz\nkEQEcHvoC1Ma2Cce4FtyeYfpPWxZV3ZJ0ROb95RTh6ifKTNSwEBYKsegmnzIDE7n\nhor8H68ZOZogcSNCcJkEh897YWTtrjH5qelm0PRYXQKBgQDkzxCa4LsJUSedL1D4\n3/u0DxeWoqOFSQwO7wQVVC7z+pCI2P/eY7+BkpfKGjtKw4+T/4rnqzmlR6u6Yvin\nCdAXrULINDXxaWl9aOYm3HD+FEC2RDx+q2s+VSe8mr6jb6Qzkh9p2nPno7jaV1Il\ndPbp0ZQRrYMqwsTDKZ5HFQKw/QKBgQDOxN3LiI0Lcdtn/5ojG66GtD0rFvhb9tQr\nXOJ/cYh6k1dOQlyB0OlxPS4QVzl02eaUWj2m/rb+iZkGwJDLrKI28KZ6I7fsOL/v\nxAreBbBW43d8y+OT8N0GWau7Paxwwo8fZHDdbOfNQJOAFNdPceNPWBeT9rohtcGE\nrwx/yObb4wKBgQCTiPi6BQJVJaEXd3UMpNBV8A1TshciUFGYJ4JIhnmoE/6yXsnN\nih/n2rBJPtTQhnzD/1h/vSZ0blxK2JpgirFFMxEGqrPFsCS3GrachDPPgRug6yre\nuoVyMdJniJg4JjqIjkX3KUbnK+h70SZExMCZT+vb4jfbkK7y8JkAWInduQKBgQCk\nbQFDna8r7rrflO9qA9Vh4WrTHU0bNMm8Qf0MA6jYcNr4rOULhqpdFp3O+M4EElO+\nnZRxfBThjWJXcEK09O96aRy5/DWCcA6SCH/r1vJH5lNatnifaOca6awbFgxPDyjp\neeIW80fSfQvOysP9tT9iFVeKnqWdsP/XF60E4SpUqQKBgE4XQqSpPIovgdWZa8Fs\nUFcOvfFKgyMjpwaZVwBKKORPxr+tXFsdjHbYbW/AEXSOCmM5m9WTpuXSdDotgfeT\nVM7AC1uuuiXOQNWIhowMFeh1oC74B2ioAJ9xSAdTznFenrTt+HPssPrSBAb+aKgy\n8rTy0pzfW/m4mvx6hpoblZPf\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-egs6a@aldera-multitasker.iam.gserviceaccount.com",
+  "client_id": "100143721480964114860",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-egs6a%40aldera-multitasker.iam.gserviceaccount.com"
+}

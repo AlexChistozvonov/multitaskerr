@@ -55,4 +55,5 @@ object Libs {
     const val SWIPE_TO_REFRESH =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.SWIPE_TO_REFRESH}"
     const val GLIDE_TRANSFORMATION = "jp.wasabeef:glide-transformations:${Versions.GLIDE_TRANSFORMATION}"
+    const val DETEKT_FORMATTING = "io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}"
 }

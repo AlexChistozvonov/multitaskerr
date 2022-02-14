@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "1001791539654",
+    "project_id": "aldera-multitasker",
+    "storage_bucket": "aldera-multitasker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001791539654:android:dc81a2b1f8323d88ffcac7",
+        "android_client_info": {
+          "package_name": "com.aldera.multitasker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001791539654-qeoa6757qtg54tp45umun8rc58r6g72n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aldera.multitasker",
+            "certificate_hash": "b4152044354057742f184dde5a89459521a70cab"
+          }
+        },
+        {
+          "client_id": "1001791539654-qk5cltdnnvaoupc9g13ngegpfsumadij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aldera.multitasker",
+            "certificate_hash": "0026fc8451f0b6dc6902854f6ecfee45dc0d3518"
+          }
+        },
+        {
+          "client_id": "1001791539654-gcdvuk41cmie1g0la4to8hitumn7uced.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzroWJMJdJo868l79kFEHem-_HUubnOdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001791539654-gcdvuk41cmie1g0la4to8hitumn7uced.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1001791539654-ju590akqq7osoocj3tv1l2r5k1vfm094.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.aldera.multitasker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

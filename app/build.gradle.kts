@@ -5,6 +5,8 @@ plugins {
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
+    id("io.gitlab.arturbosch.detekt").version("1.19.0")
 }
 
 android {
@@ -18,7 +20,6 @@ android {
         versionName = Versions.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
 
     signingConfigs {
         create("release") {
@@ -52,7 +53,6 @@ android {
             isDebuggable = true
         }
         getByName("debug") {
-            applicationIdSuffix = ".debug"
             buildConfigField(
                 "String",
                 "SERVER_URL",
@@ -147,12 +147,11 @@ dependencies {
 
     // Firebase
     implementation(platform(Libs.FIREBASE_BOM))
-//    implementation(Libs.FIREBASE_CRASHLYTICS)
 
     // DateTime
     implementation(Libs.THREETENABP)
 
-    //Tests
+    // Tests
     testImplementation(Libs.JUNIT)
     testImplementation(Libs.MOCKK)
     testImplementation(Libs.COROUTINE_TEST)
@@ -161,4 +160,13 @@ dependencies {
     androidTestImplementation(Libs.MOCKITO)
     testImplementation(Libs.HILT_ANDROID_TESTING)
     kaptTest(Libs.HILT_COMPILER)
+
+    // Detekt
+    detektPlugins(Libs.DETEKT_FORMATTING)
+}
+
+detekt {
+    toolVersion = Versions.DETEKT
+    config = files("config/detekt.yml")
+    buildUponDefaultConfig = true
 }

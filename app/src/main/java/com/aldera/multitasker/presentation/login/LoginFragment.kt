@@ -1,4 +1,3 @@
 package com.aldera.multitasker.presentation.login
 
-class LoginFragment {
-}
+class LoginFragment

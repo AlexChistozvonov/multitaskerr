@@ -1,7 +1,7 @@
 object Versions {
 
     const val versionName = "0.0.1"
-    const val versionCode = 1
+    const val versionCode = 999
 
     const val COMPILE_SDK = 31
     const val TARGET_SDK = 31
@@ -20,8 +20,6 @@ object Versions {
     const val TIMBER = "5.0.1"
     const val VIEW_PAGER = "1.0.0"
     const val MOSHI = "1.13.0"
-    const val GSON = "2.8.9"
-    const val APOLLO = "3.0.0"
     const val ACTIVITY_KTX = "1.4.0"
     const val FRAGMENT_KTX = "1.4.0"
     const val APPCOMPAT = "1.4.0"
@@ -39,21 +37,10 @@ object Versions {
     const val PREFERENCES = "1.1.1"
     const val MOCKITO = "4.0.0"
     const val MOCKK = "1.12.1"
-    const val GOOGLE_AUTH = "19.2.0"
-    const val GOOGLE_CLIENT = "1.32.2"
-    const val GOOGLE_HTTP_CLIENT = "1.36.0"
-    const val YOUTUBE_SERVICE = "v3-rev20210915-1.32.1"
     const val ADAPTER_DELEGATES = "4.3.1"
     const val ADAPTER_DELEGATES_PAGING = "4.1.0"
     const val PAGING = "3.1.0"
     const val SWIPE_TO_REFRESH = "1.1.0"
-    const val WEBKIT = "1.4.0"
-    const val OKIO = "3.0.0"
-    const val CAMERA_2 = "1.1.0-alpha12"
-    const val CAMERA_2_VIEW = "1.0.0-alpha32"
-    const val CAMERA_2_VIDEO = "1.1.0-alpha12"
-    const val CAMERA_2_EXTENSIONS = "1.0.0-alpha12"
     const val GLIDE_TRANSFORMATION = "4.3.0"
-    const val RTMP = "2.1.5"
-    const val ACTION_CABLE = "0.5.4"
+    const val DETEKT = "1.19.0"
 }
