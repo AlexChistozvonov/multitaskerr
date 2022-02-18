@@ -8,9 +8,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Multitasker)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
     }
+
+
 }
