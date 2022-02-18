@@ -2,17 +2,17 @@ package com.aldera.multitasker.ui.exception
 
 import android.content.Context
 
-@Suppress("UnusedPrivateMember")
+@Suppress("UnusedPrivateMember", "UNUSED_EXPRESSION")
 class UIExceptionMapper {
     fun titleMapper(context: Context, throwable: Throwable?): String {
-        return when {
+        return when (throwable) {
 
             else -> ""
         }
     }
 
     fun subtitleMapper(context: Context, throwable: Throwable?): String {
-        return when {
+        return when (throwable) {
 
             else -> ""
         }

@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">multitasker</string>
+
+    <string name="error_email">Адрес электронной почты введен неверно!</string>
+    <string name="error_password">Пароль введен неверно!</string>
+    <string name="enter">Вход</string>
+    <string name="_continue">Продолжить</string>
+    <string name="email_address">Адрес электронной почты</string>
+
+    <string name="launch_registering">Регистрация</string>
+    <string name="launch_title"> <b>Multi-Tasker \n “Самый удобный” инструмент \nдля отслеживания ваших \nзадач</b></string>
+    <string name="launch_rules_use">Используя приложение, вы подтверждаете, что \nсогласны с <b><u>Политикой конфиденциальности</u></b> и \n<u><b>Правилами использования приложения</b></u></string>
+
+    <string name="login_authorization">Авторизация</string>
+    <string name="login_password">Пароль</string>
+    <string name="login_forgot_password"><b><u>Забыли пароль?</u></b></string>
+    <string name="login_no_acc_register">Нет аккаунта? <b><u>Зарегистрируйтесь</u></b></string>
+
+    <string name="registration_registration">Регистрация</string>
+    <string name="registration_have_acc_input">Уже есть аккаунт? <b><u>Войдите</u></b></string>
+
+    <string name="recovery_password">Восстановление пароля</string>
+    <string name="recovery_password_code">Введите код</string>
+    <string name="recovery_password_new_password">Новый пароль</string>
+    <string name="recovery_password__repeat_new_password">Повторите новый пароль</string>
+
+    <string name="registration_repeat_password">Повторите пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="registration">Регистрирация</string>
+    <string name="registration_agreement">Регистрируясь в приложении, вы подтверждаете, что \nсогласны с <b><u>Политикой конфиденциальности</u></b> и \n<u><b>Правилами использования приложения</b></u></string>
+    <string name="registration_have_acc">Уже есть аккаунт?<u><b> Войдите</b></u></string>
+
+
 </resources>
