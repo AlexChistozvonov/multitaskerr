@@ -7,6 +7,8 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.LaunchFragmentBinding
+import com.aldera.multitasker.ui.extension.navigateSafe
+import com.aldera.multitasker.ui.extension.onClick
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +21,7 @@ class LaunchFragment : Fragment(R.layout.launch_fragment) {
     }
 
     private fun initView() = with(binding) {
-        btnEnter.setOnClickListener { findNavController().navigate(LaunchFragmentDirections.openLoginFragment()) }
-        btnRegistration.setOnClickListener { findNavController().navigate(LaunchFragmentDirections.openRegistrationFragment()) }
+        btnEnter.onClick { findNavController().navigateSafe(LaunchFragmentDirections.openLoginFragment()) }
+        btnRegistration.onClick { findNavController().navigateSafe(LaunchFragmentDirections.openRegistrationFragment()) }
     }
 }

@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">multitasker</string>
 
+    <string name="error">Ошибка</string>
+    <string name="ok">Ок</string>
+    <string name="cancel">Отмена</string>
     <string name="error_email">Адрес электронной почты введен неверно!</string>
     <string name="error_password">Пароль введен неверно!</string>
     <string name="enter">Вход</string>
     <string name="_continue">Продолжить</string>
     <string name="email_address">Адрес электронной почты</string>
+    <string name="different_passwords">Пароли не совпадают</string>
 
     <string name="launch_registering">Регистрация</string>
     <string name="launch_title"> <b>Multi-Tasker \n “Самый удобный” инструмент \nдля отслеживания ваших \nзадач</b></string>
@@ -13,7 +17,7 @@
 
     <string name="login_authorization">Авторизация</string>
     <string name="login_password">Пароль</string>
-    <string name="login_forgot_password"><b><u>Забыли пароль?</u></b></string>
+    <string name="login_forgot_password">Забыли пароль?</string>
     <string name="login_no_acc_register">Нет аккаунта? <b><u>Зарегистрируйтесь</u></b></string>
 
     <string name="registration_registration">Регистрация</string>
@@ -30,5 +34,12 @@
     <string name="registration_agreement">Регистрируясь в приложении, вы подтверждаете, что \nсогласны с <b><u>Политикой конфиденциальности</u></b> и \n<u><b>Правилами использования приложения</b></u></string>
     <string name="registration_have_acc">Уже есть аккаунт?<u><b> Войдите</b></u></string>
 
+    <string name="general_error">Ошибка получения данных</string>
+    <string name="error_network">Что-то не так с вашим интернет-соединением</string>
+    <string name="error_server">Сервер недоступен</string>
+    <string name="error_smt_go_wrong">Что-то пошло не так</string>
+    <string name="error_network_subtitle">Проверьте подключение к интернету</string>
+    <string name="error_server_subtitle">Извините, попробуйте позже</string>
+    <string name="error_smt_go_wrong_subtitle">Попробуйте позже</string>
 
 </resources>

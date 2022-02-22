@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.RecoveryPasswordCreateFragmentBinding
+import com.aldera.multitasker.ui.extension.navigateSafe
+import com.aldera.multitasker.ui.extension.onClick
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,13 +22,13 @@ class RecoveryPasswordCreateFragment : Fragment(R.layout.recovery_password_creat
     }
 
     private fun initView() = with(binding) {
-        btnContinue.setOnClickListener {
-            findNavController().navigate(
+        btnContinue.onClick {
+            findNavController().navigateSafe(
                 RecoveryPasswordCreateFragmentDirections.openLoginFragment()
             )
         }
-        tvNoAccRegister.setOnClickListener {
-            findNavController().navigate(
+        tvNoAccRegister.onClick {
+            findNavController().navigateSafe(
                 RecoveryPasswordCreateFragmentDirections.openRegistrationFragment()
             )
         }

@@ -3,12 +3,13 @@ package com.aldera.multitasker.presentation.recovery.code
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.RecoveryPasswordCodeFragmentBinding
 import com.aldera.multitasker.presentation.recovery.email.RecoveryPasswordEmailFragmentDirections
+import com.aldera.multitasker.ui.extension.navigateSafe
+import com.aldera.multitasker.ui.extension.onClick
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,20 +22,19 @@ class RecoveryPasswordCodeFragment : Fragment(R.layout.recovery_password_code_fr
     }
 
     private fun initView() = with(binding) {
-        btnContinue.setOnClickListener {
-            findNavController().navigate(
+        btnContinue.onClick {
+            findNavController().navigateSafe(
                 RecoveryPasswordCodeFragmentDirections.openRecoveryPasswordCreateFragment()
             )
         }
-        Navigation.createNavigateOnClickListener(R.id.recoveryPasswordCreateFragment)
-        tvNoAccRegister.setOnClickListener {
-            findNavController().navigate(
+        tvNoAccRegister.onClick {
+            findNavController().navigateSafe(
                 RecoveryPasswordCodeFragmentDirections.openLoginFragment()
             )
         }
 
-        tvNoAccRegister.setOnClickListener {
-            findNavController().navigate(
+        tvNoAccRegister.onClick {
+            findNavController().navigateSafe(
                 RecoveryPasswordEmailFragmentDirections.openRegistrationFragment()
             )
         }
