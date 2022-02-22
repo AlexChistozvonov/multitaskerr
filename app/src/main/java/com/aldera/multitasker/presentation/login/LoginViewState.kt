@@ -4,6 +4,7 @@ sealed class LoginEvent {
     object Loading : LoginEvent()
     object EmailError : LoginEvent()
     object PasswordError : LoginEvent()
+    data class Error(val error: Exception?) : LoginEvent()
     data class EmailChanged(val text: String) : LoginEvent()
     data class PasswordChanged(val text: String) : LoginEvent()
 }
@@ -27,5 +28,6 @@ data class LoginViewState(
         is LoginEvent.PasswordChanged -> copy(passwordText = event.text, event = event)
         LoginEvent.EmailError -> copy(emailError = true, event = event)
         LoginEvent.PasswordError -> copy(passwordError = true, event = event)
+        is LoginEvent.Error -> copy(error = event.error, event = event)
     }
 }

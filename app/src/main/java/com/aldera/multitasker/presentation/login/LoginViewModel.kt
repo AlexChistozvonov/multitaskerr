@@ -4,9 +4,10 @@ import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aldera.multitasker.ConstantRegex
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.domain.login.LoginRepository
+import com.aldera.multitasker.ui.util.ConstantRegex
+import com.aldera.multitasker.ui.util.PreferencesKey
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,7 +40,6 @@ class LoginViewModel @Inject constructor(
     fun login() {
         val regEmail = Regex(ConstantRegex.REGEX_EMAIL)
         val regPassword = Regex(ConstantRegex.REGEX_PASSWORD)
-
         if (regEmail.matches(_uiState.value.emailText) && regPassword.matches(_uiState.value.passwordText)) {
             viewModelScope.launch {
                 val result =
@@ -49,11 +49,10 @@ class LoginViewModel @Inject constructor(
                         Timber.e("Error", "Error get password")
                     }
                     is LoadingResult.Success -> {
-//                        userLogin.postValue(result.data)
                         loading.postValue(false)
                         sharedPreferences.edit().apply {
-                            putString("ACCESS_TOKEN", result.data.accessToken)
-                            putString("REFRESH_TOKEN", result.data.refreshToken)
+                            putString(PreferencesKey.ACCESS_TOKEN, result.data.accessToken)
+                            putString(PreferencesKey.REFRESH_TOKEN, result.data.refreshToken)
                         }.apply()
                     }
                 }
@@ -69,12 +68,10 @@ class LoginViewModel @Inject constructor(
         val regPassword = Regex(ConstantRegex.REGEX_PASSWORD)
         if (!regEmail.matches(_uiState.value.emailText)) {
             emitEvent(LoginEvent.EmailError)
-            Timber.e("handleError", "Error Email")
         }
 
         if (!regPassword.matches(_uiState.value.passwordText)) {
             emitEvent(LoginEvent.PasswordError)
-            Timber.e("handleError", "Error password")
         }
     }
 }
