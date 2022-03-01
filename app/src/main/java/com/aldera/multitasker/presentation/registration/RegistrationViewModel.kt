@@ -13,7 +13,6 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
@@ -42,6 +41,7 @@ class RegistrationViewModel @Inject constructor(
     }
 
     fun registration() {
+        emitEvent(RegistrationEvent.Loading)
         val regEmail = Regex(ConstantRegex.REGEX_EMAIL)
         val regPassword = Regex(ConstantRegex.REGEX_PASSWORD)
         if (regEmail.matches(_uiState.value.emailText) && regPassword.matches(_uiState.value.passwordText)) {
@@ -49,15 +49,15 @@ class RegistrationViewModel @Inject constructor(
                 val result = registrationRepository.registration(
                     _uiState.value.emailText,
                     _uiState.value.passwordText,
-                    _uiState.value.password2Text,
+                    _uiState.value.password2Text
                 )
                 when (result) {
                     is LoadingResult.Error -> {
                         emitEvent(RegistrationEvent.Error(result.exception))
                     }
                     is LoadingResult.Success -> {
+                        emitEvent(RegistrationEvent.Success)
                         loading.postValue(false)
-                        Timber.e("Success")
                         sharedPreferences.edit().apply() {
                             putString(PreferencesKey.ACCESS_TOKEN, result.data.accessToken)
                         }.apply()

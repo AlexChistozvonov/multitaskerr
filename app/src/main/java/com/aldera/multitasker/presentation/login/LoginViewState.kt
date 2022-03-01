@@ -1,6 +1,7 @@
 package com.aldera.multitasker.presentation.login
 
 sealed class LoginEvent {
+    object Success : LoginEvent()
     object Loading : LoginEvent()
     object EmailError : LoginEvent()
     object PasswordError : LoginEvent()
@@ -16,7 +17,8 @@ data class LoginViewState(
     val passwordError: Boolean = false,
     val emailError: Boolean = false,
     val loading: Boolean = false,
-    val event: LoginEvent = LoginEvent.Loading
+    val loader: Boolean = false,
+    val event: LoginEvent = LoginEvent.Success
 ) {
     fun applyEvent(event: LoginEvent) = when (event) {
         is LoginEvent.EmailChanged -> copy(
@@ -29,5 +31,6 @@ data class LoginViewState(
         LoginEvent.EmailError -> copy(emailError = true, event = event)
         LoginEvent.PasswordError -> copy(passwordError = true, event = event)
         is LoginEvent.Error -> copy(error = event.error, event = event)
+        LoginEvent.Success -> copy(loader = true, event = event)
     }
 }

@@ -100,7 +100,8 @@
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:errorTextColor="@color/red"
-            app:hintEnabled="false">
+            app:hintEnabled="false"
+            android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_repeat_password"
@@ -114,6 +115,14 @@
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register"

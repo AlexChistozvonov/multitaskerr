@@ -1,16 +1,13 @@
 <resources>
     <string name="app_name">multitasker</string>
+    <string name="app_name_text">multi-tasker</string>
 
-    <string name="error">Ошибка</string>
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
-    <string name="error_email">Адрес электронной почты введен неверно!</string>
-    <string name="error_password">Пароль введен неверно!</string>
     <string name="enter">Вход</string>
     <string name="_continue">Продолжить</string>
-    <string name="email_address">Адрес электронной почты</string>
-    <string name="different_passwords">Пароли не совпадают</string>
 
+    <string name="email_address">Адрес электронной почты</string>
     <string name="launch_registering">Регистрация</string>
     <string name="launch_title"> <b>Multi-Tasker \n “Самый удобный” инструмент \nдля отслеживания ваших \nзадач</b></string>
     <string name="launch_rules_use">Используя приложение, вы подтверждаете, что \nсогласны с <b><u>Политикой конфиденциальности</u></b> и \n<u><b>Правилами использования приложения</b></u></string>
@@ -41,5 +38,11 @@
     <string name="error_network_subtitle">Проверьте подключение к интернету</string>
     <string name="error_server_subtitle">Извините, попробуйте позже</string>
     <string name="error_smt_go_wrong_subtitle">Попробуйте позже</string>
+
+    <string name="error_email">Адрес электронной почты введен неверно!</string>
+    <string name="error_password">Пароль введен неверно!</string>
+    <string name="error">Ошибка</string>
+    <string name="different_passwords">Пароли не совпадают</string>
+    <string name="error_code">Количество символов должно быть 6!</string>
 
 </resources>

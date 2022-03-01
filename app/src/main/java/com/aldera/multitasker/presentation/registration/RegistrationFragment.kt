@@ -10,6 +10,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,8 +20,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.BuildConfig
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.RegistrationFragmentBinding
+import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
+import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
 import com.aldera.multitasker.ui.util.ConstantApi
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,12 +44,13 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
 
     private val clickableSpanOpenUrlAttachment = object : ClickableSpan() {
         override fun onClick(p0: View) {
-            val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse(BuildConfig.SERVER_URL + ConstantApi.terms_of_use)
-            startActivity(openURL)
+            val url = (ConstantApi.google_docs + BuildConfig.SERVER_URL + ConstantApi.terms_of_use)
+            val builder = CustomTabsIntent.Builder()
+            val customBuilder = builder.build()
+            builder.setShowTitle(true)
+            customBuilder.launchUrl(context!!, Uri.parse(url))
         }
     }
-
     private val clickableSpanOpenUrlPrivacy = object : ClickableSpan() {
         override fun onClick(p0: View) {
             val openURL = Intent(Intent.ACTION_VIEW)
@@ -87,30 +91,51 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
         viewModel.uiState.onEach { handleState(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun handleState(state: RegistrationViewState) {
+    private fun handleState(state: RegistrationViewState) = with(binding) {
+        btnRegister.isEnabled =
+            !etEmail.text.isNullOrEmpty() && !etPassword.text.isNullOrEmpty() && !etRepeatPassword.text.isNullOrEmpty()
         when (state.event) {
             is RegistrationEvent.EmailChanged -> {
-                binding.tilEmail.error = null
+                progressBar.hide()
+                btnRegister.show()
+                tilEmail.error = null
             }
-            RegistrationEvent.Loading -> {}
+            RegistrationEvent.Loading -> {
+                progressBar.show()
+                btnRegister.hide()
+            }
             is RegistrationEvent.PasswordChanged -> {
-                binding.tilPassword.error = null
-                binding.tilPasswordRepeat.error = null
+                progressBar.hide()
+                btnRegister.show()
+                tilPassword.error = null
+                tilPasswordRepeat.error = null
             }
             is RegistrationEvent.PasswordError -> {
-                binding.tilPassword.error = getString(R.string.error_password)
+                progressBar.hide()
+                btnRegister.show()
+                tilPassword.error = getString(R.string.error_password)
             }
             is RegistrationEvent.EmailError -> {
-                binding.tilEmail.error = getString(R.string.error_email)
+                progressBar.hide()
+                btnRegister.show()
+                tilEmail.error = getString(R.string.error_email)
             }
             is RegistrationEvent.Password2Changed -> {
-                binding.tilPasswordRepeat.error = null
+                progressBar.hide()
+                btnRegister.show()
+                tilPasswordRepeat.error = null
             }
             is RegistrationEvent.Error -> {
+                progressBar.hide()
+                btnRegister.show()
                 showGeneralErrorDialog(
                     context = requireContext(),
                     exception = state.error
                 )
+            }
+            RegistrationEvent.Success -> {
+                progressBar.hide()
+                btnRegister.show()
             }
         }
     }

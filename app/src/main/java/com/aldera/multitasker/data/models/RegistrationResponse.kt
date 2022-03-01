@@ -1,6 +1,6 @@
 package com.aldera.multitasker.data.models
 
 data class RegistrationResponse(
-    var accessToken: String? = null,
-    var tokenType: String? = null,
+    var accessToken: String?,
+    var tokenType: String?,
 )

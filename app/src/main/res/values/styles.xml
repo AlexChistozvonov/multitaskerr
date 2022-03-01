@@ -5,7 +5,7 @@
     <!--  Button  -->
 
     <style name="ColoredButton" parent="buttonH100">
-        <item name="android:background">@drawable/background_black_button</item>
+        <item name="android:background">@drawable/background_black_button_enabled</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">8dp</item>
@@ -40,6 +40,10 @@
     <style name="ShapeAppearanceOverlay.MyApp.Dialog.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
+    </style>
+
+    <style name="Theme.Multitasker.Launcher">
+        <item name="android:windowBackground">@drawable/launch_splash</item>
     </style>
 
 </resources>
