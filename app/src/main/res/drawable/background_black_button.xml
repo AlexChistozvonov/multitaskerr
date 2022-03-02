@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"
-    android:tint="@color/black">
-    <corners android:radius="10dp" />
-    <solid android:color="@color/white" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/background_black_button_enabled" android:state_enabled="true" />
+    <item android:drawable="@drawable/background_black_button_disabled" android:state_enabled="false" />
+</selector>

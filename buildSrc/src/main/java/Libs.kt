@@ -1,4 +1,5 @@
 object Libs {
+    const val BROWSER = "androidx.browser:browser:${Versions.BROWSER}"
     const val ACTIVITY_KTX = "androidx.activity:activity-ktx:${Versions.ACTIVITY_KTX}"
     const val APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APPCOMPAT}"
     const val CARD_VIEW = "androidx.cardview:cardview:${Versions.CARD_VIEW}"

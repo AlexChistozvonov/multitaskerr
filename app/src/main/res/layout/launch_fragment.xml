@@ -26,7 +26,7 @@
         android:layout_height="56dp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/background_black_button"
+        android:background="@drawable/background_black_button_enabled"
         android:paddingVertical="18dp"
         android:text="@string/enter"
         android:textAllCaps="false"

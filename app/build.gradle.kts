@@ -87,6 +87,7 @@ android {
 }
 
 dependencies {
+    implementation(Libs.BROWSER)
     implementation(Libs.CORE_KTX)
 
     // UI

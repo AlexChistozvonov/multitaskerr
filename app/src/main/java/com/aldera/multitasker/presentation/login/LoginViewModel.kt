@@ -1,7 +1,6 @@
 package com.aldera.multitasker.presentation.login
 
 import android.content.SharedPreferences
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
@@ -13,7 +12,6 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -23,7 +21,6 @@ class LoginViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(LoginViewState())
     val uiState = _uiState.asStateFlow()
-    private val loading = MutableLiveData<Boolean>()
 
     private fun emitEvent(event: LoginEvent) {
         _uiState.value = _uiState.value.applyEvent(event)
@@ -38,6 +35,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun login() {
+        emitEvent(LoginEvent.Loading)
         val regEmail = Regex(ConstantRegex.REGEX_EMAIL)
         val regPassword = Regex(ConstantRegex.REGEX_PASSWORD)
         if (regEmail.matches(_uiState.value.emailText) && regPassword.matches(_uiState.value.passwordText)) {
@@ -46,10 +44,10 @@ class LoginViewModel @Inject constructor(
                     loginRepository.login(_uiState.value.emailText, _uiState.value.passwordText)
                 when (result) {
                     is LoadingResult.Error -> {
-                        Timber.e("Error", "Error get password")
+                        emitEvent(LoginEvent.Error(result.exception))
                     }
                     is LoadingResult.Success -> {
-                        loading.postValue(false)
+                        emitEvent(LoginEvent.Success)
                         sharedPreferences.edit().apply {
                             putString(PreferencesKey.ACCESS_TOKEN, result.data.accessToken)
                             putString(PreferencesKey.REFRESH_TOKEN, result.data.refreshToken)

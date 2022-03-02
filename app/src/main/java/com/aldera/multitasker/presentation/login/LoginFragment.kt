@@ -16,8 +16,10 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.LoginFragmentBinding
+import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
+import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -53,19 +55,31 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         viewModel.uiState.onEach { handleState(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun handleState(state: LoginViewState) {
+    private fun handleState(state: LoginViewState) = with(binding) {
+        btnInput.isEnabled = !etEmail.text.isNullOrEmpty() && !etPassword.text.isNullOrEmpty()
         when (state.event) {
             is LoginEvent.EmailChanged -> {
+                binding.progressBar.hide()
+                binding.btnInput.show()
                 binding.tilEmail.error = null
             }
-            LoginEvent.Loading -> {}
+            LoginEvent.Loading -> {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.btnInput.visibility = View.GONE
+            }
             is LoginEvent.PasswordChanged -> {
+                binding.progressBar.hide()
+                binding.btnInput.show()
                 binding.tilPassword.error = null
             }
             is LoginEvent.PasswordError -> {
+                binding.progressBar.hide()
+                binding.btnInput.show()
                 binding.tilPassword.error = getString(R.string.error_password)
             }
             is LoginEvent.EmailError -> {
+                binding.progressBar.hide()
+                binding.btnInput.show()
                 binding.tilEmail.error = getString(R.string.error_email)
             }
             is LoginEvent.Error -> {
@@ -73,6 +87,12 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
                     context = requireContext(),
                     exception = state.error
                 )
+                binding.progressBar.hide()
+                binding.btnInput.show()
+            }
+            LoginEvent.Success -> {
+                binding.progressBar.hide()
+                binding.btnInput.show()
             }
         }
     }
@@ -81,8 +101,8 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         createSpannable()
         etEmail.doOnTextChanged { text, _, _, _ -> viewModel.onEmailTextChanged(text.toString()) }
         etPassword.doOnTextChanged { text, _, _, _ -> viewModel.onPasswordTextChanged(text.toString()) }
-        btnInput.onClick { viewModel.login() }
         ibClose.onClick { findNavController().popBackStack() }
+        btnInput.onClick { viewModel.login() }
     }
 
     private fun createSpannable() = with(binding) {

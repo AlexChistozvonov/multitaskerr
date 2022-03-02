@@ -7,6 +7,7 @@ object Versions {
     const val TARGET_SDK = 31
     const val MIN_SDK = 28
 
+    const val BROWSER = "1.3.0"
     const val ANDROID_GRADLE_PLUGIN = "7.1.0"
     const val CORE_KTX = "1.7.0"
     const val FIREBASE_CRASHLYTICS_GRADLE = "2.8.1"
