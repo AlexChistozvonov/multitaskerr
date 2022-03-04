@@ -5,11 +5,13 @@ import com.aldera.multitasker.data.recovery.code.RecoveryPasswordCodeRepositoryI
 import com.aldera.multitasker.data.recovery.create.RecoveryPasswordCreateRepositoryImpl
 import com.aldera.multitasker.data.recovery.email.RecoveryPasswordEmailRepositoryImpl
 import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
+import com.aldera.multitasker.data.user.UserRepositoryImpl
 import com.aldera.multitasker.domain.login.LoginRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCodeRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCreateRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordEmailRepository
 import com.aldera.multitasker.domain.registration.RegistrationRepository
+import com.aldera.multitasker.domain.user.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -49,4 +51,10 @@ abstract class RepositoryModule {
     abstract fun recoveryPasswordCreateRepository(
         recoveryPasswordCreateRepository: RecoveryPasswordCreateRepositoryImpl
     ): RecoveryPasswordCreateRepository
+
+    @Singleton
+    @Binds
+    abstract fun userRepository(
+        userRepository: UserRepositoryImpl
+    ): UserRepository
 }

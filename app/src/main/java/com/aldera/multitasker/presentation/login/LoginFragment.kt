@@ -93,6 +93,9 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
             LoginEvent.Success -> {
                 binding.progressBar.hide()
                 binding.btnInput.show()
+                findNavController().navigateSafe(
+                    LoginFragmentDirections.openProfileFragment()
+                )
             }
         }
     }

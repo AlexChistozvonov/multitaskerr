@@ -45,4 +45,22 @@
     <string name="different_passwords">Пароли не совпадают</string>
     <string name="error_code">Количество символов должно быть 6!</string>
 
+    <string name="my">Моё</string>
+    <string name="appointed">Назначено</string>
+    <string name="calendar">Календарь</string>
+    <string name="profile">Профиль</string>
+    
+    <string name="go_out">Выйти</string>
+    <string name="name_profile">Имя Фамилия</string>
+    <string name="your_profile">Ваш профиль</string>
+    <string name="edit_name">Редактировать имя</string>
+    <string name="edit_email">Редактировать Email</string>
+    <string name="edit_password">Сменить пароль</string>
+    <string name="name">Имя</string>
+    <string name="save">Сохранить</string>
+    <string name="email">Email</string>
+    <string name="old_password">Старый пароль</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="repeat_new_password">Повторите новый пароль</string>
+
 </resources>

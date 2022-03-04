@@ -50,11 +50,11 @@ class RecoveryPasswordCodeFragment : Fragment(R.layout.recovery_password_code_fr
 
     private fun initObservers() {
         viewModel.uiState.onEach { handleState(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
-        viewModel.navigationEvent.onEach { openCreateFragment(it) }
+        viewModel.navigationEvent.onEach { handleNavigation(it) }
             .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun openCreateFragment(it: Event<RecoveryPasswordCodeNavigationEvent>) {
+    private fun handleNavigation(it: Event<RecoveryPasswordCodeNavigationEvent>) {
         when (val data = it.content()) {
             is RecoveryPasswordCodeNavigationEvent.NextStep -> findNavController().navigateSafe(
                 RecoveryPasswordCodeFragmentDirections.openRecoveryPasswordCreateFragment(data.key)
