@@ -13,7 +13,7 @@
         android:layout_gravity="start"
         android:layout_marginStart="38dp"
         android:background="@null"
-        tools:src="@drawable/chevron_left" />
+        tools:src="@drawable/ic_chevron_left" />
 
     <FrameLayout
         android:id="@+id/fl_title_container"
@@ -41,6 +41,6 @@
         android:layout_gravity="end"
         android:layout_marginEnd="16dp"
         android:background="@null"
-        android:src="@drawable/plus"
+        android:src="@drawable/ic_plus"
         android:visibility="gone" />
 </androidx.appcompat.widget.Toolbar>
