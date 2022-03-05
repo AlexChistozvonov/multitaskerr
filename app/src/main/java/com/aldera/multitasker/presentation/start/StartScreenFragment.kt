@@ -1,5 +1,6 @@
-package com.aldera.multitasker.presentation
+package com.aldera.multitasker.presentation.start
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -9,10 +10,14 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.StartScreenFragmentBinding
 import com.aldera.multitasker.ui.extension.navigateSafe
+import com.aldera.multitasker.ui.util.PreferencesKey
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class StartScreenFragment : Fragment(R.layout.start_screen_fragment) {
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
     private val binding by viewBinding(StartScreenFragmentBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +46,7 @@ class StartScreenFragment : Fragment(R.layout.start_screen_fragment) {
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 if (currentId == R.id.end_dot) {
-                    findNavController().navigateSafe(StartScreenFragmentDirections.openLaunchFragment())
+                    navigateToApp()
                 }
             }
 
@@ -54,5 +59,14 @@ class StartScreenFragment : Fragment(R.layout.start_screen_fragment) {
                 // no op
             }
         })
+    }
+
+    private fun navigateToApp() {
+        val token = sharedPreferences.getString(PreferencesKey.ACCESS_TOKEN, "")
+        if (token.isNullOrEmpty()) {
+            findNavController().navigateSafe(StartScreenFragmentDirections.openLaunchFragment())
+        } else {
+            findNavController().navigateSafe(StartScreenFragmentDirections.openProfileFragment())
+        }
     }
 }

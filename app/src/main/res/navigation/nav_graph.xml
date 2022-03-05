@@ -30,6 +30,9 @@
         <action
             android:id="@+id/openLaunchFragment"
             app:destination="@id/launchFragment" />
+        <action
+            android:id="@+id/openProfileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -102,12 +105,23 @@
 
     <fragment
         android:id="@+id/startScreen"
+        android:name="com.aldera.multitasker.presentation.start.StartScreenFragment"
         android:label="StartScreen"
-        android:name="com.aldera.multitasker.presentation.StartScreenFragment"
         tools:layout="@layout/start_screen_fragment">
         <action
             android:id="@+id/openLaunchFragment"
             app:destination="@id/launchFragment" />
+        <action
+            android:id="@+id/openProfileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.aldera.multitasker.presentation.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile_fragment">
+
     </fragment>
 
 </navigation>

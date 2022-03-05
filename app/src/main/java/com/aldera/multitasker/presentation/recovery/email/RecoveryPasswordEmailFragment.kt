@@ -49,11 +49,11 @@ class RecoveryPasswordEmailFragment : Fragment(R.layout.recovery_password_email_
     private fun initObservers() {
         viewModel.uiState.onEach { handleState(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
         viewModel.navigationEvent.onEach {
-            openCodeFragment(it)
+            handleNavigation(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun openCodeFragment(it: Event<RecoveryPasswordEmailNavigationEvent>) {
+    private fun handleNavigation(it: Event<RecoveryPasswordEmailNavigationEvent>) {
         when (val data = it.content()) {
             is RecoveryPasswordEmailNavigationEvent.NextStep -> findNavController().navigateSafe(
                 RecoveryPasswordEmailFragmentDirections.openRecoveryPasswordCodeFragment(data.key)

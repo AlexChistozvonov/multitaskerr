@@ -9,8 +9,10 @@ import com.aldera.multitasker.data.models.RecoveryPasswordEmailRequest
 import com.aldera.multitasker.data.models.RecoveryPasswordEmailResponse
 import com.aldera.multitasker.data.models.RegistrationRequest
 import com.aldera.multitasker.data.models.RegistrationResponse
+import com.aldera.multitasker.data.models.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface Api {
@@ -28,4 +30,7 @@ interface Api {
 
     @POST("api/password/reset")
     suspend fun resetPassword(@Body recoveryPasswordCreateRequest: RecoveryPasswordCreateRequest): Response<Unit>
+
+    @GET("api/user/me")
+    suspend fun getUser(): UserResponse
 }
