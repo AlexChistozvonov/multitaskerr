@@ -9,6 +9,17 @@
         android:id="@+id/toolbar"
         layout="@layout/main_toolbar" />
 
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/email"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/til_email"
+        app:layout_constraintStart_toStartOf="@+id/til_email" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"
         style="@style/TextInput"
@@ -19,24 +30,21 @@
         app:boxStrokeErrorColor="@color/red"
         app:errorEnabled="true"
         app:errorTextColor="@color/red"
-        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_edit_email"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:fontFamily="@font/ubuntu_medium"
-            android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:maxLength="6"
             android:padding="16dp"
             android:textColor="@color/light_black"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_continue"
@@ -53,6 +61,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_email"
+        tools:ignore="MissingConstraints" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

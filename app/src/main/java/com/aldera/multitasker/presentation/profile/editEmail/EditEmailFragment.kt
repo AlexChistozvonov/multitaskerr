@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.profile.editName
+package com.aldera.multitasker.presentation.profile.editEmail
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
-import com.aldera.multitasker.databinding.EditNameFragmentBinding
+import com.aldera.multitasker.databinding.EditEmailFragmentBinding
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
@@ -19,10 +19,9 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class EditNameFragment : Fragment(R.layout.edit_name_fragment) {
-    private val binding by viewBinding(EditNameFragmentBinding::bind)
-    private val viewModel by viewModels<EditNameViewModel>()
-
+class EditEmailFragment : Fragment(R.layout.edit_email_fragment) {
+    private val binding by viewBinding(EditEmailFragmentBinding::bind)
+    private val viewModel by viewModels<EditEmailViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -30,12 +29,12 @@ class EditNameFragment : Fragment(R.layout.edit_name_fragment) {
     }
 
     private fun initView() = with(binding) {
-        etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onEmailTextChanged(text.toString()) }
+        etEditEmail.doOnTextChanged { text, _, _, _ -> viewModel.onEmailTextChanged(text.toString()) }
         btnContinue.onClick {
-            viewModel.editName()
+            viewModel.editEmail()
         }
         toolbar.apply {
-            tvTitle.text = getString(R.string.edit_name)
+            tvTitle.text = getString(R.string.edit_email)
             ibNavigationIcon.setImageResource(R.drawable.ic_chevron_left)
         }
     }
@@ -44,50 +43,50 @@ class EditNameFragment : Fragment(R.layout.edit_name_fragment) {
         viewModel.uiState.onEach { handleState(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun handleState(state: EditNameViewState) = with(binding) {
+    private fun handleState(state: EditEmailViewState) = with(binding) {
         when (state.event) {
-            is EditNameEvent.Error -> {
+            is EditEmailEvent.Error -> {
                 progressBar.hide()
                 btnContinue.show()
-                tilName.show()
-                tvName.show()
+                tilEmail.show()
+                tvEmail.show()
                 showGeneralErrorDialog(
                     context = requireContext(),
                     exception = state.error
                 )
             }
-            EditNameEvent.Loading -> {
+            EditEmailEvent.Loading -> {
                 progressBar.show()
                 btnContinue.hide()
-                tilName.hide()
-                tvName.hide()
+                tilEmail.hide()
+                tvEmail.hide()
             }
-            is EditNameEvent.NameChanged -> {
+            is EditEmailEvent.EmailChanged -> {
                 progressBar.hide()
                 btnContinue.show()
-                tilName.show()
-                tvName.show()
-                tilName.error = null
+                tilEmail.show()
+                tvEmail.show()
+                tilEmail.error = null
             }
-            EditNameEvent.NameError -> {
+            EditEmailEvent.EmailError -> {
                 progressBar.hide()
                 btnContinue.show()
-                tilName.show()
-                tvName.show()
-                tilName.error = getString(R.string.error_name)
+                tilEmail.show()
+                tvEmail.show()
+                tilEmail.error = getString(R.string.error_name)
             }
-            is EditNameEvent.Success -> {
+            is EditEmailEvent.Success -> {
                 progressBar.hide()
                 btnContinue.show()
-                tilName.show()
-                tvName.show()
+                tilEmail.show()
+                tvEmail.show()
                 findNavController().popBackStack()
             }
-            EditNameEvent.Init -> {
+            EditEmailEvent.Init -> {
                 progressBar.hide()
                 btnContinue.show()
-                tilName.show()
-                tvName.show()
+                tilEmail.show()
+                tvEmail.show()
             }
         }
     }

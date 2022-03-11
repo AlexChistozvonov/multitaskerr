@@ -42,6 +42,7 @@
         tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -57,14 +58,29 @@
                 app:srcCompat="@drawable/ic_avatar"
                 tools:ignore="MissingConstraints" />
 
+            <ProgressBar
+                android:id="@+id/progressBarImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
             <ImageButton
-                android:id="@+id/edit"
+                android:id="@+id/btn_edit_avatar"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:background="@drawable/background_circle_gray"
+                android:padding="8dp"
+                android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
                 app:srcCompat="@drawable/ic_edit"
+                app:tint="@color/white"
                 tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

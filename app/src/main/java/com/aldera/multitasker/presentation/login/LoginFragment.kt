@@ -59,43 +59,47 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         btnInput.isEnabled = !etEmail.text.isNullOrEmpty() && !etPassword.text.isNullOrEmpty()
         when (state.event) {
             is LoginEvent.EmailChanged -> {
-                binding.progressBar.hide()
-                binding.btnInput.show()
-                binding.tilEmail.error = null
+                progressBar.show()
+                btnInput.show()
+                tilEmail.error = null
             }
             LoginEvent.Loading -> {
-                binding.progressBar.visibility = View.VISIBLE
-                binding.btnInput.visibility = View.GONE
+                progressBar.show()
+                btnInput.show()
             }
             is LoginEvent.PasswordChanged -> {
-                binding.progressBar.hide()
-                binding.btnInput.show()
-                binding.tilPassword.error = null
+                progressBar.hide()
+                btnInput.show()
+                tilPassword.error = null
             }
             is LoginEvent.PasswordError -> {
-                binding.progressBar.hide()
-                binding.btnInput.show()
-                binding.tilPassword.error = getString(R.string.error_password)
+                progressBar.hide()
+                btnInput.show()
+                tilPassword.error = getString(R.string.error_password)
             }
             is LoginEvent.EmailError -> {
-                binding.progressBar.hide()
-                binding.btnInput.show()
-                binding.tilEmail.error = getString(R.string.error_email)
+                progressBar.hide()
+                btnInput.show()
+                tilEmail.error = getString(R.string.error_email)
             }
             is LoginEvent.Error -> {
                 showGeneralErrorDialog(
                     context = requireContext(),
                     exception = state.error
                 )
-                binding.progressBar.hide()
+                progressBar.hide()
                 binding.btnInput.show()
             }
             LoginEvent.Success -> {
-                binding.progressBar.hide()
-                binding.btnInput.show()
+                progressBar.hide()
+                btnInput.show()
                 findNavController().navigateSafe(
                     LoginFragmentDirections.openProfileFragment()
                 )
+            }
+            LoginEvent.Init -> {
+                progressBar.hide()
+                btnInput.show()
             }
         }
     }

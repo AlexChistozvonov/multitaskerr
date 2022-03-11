@@ -44,7 +44,7 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
 
     private val clickableSpanOpenUrlAttachment = object : ClickableSpan() {
         override fun onClick(p0: View) {
-            val url = (ConstantApi.google_docs + BuildConfig.SERVER_URL + ConstantApi.terms_of_use)
+            val url = (ConstantApi.GOOGLE_DOCS + BuildConfig.SERVER_URL + ConstantApi.TERMS_OF_USE)
             val builder = CustomTabsIntent.Builder()
             val customBuilder = builder.build()
             builder.setShowTitle(true)
@@ -54,7 +54,7 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
     private val clickableSpanOpenUrlPrivacy = object : ClickableSpan() {
         override fun onClick(p0: View) {
             val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse(BuildConfig.SERVER_URL + ConstantApi.privacy_police)
+            openURL.data = Uri.parse(BuildConfig.SERVER_URL + ConstantApi.PRIVACY_POLICE)
             startActivity(openURL)
         }
     }
