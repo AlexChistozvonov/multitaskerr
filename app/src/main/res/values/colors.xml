@@ -14,6 +14,8 @@
     <color name="logo_color">#222130</color>
     <color name="gray_text">#606060</color>
     <color name="dark_red">#D90000</color>
+    <color name="dark_gray">#2D3030</color>
+
 
 
 </resources>

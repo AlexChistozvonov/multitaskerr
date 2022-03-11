@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@android:color/transparent"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    tools:context=".presentation.ImagePickerDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="24dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_camera"
+                    style="@style/ColoredButton.NoCorner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:height="48dp"
+                    android:text="@string/camera"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_gallery"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:dividerColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_gallery" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_gallery"
+                    style="@style/ColoredButton.NoCorner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:height="48dp"
+                    android:text="@string/gallery"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_delete"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDivider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:dividerColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_gallery"
+                    tools:layout_editor_absoluteX="16dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_delete"
+                    style="@style/ColoredButton.NoCorner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:height="48dp"
+                    android:text="@string/delete"
+                    android:textColor="@color/red"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="0dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/ColoredButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="48dp"
+            android:background="@drawable/bg_generic_dialog"
+            android:text="@string/cancel"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>

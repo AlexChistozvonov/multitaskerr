@@ -1,11 +1,13 @@
 package com.aldera.multitasker.core.di
 
+import com.aldera.multitasker.data.common.CommonRepositoryImpl
 import com.aldera.multitasker.data.login.LoginRepositoryImpl
 import com.aldera.multitasker.data.recovery.code.RecoveryPasswordCodeRepositoryImpl
 import com.aldera.multitasker.data.recovery.create.RecoveryPasswordCreateRepositoryImpl
 import com.aldera.multitasker.data.recovery.email.RecoveryPasswordEmailRepositoryImpl
 import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
 import com.aldera.multitasker.data.user.UserRepositoryImpl
+import com.aldera.multitasker.domain.common.CommonRepository
 import com.aldera.multitasker.domain.login.LoginRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCodeRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCreateRepository
@@ -57,4 +59,10 @@ abstract class RepositoryModule {
     abstract fun userRepository(
         userRepository: UserRepositoryImpl
     ): UserRepository
+
+    @Singleton
+    @Binds
+    abstract fun commonRepository(
+        commonRepository: CommonRepositoryImpl
+    ): CommonRepository
 }

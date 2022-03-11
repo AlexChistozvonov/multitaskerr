@@ -2,6 +2,8 @@ package com.aldera.multitasker.core.network
 
 import com.aldera.multitasker.data.models.LoginRequest
 import com.aldera.multitasker.data.models.LoginResponse
+import com.aldera.multitasker.data.models.MultitaskerImage
+import com.aldera.multitasker.data.models.PutUserRequest
 import com.aldera.multitasker.data.models.RecoveryPasswordCodeRequest
 import com.aldera.multitasker.data.models.RecoveryPasswordCodeResponse
 import com.aldera.multitasker.data.models.RecoveryPasswordCreateRequest
@@ -10,10 +12,14 @@ import com.aldera.multitasker.data.models.RecoveryPasswordEmailResponse
 import com.aldera.multitasker.data.models.RegistrationRequest
 import com.aldera.multitasker.data.models.RegistrationResponse
 import com.aldera.multitasker.data.models.UserResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
 
 interface Api {
     @POST("/api/login")
@@ -33,4 +39,11 @@ interface Api {
 
     @GET("api/user/me")
     suspend fun getUser(): UserResponse
+
+    @PUT("api/user/me")
+    suspend fun editUser(@Body editNameRequest: PutUserRequest): UserResponse
+
+    @POST("api/attachment/image")
+    @Multipart
+    suspend fun loadImage(@Part image: MultipartBody.Part?): MultitaskerImage
 }
