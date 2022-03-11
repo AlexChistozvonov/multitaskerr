@@ -1,0 +1,680 @@
+Index: app/src/main/res/drawable/ic_avatar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_avatar.xml b/app/src/main/res/drawable/ic_avatar.xml
+new file mode 100644
+--- /dev/null	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
++++ b/app/src/main/res/drawable/ic_avatar.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -0,0 +1,9 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="56dp"
++    android:height="46dp"
++    android:viewportWidth="56"
++    android:viewportHeight="46">
++  <path
++      android:pathData="M49.2652,7.8324H41.169V7.0006C41.169,3.2847 38.1531,0.2688 34.4371,0.2688H21.5614C17.8439,0.2688 14.8295,3.2847 14.8295,7.0006V7.8324H6.7319C3.0144,7.8324 0,10.8468 0,14.5643V38.9994C0,42.7153 3.0144,45.7312 6.7319,45.7312H49.2682C52.9856,45.7312 56,42.7153 56,38.9994V14.5643C55.997,10.8453 52.9826,7.8324 49.2652,7.8324ZM27.997,38.748C20.9839,38.748 15.2813,33.0454 15.2813,26.0323C15.2813,19.0207 20.9839,13.3166 27.997,13.3166C35.0101,13.3166 40.7127,19.0192 40.7127,26.0323C40.7127,33.0454 35.0086,38.748 27.997,38.748ZM34.7289,26.0323C34.7289,29.7408 31.707,32.7642 27.997,32.7642C24.287,32.7642 21.2652,29.7408 21.2652,26.0323C21.2652,22.3223 24.287,19.3005 27.997,19.3005C31.707,19.3005 34.7289,22.3223 34.7289,26.0323Z"
++      android:fillColor="#9A99A2"/>
++</vector>
+Index: app/src/main/res/drawable/ic_chevron_left.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_chevron_left.xml b/app/src/main/res/drawable/ic_chevron_left.xml
+new file mode 100644
+--- /dev/null	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
++++ b/app/src/main/res/drawable/ic_chevron_left.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -0,0 +1,13 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="10dp"
++    android:height="16dp"
++    android:viewportWidth="10"
++    android:viewportHeight="16">
++  <path
++      android:pathData="M8,14L2,8L8,2"
++      android:strokeLineJoin="round"
++      android:strokeWidth="3"
++      android:fillColor="#00000000"
++      android:strokeColor="#9A99A2"
++      android:strokeLineCap="round"/>
++</vector>
+Index: app/src/main/res/drawable/ic_chevron_right.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_chevron_right.xml b/app/src/main/res/drawable/ic_chevron_right.xml
+new file mode 100644
+--- /dev/null	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
++++ b/app/src/main/res/drawable/ic_chevron_right.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -0,0 +1,13 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="10dp"
++    android:height="16dp"
++    android:viewportWidth="10"
++    android:viewportHeight="16">
++  <path
++      android:pathData="M2,2L8,8L2,14"
++      android:strokeLineJoin="round"
++      android:strokeWidth="3"
++      android:fillColor="#00000000"
++      android:strokeColor="#9A99A2"
++      android:strokeLineCap="round"/>
++</vector>
+Index: app/src/main/res/drawable/ic_close.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_close.xml b/app/src/main/res/drawable/ic_close.xml
+new file mode 100644
+--- /dev/null	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
++++ b/app/src/main/res/drawable/ic_close.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -0,0 +1,9 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="16dp"
++    android:height="16dp"
++    android:viewportWidth="16"
++    android:viewportHeight="16">
++  <path
++      android:pathData="M15,1C14.7813,0.7813 14.4846,0.6584 14.1752,0.6584C13.8658,0.6584 13.5692,0.7813 13.3504,1L8,6.3503L2.6497,1C2.4309,0.7813 2.1342,0.6584 1.8249,0.6584C1.5155,0.6584 1.2188,0.7813 1,1C0.7813,1.2188 0.6584,1.5155 0.6584,1.8248C0.6584,2.1342 0.7813,2.4309 1,2.6497L6.3504,8L1,13.3503C0.7813,13.5691 0.6584,13.8658 0.6584,14.1752C0.6584,14.4845 0.7813,14.7812 1,15C1.2188,15.2187 1.5155,15.3416 1.8249,15.3416C2.1342,15.3416 2.4309,15.2187 2.6497,15L8,9.6497L13.3504,15C13.5692,15.2187 13.8658,15.3416 14.1752,15.3416C14.4846,15.3416 14.7813,15.2187 15,15C15.2188,14.7812 15.3416,14.4845 15.3416,14.1752C15.3416,13.8658 15.2188,13.5691 15,13.3503L9.6497,8L15,2.6497C15.2188,2.4309 15.3416,2.1342 15.3416,1.8248C15.3416,1.5155 15.2188,1.2188 15,1Z"
++      android:fillColor="#9A99A2"/>
++</vector>
+Index: app/src/main/res/drawable/ic_edit.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_edit.xml b/app/src/main/res/drawable/ic_edit.xml
+new file mode 100644
+--- /dev/null	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
++++ b/app/src/main/res/drawable/ic_edit.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -0,0 +1,16 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="22dp"
++    android:height="22dp"
++    android:viewportWidth="22"
++    android:viewportHeight="22">
++  <path
++      android:pathData="M2,20H7L2,15V20Z"
++      android:fillColor="#9A99A2"/>
++  <path
++      android:pathData="M7,20L20,7L15,2L2,15M7,20H2V15M7,20L2,15"
++      android:strokeLineJoin="round"
++      android:strokeWidth="3"
++      android:fillColor="#00000000"
++      android:strokeColor="#9A99A2"
++      android:strokeLineCap="round"/>
++</vector>
+Index: app/src/main/res/drawable/ic_logo.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_logo.xml b/app/src/main/res/drawable/ic_logo.xml
+new file mode 100644
+--- /dev/null	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
++++ b/app/src/main/res/drawable/ic_logo.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -0,0 +1,23 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="44dp"
++    android:height="44dp"
++    android:viewportWidth="44"
++    android:viewportHeight="44">
++  <path
++      android:pathData="M17.2019,1.6328L32.1117,3.6805A12,12 0,0 1,42.3673 17.2017L40.3196,32.1116A12,12 0,0 1,26.7984 42.3672L11.8886,40.3194A12,12 0,0 1,1.6329 26.7982L3.6807,11.8884A12,12 0,0 1,17.2019 1.6328z"
++      android:strokeAlpha="0.3"
++      android:fillColor="#222130"
++      android:fillAlpha="0.3"/>
++  <path
++      android:pathData="M15.9829,4.4353L27.4656,4.4353A12,12 0,0 1,39.4656 16.4353L39.4656,27.918A12,12 0,0 1,27.4656 39.918L15.9829,39.918A12,12 0,0 1,3.9829 27.918L3.9829,16.4353A12,12 0,0 1,15.9829 4.4353z"
++      android:fillColor="#222130"/>
++  <path
++      android:pathData="M12.8535,25.5031V19.0719L18.3977,15.7454L24.1636,19.0719L18.6194,22.1766V28.8296L12.8535,25.5031Z"
++      android:fillColor="#ffffff"/>
++  <path
++      android:pathData="M24.9419,11.866L30.5097,15.0847L30.6149,21.5494L24.8493,24.8765L24.9361,18.5227L19.1762,15.1931L24.9419,11.866Z"
++      android:fillColor="#ffffff"/>
++  <path
++      android:pathData="M30.5028,29.2019L24.9302,32.4124L19.2802,29.2691L19.2841,22.6124L24.742,25.8664L30.5067,22.5452L30.5028,29.2019Z"
++      android:fillColor="#ffffff"/>
++</vector>
+Index: app/src/main/res/drawable/ic_plus.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_plus.xml b/app/src/main/res/drawable/ic_plus.xml
+new file mode 100644
+--- /dev/null	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
++++ b/app/src/main/res/drawable/ic_plus.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -0,0 +1,20 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="28dp"
++    android:height="28dp"
++    android:viewportWidth="28"
++    android:viewportHeight="28">
++  <path
++      android:pathData="M14,7V21"
++      android:strokeLineJoin="round"
++      android:strokeWidth="3"
++      android:fillColor="#00000000"
++      android:strokeColor="#9A99A2"
++      android:strokeLineCap="round"/>
++  <path
++      android:pathData="M7,14H21"
++      android:strokeLineJoin="round"
++      android:strokeWidth="3"
++      android:fillColor="#00000000"
++      android:strokeColor="#9A99A2"
++      android:strokeLineCap="round"/>
++</vector>
+Index: app/src/main/res/layout/login_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/login_fragment.xml b/app/src/main/res/layout/login_fragment.xml
+--- a/app/src/main/res/layout/login_fragment.xml	(revision 2c5572b6c138d48d2597334c564f6dd1b6f920aa)
++++ b/app/src/main/res/layout/login_fragment.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -152,13 +152,13 @@
+ 
+     <androidx.appcompat.widget.AppCompatImageView
+         android:id="@+id/ib_close"
+-        android:layout_width="30dp"
+-        android:layout_height="30dp"
++        android:layout_width="16dp"
++        android:layout_height="16dp"
+         android:layout_marginEnd="24dp"
+         android:background="@null"
+         app:layout_constraintBottom_toBottomOf="@+id/iv_header"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toTopOf="@+id/iv_header"
+-        app:srcCompat="@drawable/close" />
++        app:srcCompat="@drawable/ic_close" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/main_toolbar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/main_toolbar.xml b/app/src/main/res/layout/main_toolbar.xml
+--- a/app/src/main/res/layout/main_toolbar.xml	(revision 2c5572b6c138d48d2597334c564f6dd1b6f920aa)
++++ b/app/src/main/res/layout/main_toolbar.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -13,7 +13,7 @@
+         android:layout_gravity="start"
+         android:layout_marginStart="38dp"
+         android:background="@null"
+-        tools:src="@drawable/chevron_left" />
++        tools:src="@drawable/ic_chevron_left" />
+ 
+     <FrameLayout
+         android:id="@+id/fl_title_container"
+@@ -41,6 +41,6 @@
+         android:layout_gravity="end"
+         android:layout_marginEnd="16dp"
+         android:background="@null"
+-        android:src="@drawable/plus"
++        android:src="@drawable/ic_plus"
+         android:visibility="gone" />
+ </androidx.appcompat.widget.Toolbar>
+Index: app/src/main/res/layout/profile_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/profile_fragment.xml b/app/src/main/res/layout/profile_fragment.xml
+--- a/app/src/main/res/layout/profile_fragment.xml	(revision 2c5572b6c138d48d2597334c564f6dd1b6f920aa)
++++ b/app/src/main/res/layout/profile_fragment.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -13,7 +13,7 @@
+         android:layout_marginTop="38dp"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+-        app:srcCompat="@drawable/logo"
++        app:srcCompat="@drawable/ic_logo"
+         tools:ignore="MissingConstraints" />
+ 
+     <TextView
+@@ -54,7 +54,7 @@
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+-                app:srcCompat="@drawable/avatar"
++                app:srcCompat="@drawable/ic_avatar"
+                 tools:ignore="MissingConstraints" />
+ 
+             <ImageButton
+@@ -64,7 +64,7 @@
+                 android:background="@drawable/background_circle_gray"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
+-                app:srcCompat="@drawable/edit"
++                app:srcCompat="@drawable/ic_edit"
+                 tools:ignore="MissingConstraints" />
+ 
+         </androidx.constraintlayout.widget.ConstraintLayout>
+@@ -135,7 +135,7 @@
+                 android:layout_marginEnd="32dp"
+                 android:layout_marginBottom="22dp"
+                 android:gravity="end"
+-                app:srcCompat="@drawable/chevron_right" />
++                app:srcCompat="@drawable/ic_chevron_right" />
+ 
+         </LinearLayout>
+ 
+@@ -178,7 +178,7 @@
+                 android:layout_marginEnd="32dp"
+                 android:layout_marginBottom="22dp"
+                 android:gravity="end"
+-                app:srcCompat="@drawable/chevron_right" />
++                app:srcCompat="@drawable/ic_chevron_right" />
+ 
+         </LinearLayout>
+ 
+@@ -221,7 +221,7 @@
+                 android:layout_marginEnd="32dp"
+                 android:layout_marginBottom="22dp"
+                 android:gravity="end"
+-                app:srcCompat="@drawable/chevron_right" />
++                app:srcCompat="@drawable/ic_chevron_right" />
+ 
+         </LinearLayout>
+ 
+Index: app/src/main/res/layout/recovery_password_code_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/recovery_password_code_fragment.xml b/app/src/main/res/layout/recovery_password_code_fragment.xml
+--- a/app/src/main/res/layout/recovery_password_code_fragment.xml	(revision 2c5572b6c138d48d2597334c564f6dd1b6f920aa)
++++ b/app/src/main/res/layout/recovery_password_code_fragment.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -114,12 +114,12 @@
+ 
+     <ImageButton
+         android:id="@+id/ib_close"
+-        android:layout_width="30dp"
+-        android:layout_height="30dp"
++        android:layout_width="16dp"
++        android:layout_height="16dp"
+         android:layout_marginEnd="24dp"
+         android:background="@color/white"
+         app:layout_constraintBottom_toBottomOf="@+id/iv_header"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toTopOf="@+id/iv_header"
+-        app:srcCompat="@drawable/close" />
++        app:srcCompat="@drawable/ic_close" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/recovery_password_create_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/recovery_password_create_fragment.xml b/app/src/main/res/layout/recovery_password_create_fragment.xml
+--- a/app/src/main/res/layout/recovery_password_create_fragment.xml	(revision 2c5572b6c138d48d2597334c564f6dd1b6f920aa)
++++ b/app/src/main/res/layout/recovery_password_create_fragment.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -140,12 +140,12 @@
+ 
+     <ImageButton
+         android:id="@+id/ib_close"
+-        android:layout_width="30dp"
+-        android:layout_height="30dp"
++        android:layout_width="16dp"
++        android:layout_height="16dp"
+         android:layout_marginEnd="24dp"
+         android:background="@color/white"
+         app:layout_constraintBottom_toBottomOf="@+id/iv_header"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toTopOf="@+id/iv_header"
+-        app:srcCompat="@drawable/close" />
++        app:srcCompat="@drawable/ic_close" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/recovery_password_email_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/recovery_password_email_fragment.xml b/app/src/main/res/layout/recovery_password_email_fragment.xml
+--- a/app/src/main/res/layout/recovery_password_email_fragment.xml	(revision 2c5572b6c138d48d2597334c564f6dd1b6f920aa)
++++ b/app/src/main/res/layout/recovery_password_email_fragment.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -113,12 +113,12 @@
+ 
+     <ImageButton
+         android:id="@+id/ib_close"
+-        android:layout_width="30dp"
+-        android:layout_height="30dp"
++        android:layout_width="16dp"
++        android:layout_height="16dp"
+         android:layout_marginEnd="24dp"
+         android:background="@color/white"
+         app:layout_constraintBottom_toBottomOf="@+id/iv_header"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toTopOf="@+id/iv_header"
+-        app:srcCompat="@drawable/close" />
++        app:srcCompat="@drawable/ic_close" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/registration_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/registration_fragment.xml b/app/src/main/res/layout/registration_fragment.xml
+--- a/app/src/main/res/layout/registration_fragment.xml	(revision 2c5572b6c138d48d2597334c564f6dd1b6f920aa)
++++ b/app/src/main/res/layout/registration_fragment.xml	(revision 3dc150573e7d300670dbfeea404357b6fd2123c8)
+@@ -178,12 +178,12 @@
+ 
+     <androidx.appcompat.widget.AppCompatImageView
+         android:id="@+id/ib_close"
+-        android:layout_width="30dp"
+-        android:layout_height="30dp"
++        android:layout_width="16dp"
++        android:layout_height="16dp"
+         android:layout_marginEnd="24dp"
+         android:background="@null"
+         app:layout_constraintBottom_toBottomOf="@+id/iv_header"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toTopOf="@+id/iv_header"
+-        app:srcCompat="@drawable/close" />
++        app:srcCompat="@drawable/ic_close" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+diff --git a/app/src/main/res/drawable-hdpi/avatar.png b/app/src/main/res/drawable-hdpi/avatar.png
+deleted file mode 100644
+index fe01bf5ccb8f5adb06d06859eb5907edb424e09d..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-hdpi/chevron_left.png b/app/src/main/res/drawable-hdpi/chevron_left.png
+deleted file mode 100644
+index 96e832d21d9a28d67e10da28b03a860e29a38859..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-hdpi/chevron_right.png b/app/src/main/res/drawable-hdpi/chevron_right.png
+deleted file mode 100644
+index 21fa30880509e858cd23c1d2ec2966261c3592e0..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-hdpi/close.png b/app/src/main/res/drawable-hdpi/close.png
+deleted file mode 100644
+index 6cdf894b290b214418c84d0bbff6b39db0c1cd95..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-hdpi/edit.png b/app/src/main/res/drawable-hdpi/edit.png
+deleted file mode 100644
+index 8c090470d4ef9fa4a15038977e7d29c4bf7840cd..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-hdpi/logo.png b/app/src/main/res/drawable-hdpi/logo.png
+deleted file mode 100644
+index d38c1f40fbd8fa57d5a038cd8469b0861c288d7c..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-hdpi/plus.png b/app/src/main/res/drawable-hdpi/plus.png
+deleted file mode 100644
+index e656d90aa86b1f022b8741c1574b3ee55fc5cfe4..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-ldpi/avatar.png b/app/src/main/res/drawable-ldpi/avatar.png
+deleted file mode 100644
+index 23d1250b8d540b5f96f5e1d4e8d34e25ce6a6ba0..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-ldpi/chevron_left.png b/app/src/main/res/drawable-ldpi/chevron_left.png
+deleted file mode 100644
+index f519df368db6e2cb0018e7e556eada17d2608110..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-ldpi/chevron_right.png b/app/src/main/res/drawable-ldpi/chevron_right.png
+deleted file mode 100644
+index 9b551f57c69d5d4de2729eda62ca68786a546389..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-ldpi/close.png b/app/src/main/res/drawable-ldpi/close.png
+deleted file mode 100644
+index 8c87b90f091fd5dcd95327142539f66f8d365841..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-ldpi/edit.png b/app/src/main/res/drawable-ldpi/edit.png
+deleted file mode 100644
+index fb27ae30a078bf51e109740d82e675a442a5fec1..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-ldpi/logo.png b/app/src/main/res/drawable-ldpi/logo.png
+deleted file mode 100644
+index 9aea5aaba47bd9789560e2d3320afa3a361f49d0..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-ldpi/plus.png b/app/src/main/res/drawable-ldpi/plus.png
+deleted file mode 100644
+index 52f05abe87438c13493504ed127d926d308b224c..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-mdpi/avatar.png b/app/src/main/res/drawable-mdpi/avatar.png
+deleted file mode 100644
+index a7146ef5b55d260865ac538cb2fae901eab34e30..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-mdpi/chevron_left.png b/app/src/main/res/drawable-mdpi/chevron_left.png
+deleted file mode 100644
+index a89b537f93e2c4c69501dd59e770750ec8ca7a19..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-mdpi/chevron_right.png b/app/src/main/res/drawable-mdpi/chevron_right.png
+deleted file mode 100644
+index f263eb7e8aa428ab998769985c3a14433e61edb4..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-mdpi/close.png b/app/src/main/res/drawable-mdpi/close.png
+deleted file mode 100644
+index 840c02e410d83d73de3ab0541aa6829a4bba1ee9..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-mdpi/edit.png b/app/src/main/res/drawable-mdpi/edit.png
+deleted file mode 100644
+index caaf3e991e1059a9ec5c880d945af38576969e60..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-mdpi/logo.png b/app/src/main/res/drawable-mdpi/logo.png
+deleted file mode 100644
+index b76b6ac95e42832bca97bbd6020756aa57191c2b..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-mdpi/plus.png b/app/src/main/res/drawable-mdpi/plus.png
+deleted file mode 100644
+index 5a8bf446d7f3471aedabee837a4c113f8abd9ef7..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xhdpi/avatar.png b/app/src/main/res/drawable-xhdpi/avatar.png
+deleted file mode 100644
+index afb07e42b202732f17fb68285b2ea2930333df76..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xhdpi/chevron_left.png b/app/src/main/res/drawable-xhdpi/chevron_left.png
+deleted file mode 100644
+index 638488af348963c096a84f507c0b7374e5405728..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xhdpi/chevron_right.png b/app/src/main/res/drawable-xhdpi/chevron_right.png
+deleted file mode 100644
+index bd11fc7f5f0b471bce40642f68352aec68f48c9d..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xhdpi/close.png b/app/src/main/res/drawable-xhdpi/close.png
+deleted file mode 100644
+index c261ccac18a5fe78c4d69de416ebef89ee847b30..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xhdpi/edit.png b/app/src/main/res/drawable-xhdpi/edit.png
+deleted file mode 100644
+index 0097b97f97ed93cfddddf52186714956f388fb13..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xhdpi/logo.png b/app/src/main/res/drawable-xhdpi/logo.png
+deleted file mode 100644
+index 46b11fb980841758ace01db2193d03c691ff17fd..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xhdpi/plus.png b/app/src/main/res/drawable-xhdpi/plus.png
+deleted file mode 100644
+index eb984001fc48c16131180d65b83227aa0fde0161..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxhdpi/avatar.png b/app/src/main/res/drawable-xxhdpi/avatar.png
+deleted file mode 100644
+index c5fd53fa6207e2a9a2c02bada39898822aa8d45c..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxhdpi/chevron_left.png b/app/src/main/res/drawable-xxhdpi/chevron_left.png
+deleted file mode 100644
+index afdbe9bbc54de6456e393dd4947d45f246bfc1dc..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxhdpi/chevron_right.png b/app/src/main/res/drawable-xxhdpi/chevron_right.png
+deleted file mode 100644
+index 1c59380a25af20a08fd29d12b1ee6433b53c38ec..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxhdpi/close.png b/app/src/main/res/drawable-xxhdpi/close.png
+deleted file mode 100644
+index a856dc7440c0cdaf69f2d3e1563f1c4276a97bdb..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxhdpi/edit.png b/app/src/main/res/drawable-xxhdpi/edit.png
+deleted file mode 100644
+index 8512239bf7bfd94b4d031ade334d7251535574d7..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxhdpi/logo.png b/app/src/main/res/drawable-xxhdpi/logo.png
+deleted file mode 100644
+index 8cc4b0eef02f9c580a7664341f5264a658455652..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxhdpi/plus.png b/app/src/main/res/drawable-xxhdpi/plus.png
+deleted file mode 100644
+index 39476aefed18dd4ce2cbee68d31203621bfeeced..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxxhdpi/avatar.png b/app/src/main/res/drawable-xxxhdpi/avatar.png
+deleted file mode 100644
+index e93ae457f43de998ea8c9f05234ebd290caf9a93..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxxhdpi/chevron_left.png b/app/src/main/res/drawable-xxxhdpi/chevron_left.png
+deleted file mode 100644
+index 65d203bdc413376cf35731e6f101d70d0a0677b9..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxxhdpi/chevron_right.png b/app/src/main/res/drawable-xxxhdpi/chevron_right.png
+deleted file mode 100644
+index bfaf8f00f659146c9dd92a53b577ebb40d2eb4ad..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxxhdpi/close.png b/app/src/main/res/drawable-xxxhdpi/close.png
+deleted file mode 100644
+index 5ad2de4acfcd122552d369780c3d1d28a38ff258..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxxhdpi/edit.png b/app/src/main/res/drawable-xxxhdpi/edit.png
+deleted file mode 100644
+index ad9f34000d0f2f681c494129357fc49999a28f93..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxxhdpi/logo.png b/app/src/main/res/drawable-xxxhdpi/logo.png
+deleted file mode 100644
+index 1a6287a71ea3bda80da967b55cd424558c084328..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/app/src/main/res/drawable-xxxhdpi/plus.png b/app/src/main/res/drawable-xxxhdpi/plus.png
+deleted file mode 100644
+index 58d2876fb3ddabb255d60467a1395c8d28bfbee5..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
