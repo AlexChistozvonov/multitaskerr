@@ -143,6 +143,9 @@
                 app:argType="com.aldera.multitasker.data.models.UserResponse"
                 app:nullable="true" />
         </action>
+        <action
+            android:id="@+id/openEditPasswordFragment"
+            app:destination="@id/editPasswordFragment" />
     </fragment>
 
     <fragment
@@ -174,4 +177,10 @@
         android:name="com.aldera.multitasker.presentation.ImagePickerDialogFragment"
         android:label="ImagePickerDialogFragment"
         tools:layout="@layout/image_picker_dialog_fragment" />
+
+    <fragment
+        android:id="@+id/editPasswordFragment"
+        android:name="com.aldera.multitasker.presentation.profile.editPassword.EditPasswordFragment"
+        android:label="EditPasswordFragment"
+        tools:layout="@layout/edit_password_fragment"></fragment>
 </navigation>
