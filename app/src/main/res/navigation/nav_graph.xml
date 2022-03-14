@@ -146,6 +146,9 @@
         <action
             android:id="@+id/openEditPasswordFragment"
             app:destination="@id/editPasswordFragment" />
+        <action
+            android:id="@+id/openLaunchFragment"
+            app:destination="@id/launchFragment" />
     </fragment>
 
     <fragment

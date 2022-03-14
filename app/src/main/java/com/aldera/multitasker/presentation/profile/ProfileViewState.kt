@@ -9,6 +9,8 @@ sealed class UserEvent {
     data class Error(val error: Exception?) : UserEvent()
     object ImageLoading : UserEvent()
     data class ImageError(val error: Exception?) : UserEvent()
+    object ExitLoading : UserEvent()
+    data class ExitProfileError(val error: Exception?) : UserEvent()
 }
 
 data class UserViewState(
@@ -24,5 +26,7 @@ data class UserViewState(
         is UserEvent.Success -> copy(user = event.user, loading = false, event = event)
         UserEvent.ImageLoading -> copy(event = event)
         is UserEvent.ImageError -> copy(event = event, error = event.error, loading = false)
+        UserEvent.ExitLoading -> copy(event = event)
+        is UserEvent.ExitProfileError -> copy(event = event, error = event.error, loading = false)
     }
 }

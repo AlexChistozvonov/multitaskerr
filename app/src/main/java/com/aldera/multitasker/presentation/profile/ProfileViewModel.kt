@@ -1,5 +1,6 @@
 package com.aldera.multitasker.presentation.profile
 
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,7 +10,9 @@ import com.aldera.multitasker.data.models.UpdateUserData
 import com.aldera.multitasker.data.models.UpdateUserRequest
 import com.aldera.multitasker.data.models.toPutUserRequest
 import com.aldera.multitasker.domain.common.CommonRepository
+import com.aldera.multitasker.domain.exitProfile.ExitProfileRepository
 import com.aldera.multitasker.domain.user.UserRepository
+import com.aldera.multitasker.ui.util.PreferencesKey
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,8 +21,10 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
+    private val sharedPreferences: SharedPreferences,
     private val userRepository: UserRepository,
-    private val commonRepository: CommonRepository
+    private val commonRepository: CommonRepository,
+    private val exitProfileRepository: ExitProfileRepository
 ) :
     ViewModel() {
 
@@ -28,6 +33,22 @@ class ProfileViewModel @Inject constructor(
 
     private fun emitEvent(event: UserEvent) {
         _uiState.value = _uiState.value.applyEvent(event)
+    }
+
+    fun exitProfile() {
+        emitEvent(UserEvent.Loading)
+        viewModelScope.launch {
+            when (val result = exitProfileRepository.exitProfile()) {
+                is LoadingResult.Error -> emitEvent(UserEvent.Error(result.exception))
+                is LoadingResult.Success -> {
+                    sharedPreferences.edit().apply {
+                        putString(PreferencesKey.ACCESS_TOKEN, null)
+                        putString(PreferencesKey.REFRESH_TOKEN, null)
+                    }.apply()
+                    emitEvent(UserEvent.ExitLoading)
+                }
+            }
+        }
     }
 
     fun loadData() {
