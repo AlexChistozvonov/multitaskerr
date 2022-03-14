@@ -1,6 +1,7 @@
 package com.aldera.multitasker.core.network
 
 import com.aldera.multitasker.data.models.EditPasswordRequest
+import com.aldera.multitasker.data.models.ExitProfileResponse
 import com.aldera.multitasker.data.models.LoginRequest
 import com.aldera.multitasker.data.models.LoginResponse
 import com.aldera.multitasker.data.models.MultitaskerImage
@@ -50,4 +51,7 @@ interface Api {
 
     @PUT("api/user/me/password")
     suspend fun editPassword(@Body editPasswordRequest: EditPasswordRequest): UserResponse
+
+    @POST("api/logout")
+    suspend fun exitProfile(): ExitProfileResponse
 }

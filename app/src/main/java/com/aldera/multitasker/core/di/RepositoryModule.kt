@@ -2,6 +2,7 @@ package com.aldera.multitasker.core.di
 
 import com.aldera.multitasker.data.common.CommonRepositoryImpl
 import com.aldera.multitasker.data.editPassword.EditPasswordRepositoryImpl
+import com.aldera.multitasker.data.exitProfile.ExitProfileRepositoryImpl
 import com.aldera.multitasker.data.login.LoginRepositoryImpl
 import com.aldera.multitasker.data.recovery.code.RecoveryPasswordCodeRepositoryImpl
 import com.aldera.multitasker.data.recovery.create.RecoveryPasswordCreateRepositoryImpl
@@ -10,6 +11,7 @@ import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
 import com.aldera.multitasker.data.user.UserRepositoryImpl
 import com.aldera.multitasker.domain.common.CommonRepository
 import com.aldera.multitasker.domain.editPassword.EditPasswordRepository
+import com.aldera.multitasker.domain.exitProfile.ExitProfileRepository
 import com.aldera.multitasker.domain.login.LoginRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCodeRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCreateRepository
@@ -73,4 +75,10 @@ abstract class RepositoryModule {
     abstract fun editPasswordRepository(
         editPasswordRepository: EditPasswordRepositoryImpl
     ): EditPasswordRepository
+
+    @Singleton
+    @Binds
+    abstract fun exitProfile(
+        exitProfileRepository: ExitProfileRepositoryImpl
+    ): ExitProfileRepository
 }

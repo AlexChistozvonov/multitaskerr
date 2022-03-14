@@ -64,6 +64,12 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 ProfileFragmentDirections.openEditPasswordFragment()
             )
         }
+        btnGoOut.onClick {
+            viewModel.exitProfile()
+            findNavController().navigateSafe(
+                ProfileFragmentDirections.openLaunchFragment()
+            )
+        }
     }
 
     private fun initObservers() {
@@ -103,6 +109,15 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             }
             UserEvent.ImageLoading -> {
                 progressBarImage.show()
+            }
+            UserEvent.ExitLoading -> {
+                btnGoOut.hide()
+                progressBarExit.show()
+            }
+            is UserEvent.ExitProfileError -> {
+                progressBar.hide()
+                linearLayout.show()
+                btnGoOut.show()
             }
         }
     }
