@@ -33,11 +33,11 @@
     </style>
 
     <style name="shape">
-
     </style>
 
     <style name="TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="shapeAppearance">@style/ShapeAppearance.TextInput.SmallComponent</item>
+        <item name="boxStrokeColor">@color/input_field_border_color</item>
     </style>
 
     <style name="ShapeAppearance.TextInput.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">

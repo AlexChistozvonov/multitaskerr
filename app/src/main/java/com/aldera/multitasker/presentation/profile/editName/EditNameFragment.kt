@@ -45,6 +45,7 @@ class EditNameFragment : Fragment(R.layout.edit_name_fragment) {
     }
 
     private fun handleState(state: EditNameViewState) = with(binding) {
+        btnContinue.isEnabled = !etEditName.text.isNullOrEmpty()
         when (state.event) {
             is EditNameEvent.Error -> {
                 progressBar.hide()

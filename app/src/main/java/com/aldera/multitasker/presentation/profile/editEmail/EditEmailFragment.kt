@@ -44,6 +44,7 @@ class EditEmailFragment : Fragment(R.layout.edit_email_fragment) {
     }
 
     private fun handleState(state: EditEmailViewState) = with(binding) {
+        btnContinue.isEnabled = !etEditEmail.text.isNullOrEmpty()
         when (state.event) {
             is EditEmailEvent.Error -> {
                 progressBar.hide()

@@ -59,6 +59,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         btnEditAvatar.onClick {
             findNavController().navigateSafe(ProfileFragmentDirections.openImagePickerDialog())
         }
+        llEditPassword.onClick {
+            findNavController().navigateSafe(
+                ProfileFragmentDirections.openEditPasswordFragment()
+            )
+        }
     }
 
     private fun initObservers() {

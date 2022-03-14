@@ -59,13 +59,13 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         btnInput.isEnabled = !etEmail.text.isNullOrEmpty() && !etPassword.text.isNullOrEmpty()
         when (state.event) {
             is LoginEvent.EmailChanged -> {
-                progressBar.show()
+                progressBar.hide()
                 btnInput.show()
                 tilEmail.error = null
             }
             LoginEvent.Loading -> {
                 progressBar.show()
-                btnInput.show()
+                btnInput.hide()
             }
             is LoginEvent.PasswordChanged -> {
                 progressBar.hide()
