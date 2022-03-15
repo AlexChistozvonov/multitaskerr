@@ -32,8 +32,7 @@
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="shape">
-    </style>
+    <style name="shape"></style>
 
     <style name="TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="shapeAppearance">@style/ShapeAppearance.TextInput.SmallComponent</item>
@@ -60,6 +59,14 @@
         <item name="android:windowBackground">@drawable/launch_splash</item>
     </style>
 
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
 
 

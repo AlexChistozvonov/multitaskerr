@@ -1,6 +1,7 @@
 package com.aldera.multitasker.presentation.registration
 
 sealed class RegistrationEvent {
+    object Init : RegistrationEvent()
     object Success : RegistrationEvent()
     object Loading : RegistrationEvent()
     object PasswordError : RegistrationEvent()
@@ -20,7 +21,7 @@ data class RegistrationViewState(
     val emailError: Boolean = false,
     val loading: Boolean = false,
     val loader: Boolean = false,
-    val event: RegistrationEvent = RegistrationEvent.Success
+    val event: RegistrationEvent = RegistrationEvent.Init
 ) {
     fun applyEvent(event: RegistrationEvent) = when (event) {
         is RegistrationEvent.EmailChanged -> copy(
@@ -35,5 +36,6 @@ data class RegistrationViewState(
         is RegistrationEvent.Password2Changed -> copy(password2Text = event.text, event = event)
         is RegistrationEvent.Error -> copy(error = event.error, event = event)
         RegistrationEvent.Success -> copy(loader = true, event = event)
+        RegistrationEvent.Init -> copy(event = event)
     }
 }
