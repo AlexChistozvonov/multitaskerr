@@ -18,4 +18,5 @@
     <color name="primary_et">#E1E1E1</color>
     <color name="surface_et">#CDCDCD</color>
     <color name="acent">#007AFF</color>
+    <color name="ic_action_bar">#979592</color>
 </resources>

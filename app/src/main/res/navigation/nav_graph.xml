@@ -42,6 +42,9 @@
         <action
             android:id="@+id/openLoginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/openProfileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/recoveryPasswordEmailFragment"
@@ -185,5 +188,23 @@
         android:id="@+id/editPasswordFragment"
         android:name="com.aldera.multitasker.presentation.profile.editPassword.EditPasswordFragment"
         android:label="EditPasswordFragment"
-        tools:layout="@layout/edit_password_fragment"></fragment>
+        tools:layout="@layout/edit_password_fragment" />
+
+    <fragment
+        android:id="@+id/myFragment"
+        android:name="com.aldera.multitasker.presentation.my.MyFragment"
+        android:label="MyFragment"
+        tools:layout="@layout/my_fragment" />
+
+    <fragment
+        android:id="@+id/appointedFragment"
+        android:name="com.aldera.multitasker.presentation.appointed.AppointedFragment"
+        android:label="AppointedFragment"
+        tools:layout="@layout/appointed_fragment" />
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.aldera.multitasker.presentation.calendar.CalendarFragment"
+        android:label="CalendarFragment"
+        tools:layout="@layout/calendar_fragment" />
 </navigation>

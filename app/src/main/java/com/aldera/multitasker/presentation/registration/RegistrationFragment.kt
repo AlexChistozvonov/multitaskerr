@@ -1,6 +1,5 @@
 package com.aldera.multitasker.presentation.registration
 
-import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -53,9 +52,12 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
     }
     private val clickableSpanOpenUrlPrivacy = object : ClickableSpan() {
         override fun onClick(p0: View) {
-            val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse(BuildConfig.SERVER_URL + ConstantApi.PRIVACY_POLICE)
-            startActivity(openURL)
+            val url =
+                (ConstantApi.GOOGLE_DOCS + BuildConfig.SERVER_URL + ConstantApi.PRIVACY_POLICE)
+            val builder = CustomTabsIntent.Builder()
+            val customBuilder = builder.build()
+            builder.setShowTitle(true)
+            customBuilder.launchUrl(context!!, Uri.parse(url))
         }
     }
 
@@ -134,6 +136,13 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
                 )
             }
             RegistrationEvent.Success -> {
+                findNavController().navigateSafe(
+                    RegistrationFragmentDirections.openProfileFragment()
+                )
+                progressBar.hide()
+                btnRegister.show()
+            }
+            RegistrationEvent.Init -> {
                 progressBar.hide()
                 btnRegister.show()
             }
