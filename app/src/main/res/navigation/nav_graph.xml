@@ -194,7 +194,26 @@
         android:id="@+id/myFragment"
         android:name="com.aldera.multitasker.presentation.my.MyFragment"
         android:label="MyFragment"
-        tools:layout="@layout/my_fragment" />
+        tools:layout="@layout/my_fragment">
+        <action
+            android:id="@+id/openProjectFragment"
+            app:destination="@id/projectFragment">
+            <argument
+                android:name="category"
+                app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/projectFragment"
+        android:name="com.aldera.multitasker.presentation.project.ProjectFragment"
+        android:label="ProjectFragment"
+        tools:layout="@layout/project_fragment">
+        <argument
+            android:name="category"
+            app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/appointedFragment"

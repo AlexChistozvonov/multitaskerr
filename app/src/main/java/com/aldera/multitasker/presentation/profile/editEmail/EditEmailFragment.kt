@@ -36,6 +36,9 @@ class EditEmailFragment : Fragment(R.layout.edit_email_fragment) {
         toolbar.apply {
             tvTitle.text = getString(R.string.edit_email)
             ibNavigationIcon.setImageResource(R.drawable.ic_chevron_left)
+            ibNavigationIcon.onClick {
+                findNavController().popBackStack()
+            }
         }
     }
 

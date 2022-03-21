@@ -31,6 +31,7 @@ class ErrorMapper @Inject constructor() {
             else -> ServerException()
         }
     }
+
     operator fun invoke(exception: Exception): MultitaskerException {
         return when (exception) {
             is UnknownHostException -> NetworkException()

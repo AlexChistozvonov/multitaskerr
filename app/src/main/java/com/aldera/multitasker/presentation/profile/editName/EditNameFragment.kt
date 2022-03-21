@@ -37,6 +37,9 @@ class EditNameFragment : Fragment(R.layout.edit_name_fragment) {
         toolbar.apply {
             tvTitle.text = getString(R.string.edit_name)
             ibNavigationIcon.setImageResource(R.drawable.ic_chevron_left)
+            ibNavigationIcon.onClick {
+                findNavController().popBackStack()
+            }
         }
     }
 

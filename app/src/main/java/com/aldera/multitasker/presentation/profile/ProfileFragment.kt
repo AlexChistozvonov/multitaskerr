@@ -126,6 +126,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         state.user?.let { user ->
             tvEmail.text = user.email
             if (user.name != null) {
+                tvName.show()
                 tvName.text = user.name
             }
 
