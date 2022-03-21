@@ -70,4 +70,16 @@
     <string name="camera">Камера</string>
     <string name="gallery">Галерея</string>
     <string name="delete">Удалить</string>
+
+    <string name="categories">Категории</string>
+    <string name="create_category">Создание категории</string>
+    <string name="create_project">Создать проект</string>
+
+    <plurals name="plurals_project">
+        <item quantity="one">%1$d проект</item>
+        <item quantity="two">%1$d проекта</item>
+        <item quantity="few">%1$d проекта</item>
+        <item quantity="many">%1$d проектов</item>
+        <item quantity="other">%1$d проектов</item>
+    </plurals>
 </resources>

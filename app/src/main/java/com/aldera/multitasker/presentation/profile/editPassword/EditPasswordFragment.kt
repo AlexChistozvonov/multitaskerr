@@ -36,6 +36,9 @@ class EditPasswordFragment : Fragment(R.layout.edit_password_fragment) {
         toolbar.apply {
             tvTitle.text = getString(R.string.edit_password_)
             ibNavigationIcon.setImageResource(R.drawable.ic_chevron_left)
+            ibNavigationIcon.onClick {
+                findNavController().popBackStack()
+            }
         }
         etOldPassword.doOnTextChanged { text, _, _, _ -> viewModel.onOldPasswordTextChanged(text.toString()) }
         etNewPassword.doOnTextChanged { text, _, _, _ -> viewModel.onNewPasswordTextChanged(text.toString()) }

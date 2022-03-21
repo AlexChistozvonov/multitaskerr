@@ -82,7 +82,6 @@
                 app:srcCompat="@drawable/ic_edit"
                 app:tint="@color/white"
                 tools:ignore="MissingConstraints" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -99,7 +98,8 @@
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/name_profile"
                 android:textColor="@color/light_black"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_email"
@@ -154,7 +154,6 @@
                 app:srcCompat="@drawable/ic_chevron_right" />
 
         </LinearLayout>
-
         <View
             android:layout_width="409dp"
             android:layout_height="1dp"
@@ -195,7 +194,6 @@
                 android:layout_marginBottom="22dp"
                 android:gravity="end"
                 app:srcCompat="@drawable/ic_chevron_right" />
-
         </LinearLayout>
 
         <View
@@ -238,7 +236,6 @@
                 android:layout_marginBottom="22dp"
                 android:gravity="end"
                 app:srcCompat="@drawable/ic_chevron_right" />
-
         </LinearLayout>
 
         <View

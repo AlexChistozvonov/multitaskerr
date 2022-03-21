@@ -1,10 +1,12 @@
 package com.aldera.multitasker.core.network
 
+import com.aldera.multitasker.data.models.CategoryResponse
 import com.aldera.multitasker.data.models.EditPasswordRequest
 import com.aldera.multitasker.data.models.ExitProfileResponse
 import com.aldera.multitasker.data.models.LoginRequest
 import com.aldera.multitasker.data.models.LoginResponse
 import com.aldera.multitasker.data.models.MultitaskerImage
+import com.aldera.multitasker.data.models.ProjectResponse
 import com.aldera.multitasker.data.models.PutUserRequest
 import com.aldera.multitasker.data.models.RecoveryPasswordCodeRequest
 import com.aldera.multitasker.data.models.RecoveryPasswordCodeResponse
@@ -22,6 +24,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface Api {
     @POST("/api/login")
@@ -54,4 +57,10 @@ interface Api {
 
     @POST("api/logout")
     suspend fun exitProfile(): ExitProfileResponse
+
+    @GET("api/category")
+    suspend fun getCategory(): List<CategoryResponse>
+
+    @GET("api/category/{id}/projects")
+    suspend fun getProject(@Path("id") id: String): List<ProjectResponse>
 }
