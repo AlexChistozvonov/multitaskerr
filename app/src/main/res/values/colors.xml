@@ -21,4 +21,15 @@
     <color name="light_acent">#E8F3FF</color>
     <color name="ic_action_bar">#979592</color>
     <color name="item_background">#F5F5F5</color>
+    <color name="category_red">#FF3939</color>
+    <color name="category_orange">#F16500</color>
+    <color name="category_yellow">#FFC700</color>
+    <color name="category_light_green">#A1B815</color>
+    <color name="category_green">#00C12B</color>
+    <color name="category_tiffany">#00BCB1</color>
+    <color name="category_blue">#3787FF</color>
+    <color name="category_violet">#9D23D7</color>
+    <color name="category_fucsia">#FF0DF5</color>
+    <color name="category_pink">#EA008C</color>
+    <color name="trans">#00000000</color>
 </resources>

@@ -202,6 +202,9 @@
                 android:name="category"
                 app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
         </action>
+        <action
+            android:id="@+id/openCreateCategory"
+            app:destination="@id/createCategory" />
     </fragment>
 
     <fragment
@@ -226,4 +229,10 @@
         android:name="com.aldera.multitasker.presentation.calendar.CalendarFragment"
         android:label="CalendarFragment"
         tools:layout="@layout/calendar_fragment" />
+
+    <fragment
+        android:id="@+id/createCategory"
+        android:name="com.aldera.multitasker.presentation.category.CreateCategoryFragment"
+        android:label="CreateCategory"
+        tools:layout="@layout/create_category_fragment" />
 </navigation>

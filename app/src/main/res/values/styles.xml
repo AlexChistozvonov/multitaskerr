@@ -9,6 +9,18 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
+    <style name="RecyclerCategoryColorCheck">
+        <item name="android:background">@drawable/item_color_category_check</item>
+
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="RecyclerCategoryColor">
+        <item name="android:background">@drawable/item_color_category</item>
+
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
     <style name="RecyclerIVColor">
         <item name="android:background">@drawable/recyclerview_item_color</item>
 
