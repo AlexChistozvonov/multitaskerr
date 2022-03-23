@@ -14,6 +14,7 @@ import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.MyFragmentBinding
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
+import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +39,9 @@ class MyFragment : Fragment(R.layout.my_fragment) {
     }
 
     private fun init() = with(binding) {
+        ivPlus.onClick {
+            findNavController().navigateSafe(MyFragmentDirections.openCreateCategory())
+        }
         viewModel.getCategory()
     }
 

@@ -74,6 +74,11 @@
     <string name="categories">Категории</string>
     <string name="create_category">Создание категории</string>
     <string name="create_project">Создать проект</string>
+    <string name="name_category">НАЗВАНИЕ КАТЕГОРИИ</string>
+    <string name="select_color_category">ВЫБЕРИТЕ ЦВЕТ КАТЕГОРИИ</string>
+    <string name="name_category_hint">Введите название категории</string>
+    <string name="create_category_">Создать категорию</string>
+    <string name="cancel_">Отменить</string>
 
     <plurals name="plurals_project">
         <item quantity="one">%1$d проект</item>

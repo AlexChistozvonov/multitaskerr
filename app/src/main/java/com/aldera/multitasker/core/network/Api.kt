@@ -1,6 +1,8 @@
 package com.aldera.multitasker.core.network
 
 import com.aldera.multitasker.data.models.CategoryResponse
+import com.aldera.multitasker.data.models.CreateCategoryRequest
+import com.aldera.multitasker.data.models.CreateCategoryResponse
 import com.aldera.multitasker.data.models.EditPasswordRequest
 import com.aldera.multitasker.data.models.ExitProfileResponse
 import com.aldera.multitasker.data.models.LoginRequest
@@ -63,4 +65,7 @@ interface Api {
 
     @GET("api/category/{id}/projects")
     suspend fun getProject(@Path("id") id: String): List<ProjectResponse>
+
+    @POST("api/category")
+    suspend fun createCategory(@Body createCategoryRequest: CreateCategoryRequest): CreateCategoryResponse
 }
