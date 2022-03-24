@@ -23,4 +23,17 @@ class CreateCategoryRepositoryImpl @Inject constructor(
             networkService.createCategory(CreateCategoryRequest(title = title, color = color))
         }
     }
+
+    override suspend fun editCategory(
+        id: String,
+        title: String,
+        color: String
+    ) = withContext(coroutineDispatcher) {
+        runLoading(errorMapper) {
+            networkService.editCategory(
+                id = id,
+                CreateCategoryRequest(title = title, color = color)
+            )
+        }
+    }
 }

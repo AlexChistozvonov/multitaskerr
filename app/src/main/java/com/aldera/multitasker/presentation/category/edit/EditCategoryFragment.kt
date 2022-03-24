@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.category
+package com.aldera.multitasker.presentation.category.edit
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,12 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
-import com.aldera.multitasker.databinding.CreateCategoryFragmentBinding
+import com.aldera.multitasker.databinding.EditCategoryFragmentBinding
+import com.aldera.multitasker.presentation.category.ColorItem
+import com.aldera.multitasker.presentation.category.CustomRecyclerAdapterColorCategory
 import com.aldera.multitasker.ui.extension.hide
+import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
@@ -23,11 +27,12 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class CreateCategoryFragment : Fragment(R.layout.create_category_fragment) {
-    private val binding by viewBinding(CreateCategoryFragmentBinding::bind)
-    var colorList = ArrayList<ColorItem>()
+class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
+    private val binding by viewBinding(EditCategoryFragmentBinding::bind)
+    private val viewModel by viewModels<EditCategoryViewModel>()
+    private val args: EditCategoryFragmentArgs by navArgs()
+    private var colorList = ArrayList<ColorItem>()
     lateinit var adapter: CustomRecyclerAdapterColorCategory
-    private val viewModel by viewModels<CreateCategoryViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,60 +42,62 @@ class CreateCategoryFragment : Fragment(R.layout.create_category_fragment) {
     }
 
     private fun initView() = with(binding) {
+        val id = args.category.id
+        val title = args.category.title
         etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onTitleTextChanged(text.toString()) }
-        btnCreateCategory.onClick {
-            viewModel.createCategory()
-        }
-        btnCancel.onClick { findNavController().popBackStack() }
+        btnSave.onClick { id?.let { viewModel.editCategory(it) } }
         toolbar.apply {
-            tvTitle.text = getString(R.string.create_category)
+            tvTitle.text = getString(R.string._edit)
             ibNavigationIcon.setImageResource(R.drawable.ic_chevron_left)
             ibNavigationIcon.onClick {
                 findNavController().popBackStack()
             }
         }
+        etEditName.setText(title)
     }
 
     private fun initObservers() {
         viewModel.uiState.onEach { handleState(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun handleState(state: CreateCategoryViewState) = with(binding) {
+    private fun handleState(state: EditCategoryViewState) = with(binding) {
         fun showHide() {
             progressBar.hide()
-            btnCreateCategory.show()
+            btnSave.show()
             etEditName.show()
-            btnCancel.show()
+            btnDelete.show()
             rvColorCategory.show()
             tilName.show()
         }
-        btnCreateCategory.isEnabled = !etEditName.text.isNullOrEmpty()
+        btnSave.isEnabled = !etEditName.text.isNullOrEmpty()
         when (state.event) {
-            is CreateCategoryEvent.ColorChanged -> {
-                addGridItem(state.colorId)
+            is EditCategoryEvent.ColorChanged -> {
+                addGridItem(state.colorText)
                 showHide()
             }
-            is CreateCategoryEvent.Error -> {
+            is EditCategoryEvent.Error -> {
                 showHide()
                 showGeneralErrorDialog(
                     context = requireContext(),
                     exception = state.error
                 )
             }
-            CreateCategoryEvent.Init -> showHide()
-            CreateCategoryEvent.Loading -> {
+            EditCategoryEvent.Init -> {
+                showHide()
+            }
+            EditCategoryEvent.Loading -> {
                 progressBar.show()
-                btnCreateCategory.hide()
+                btnSave.hide()
                 etEditName.hide()
-                btnCancel.hide()
+                btnDelete.hide()
                 rvColorCategory.hide()
                 tilName.hide()
             }
-            CreateCategoryEvent.Success -> {
-                findNavController().popBackStack()
+            EditCategoryEvent.Success -> {
+                findNavController().navigateSafe(EditCategoryFragmentDirections.openMyFragment())
                 showHide()
             }
-            is CreateCategoryEvent.TitleChanged -> showHide()
+            is EditCategoryEvent.TitleChanged -> showHide()
         }
     }
 
@@ -100,15 +107,15 @@ class CreateCategoryFragment : Fragment(R.layout.create_category_fragment) {
         }
         val recyclerView: RecyclerView = rvColorCategory
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = GridLayoutManager(context, SPAN_COUNT)
+        recyclerView.layoutManager = GridLayoutManager(context, EditCategoryFragment.SPAN_COUNT)
         recyclerView.adapter = adapter
-        addGridItem(viewModel.uiState.value.colorId)
+        addGridItem(args.category.color)
         colorList.addAll(Constants.gridList)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun addGridItem(selectedColorId: Int) {
-        adapter.setColorItemList(colorList, selectedColorId)
+    private fun addGridItem(selectedColor: String?) {
+        adapter.setColorItemList(colorItemList = colorList, selectedColor = selectedColor)
         adapter.notifyDataSetChanged()
     }
 

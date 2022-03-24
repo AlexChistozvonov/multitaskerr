@@ -13,6 +13,8 @@
     <color name="gray">#9E9E9E</color>
     <color name="logo_color">#222130</color>
     <color name="gray_text">#606060</color>
+    <color name="light_red">#FFE2E2</color>
+    <color name="red_text">#FF3939</color>
     <color name="dark_red">#D90000</color>
     <color name="dark_gray">#2D3030</color>
     <color name="primary_et">#E1E1E1</color>

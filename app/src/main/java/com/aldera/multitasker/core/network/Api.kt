@@ -68,4 +68,10 @@ interface Api {
 
     @POST("api/category")
     suspend fun createCategory(@Body createCategoryRequest: CreateCategoryRequest): CreateCategoryResponse
+
+    @PUT("api/category/{id}")
+    suspend fun editCategory(
+        @Path("id") id: String,
+        @Body editCategoryRequest: CreateCategoryRequest
+    ): CreateCategoryResponse
 }

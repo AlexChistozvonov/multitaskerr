@@ -1,9 +1,10 @@
-package com.aldera.multitasker.presentation.category
+package com.aldera.multitasker.presentation.category.edit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.domain.createCategory.CreateCategoryRepository
+import com.aldera.multitasker.presentation.category.ColorItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,35 +12,36 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class CreateCategoryViewModel @Inject constructor(
-    private val createCategoryRepository: CreateCategoryRepository
+class EditCategoryViewModel @Inject constructor(
+    private val editCategoryRepository: CreateCategoryRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(CreateCategoryViewState())
+    private val _uiState = MutableStateFlow(EditCategoryViewState())
     val uiState = _uiState.asStateFlow()
 
-    private fun emitEvent(event: CreateCategoryEvent) {
+    private fun emitEvent(event: EditCategoryEvent) {
         _uiState.value = _uiState.value.applyEvent(event)
     }
 
     fun onTitleTextChanged(text: String) {
-        emitEvent(CreateCategoryEvent.TitleChanged(text))
+        emitEvent(EditCategoryEvent.TitleChanged(text))
     }
 
     fun onSelectedColorChanged(colorItem: ColorItem) {
-        emitEvent(CreateCategoryEvent.ColorChanged(colorItem))
+        emitEvent(EditCategoryEvent.ColorChanged(colorItem))
     }
 
-    fun createCategory() {
-        emitEvent(CreateCategoryEvent.Loading)
+    fun editCategory(id: String) {
+        emitEvent(EditCategoryEvent.Loading)
         viewModelScope.launch {
-            val result = createCategoryRepository.createCategory(
+            val result = editCategoryRepository.editCategory(
+                id = id,
                 _uiState.value.titleText,
                 _uiState.value.colorText
             )
             when (result) {
-                is LoadingResult.Error -> emitEvent(CreateCategoryEvent.Error(result.exception))
-                is LoadingResult.Success -> emitEvent(CreateCategoryEvent.Success)
+                is LoadingResult.Error -> emitEvent(EditCategoryEvent.Error(result.exception))
+                is LoadingResult.Success -> emitEvent(EditCategoryEvent.Success)
             }
         }
     }
