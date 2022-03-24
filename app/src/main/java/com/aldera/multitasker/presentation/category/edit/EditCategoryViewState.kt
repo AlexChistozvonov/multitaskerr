@@ -8,9 +8,11 @@ sealed class EditCategoryEvent {
     object Success : EditCategoryEvent()
     object Loading : EditCategoryEvent()
     object Init : EditCategoryEvent()
+    object ExitLoading : EditCategoryEvent()
     data class Error(val error: Exception?) : EditCategoryEvent()
     data class TitleChanged(val text: String) : EditCategoryEvent()
     data class ColorChanged(val colorItem: ColorItem) : EditCategoryEvent()
+    data class ExitProfileError(val error: Exception?) : EditCategoryEvent()
 }
 
 data class EditCategoryViewState(
@@ -34,5 +36,11 @@ data class EditCategoryViewState(
         EditCategoryEvent.Loading -> copy(loader = true, event = event)
         EditCategoryEvent.Success -> copy(loader = true, event = event)
         is EditCategoryEvent.TitleChanged -> copy(titleText = event.text, event = event)
+        EditCategoryEvent.ExitLoading -> copy(event = event)
+        is EditCategoryEvent.ExitProfileError -> copy(
+            event = event,
+            error = event.error,
+            loading = false
+        )
     }
 }

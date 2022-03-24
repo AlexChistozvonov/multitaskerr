@@ -21,6 +21,7 @@ import com.aldera.multitasker.data.models.UserResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -74,4 +75,7 @@ interface Api {
         @Path("id") id: String,
         @Body editCategoryRequest: CreateCategoryRequest
     ): CreateCategoryResponse
+
+    @DELETE("api/category/{id}")
+    suspend fun deleteCategory(@Path("id") id: String): Response<Unit>
 }
