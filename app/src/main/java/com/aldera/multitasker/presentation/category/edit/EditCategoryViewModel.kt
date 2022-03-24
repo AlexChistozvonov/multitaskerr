@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.domain.createCategory.CreateCategoryRepository
+import com.aldera.multitasker.domain.deleteCategory.DeleteCategoryRepository
 import com.aldera.multitasker.presentation.category.ColorItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class EditCategoryViewModel @Inject constructor(
-    private val editCategoryRepository: CreateCategoryRepository
+    private val editCategoryRepository: CreateCategoryRepository,
+    private val deleteCategoryRepository: DeleteCategoryRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(EditCategoryViewState())
@@ -42,6 +44,18 @@ class EditCategoryViewModel @Inject constructor(
             when (result) {
                 is LoadingResult.Error -> emitEvent(EditCategoryEvent.Error(result.exception))
                 is LoadingResult.Success -> emitEvent(EditCategoryEvent.Success)
+            }
+        }
+    }
+
+    fun deleteCategory(id: String) {
+        emitEvent(EditCategoryEvent.Loading)
+        viewModelScope.launch {
+            when (val result = deleteCategoryRepository.deleteRepository(id)) {
+                is LoadingResult.Error -> emitEvent(EditCategoryEvent.Error(result.exception))
+                is LoadingResult.Success -> {
+                    emitEvent(EditCategoryEvent.ExitLoading)
+                }
             }
         }
     }

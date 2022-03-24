@@ -54,6 +54,11 @@ class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
             }
         }
         etEditName.setText(title)
+        btnDelete.onClick {
+            id?.let {
+                viewModel.deleteCategory(it)
+            }
+        }
     }
 
     private fun initObservers() {
@@ -98,6 +103,11 @@ class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
                 showHide()
             }
             is EditCategoryEvent.TitleChanged -> showHide()
+            EditCategoryEvent.ExitLoading -> {
+                showHide()
+                findNavController().navigateSafe(EditCategoryFragmentDirections.openMyFragment())
+            }
+            is EditCategoryEvent.ExitProfileError -> showHide()
         }
     }
 

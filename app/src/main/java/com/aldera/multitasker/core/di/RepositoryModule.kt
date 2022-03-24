@@ -2,6 +2,7 @@ package com.aldera.multitasker.core.di
 
 import com.aldera.multitasker.data.common.CommonRepositoryImpl
 import com.aldera.multitasker.data.createCategory.CreateCategoryRepositoryImpl
+import com.aldera.multitasker.data.deleteCategory.DeleteCategoryRepositoryImpl
 import com.aldera.multitasker.data.editPassword.EditPasswordRepositoryImpl
 import com.aldera.multitasker.data.exitProfile.ExitProfileRepositoryImpl
 import com.aldera.multitasker.data.listCategory.ListCategoryRepositoryImpl
@@ -14,6 +15,7 @@ import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
 import com.aldera.multitasker.data.user.UserRepositoryImpl
 import com.aldera.multitasker.domain.common.CommonRepository
 import com.aldera.multitasker.domain.createCategory.CreateCategoryRepository
+import com.aldera.multitasker.domain.deleteCategory.DeleteCategoryRepository
 import com.aldera.multitasker.domain.editPassword.EditPasswordRepository
 import com.aldera.multitasker.domain.exitProfile.ExitProfileRepository
 import com.aldera.multitasker.domain.listCategory.ListCategoryRepository
@@ -105,4 +107,10 @@ abstract class RepositoryModule {
     abstract fun crateCategory(
         createCategoryRepository: CreateCategoryRepositoryImpl
     ): CreateCategoryRepository
+
+    @Singleton
+    @Binds
+    abstract fun deleteCategory(
+        deleteCategoryRepository: DeleteCategoryRepositoryImpl
+    ): DeleteCategoryRepository
 }
