@@ -14,6 +14,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.ProjectFragmentBinding
 import com.aldera.multitasker.ui.extension.hide
+import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
@@ -47,6 +48,13 @@ class ProjectFragment : Fragment(R.layout.project_fragment) {
             }
             ibAction.setImageResource(R.drawable.ic_edit)
             ibAction.show()
+            ibAction.onClick {
+                findNavController().navigateSafe(
+                    ProjectFragmentDirections.openEditCategory(
+                        args.category
+                    )
+                )
+            }
         }
     }
 

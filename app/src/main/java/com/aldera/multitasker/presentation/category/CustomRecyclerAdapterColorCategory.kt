@@ -14,10 +14,19 @@ class CustomRecyclerAdapterColorCategory(private val onClick: (ColorItem) -> Uni
 
     private var colorItemList = mutableListOf<ColorItem>()
     private var selectedColorId: Int? = null
+    private var selectedColor: String? = null
 
-    internal fun setColorItemList(colorItemList: MutableList<ColorItem>, selectedColorId: Int) {
+    internal fun setColorItemList(
+        colorItemList: MutableList<ColorItem>,
+        selectedColorId: Int? = null,
+        selectedColor: String? = null
+    ) {
         this.colorItemList = colorItemList
-        this.selectedColorId = selectedColorId
+        if (selectedColorId == null) {
+            this.selectedColor = selectedColor
+        } else if (selectedColor == null) {
+            this.selectedColorId = selectedColorId
+        }
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -46,8 +55,11 @@ class CustomRecyclerAdapterColorCategory(private val onClick: (ColorItem) -> Uni
             ColorStateList.valueOf(
                 ContextCompat.getColor(itemView.context, colorItemList[position].background)
             )
-        color.isSelected = selectedColorId == colorItemList[position].background
-        check.isSelected = selectedColorId == colorItemList[position].background
+        check.isSelected = if (selectedColorId == null) {
+            selectedColor == colorItemList[position].color
+        } else {
+            selectedColorId == colorItemList[position].background
+        }
     }
 
     override fun getItemCount() = colorItemList.size
