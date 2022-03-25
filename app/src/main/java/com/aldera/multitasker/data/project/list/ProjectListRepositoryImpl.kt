@@ -1,10 +1,10 @@
-package com.aldera.multitasker.data.projectList
+package com.aldera.multitasker.data.project.list
 
 import com.aldera.multitasker.core.ErrorMapper
 import com.aldera.multitasker.core.di.IoDispatcher
 import com.aldera.multitasker.core.network.Api
 import com.aldera.multitasker.core.runLoading
-import com.aldera.multitasker.domain.projectList.ProjectListRepository
+import com.aldera.multitasker.domain.project.list.ProjectListRepository
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

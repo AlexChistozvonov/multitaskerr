@@ -1,11 +1,11 @@
-package com.aldera.multitasker.data.createCategory
+package com.aldera.multitasker.data.category.create
 
 import com.aldera.multitasker.core.ErrorMapper
 import com.aldera.multitasker.core.di.IoDispatcher
 import com.aldera.multitasker.core.network.Api
 import com.aldera.multitasker.core.runLoading
 import com.aldera.multitasker.data.models.CreateCategoryRequest
-import com.aldera.multitasker.domain.createCategory.CreateCategoryRepository
+import com.aldera.multitasker.domain.category.create.CreateCategoryRepository
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
