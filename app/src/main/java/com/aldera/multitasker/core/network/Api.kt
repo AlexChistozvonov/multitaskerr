@@ -4,7 +4,6 @@ import com.aldera.multitasker.data.models.CategoryResponse
 import com.aldera.multitasker.data.models.CreateCategoryRequest
 import com.aldera.multitasker.data.models.CreateCategoryResponse
 import com.aldera.multitasker.data.models.CreateProjectRequest
-import com.aldera.multitasker.data.models.CreateProjectResponse
 import com.aldera.multitasker.data.models.EditPasswordRequest
 import com.aldera.multitasker.data.models.ExitProfileResponse
 import com.aldera.multitasker.data.models.LoginRequest
@@ -82,5 +81,11 @@ interface Api {
     suspend fun deleteCategory(@Path("id") id: String): Response<Unit>
 
     @POST("api/project")
-    suspend fun createProject(@Body createProjectRequest: CreateProjectRequest): CreateProjectResponse
+    suspend fun createProject(@Body createProjectRequest: CreateProjectRequest): ProjectResponse
+
+    @PUT("api/project/{id}")
+    suspend fun editProject(
+        @Path("id") id: String,
+        @Body editProjectRequest: CreateProjectRequest
+    ): ProjectResponse
 }
