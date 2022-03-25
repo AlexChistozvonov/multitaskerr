@@ -88,4 +88,7 @@ interface Api {
         @Path("id") id: String,
         @Body editProjectRequest: CreateProjectRequest
     ): ProjectResponse
+
+    @DELETE("api/project/{id}")
+    suspend fun deleteProject(@Path("id") id: String): Response<Unit>
 }

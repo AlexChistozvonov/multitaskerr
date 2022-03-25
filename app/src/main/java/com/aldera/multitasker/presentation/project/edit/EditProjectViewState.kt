@@ -6,6 +6,7 @@ sealed class EditProjectEvent {
     object Init : EditProjectEvent()
     data class Error(val error: Exception?) : EditProjectEvent()
     data class TitleChanged(val text: String) : EditProjectEvent()
+    data class ExitProfileError(val error: Exception?) : EditProjectEvent()
 }
 
 data class EditProjectViewState(
@@ -22,5 +23,10 @@ data class EditProjectViewState(
         EditProjectEvent.Loading -> copy(loader = true, event = event)
         EditProjectEvent.Success -> copy(loader = true, event = event)
         is EditProjectEvent.TitleChanged -> copy(titleText = event.text, event = event)
+        is EditProjectEvent.ExitProfileError -> copy(
+            event = event,
+            error = event.error,
+            loading = false
+        )
     }
 }
