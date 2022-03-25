@@ -51,7 +51,7 @@ class EditCategoryViewModel @Inject constructor(
     fun deleteCategory(id: String) {
         emitEvent(EditCategoryEvent.Loading)
         viewModelScope.launch {
-            when (val result = deleteCategoryRepository.deleteRepository(id)) {
+            when (val result = deleteCategoryRepository.deleteCategory(id)) {
                 is LoadingResult.Error -> emitEvent(EditCategoryEvent.Error(result.exception))
                 is LoadingResult.Success -> {
                     emitEvent(EditCategoryEvent.ExitLoading)

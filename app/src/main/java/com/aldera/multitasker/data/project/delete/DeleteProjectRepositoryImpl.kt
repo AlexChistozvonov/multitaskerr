@@ -1,22 +1,22 @@
-package com.aldera.multitasker.data.category.delete
+package com.aldera.multitasker.data.project.delete
 
 import com.aldera.multitasker.core.ErrorMapper
 import com.aldera.multitasker.core.di.IoDispatcher
 import com.aldera.multitasker.core.network.Api
 import com.aldera.multitasker.core.runLoading
-import com.aldera.multitasker.domain.category.delete.DeleteCategoryRepository
+import com.aldera.multitasker.domain.project.delete.DeleteProjectRepository
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
-class DeleteCategoryRepositoryImpl @Inject constructor(
+class DeleteProjectRepositoryImpl @Inject constructor(
     private val networkService: Api,
     @IoDispatcher private val coroutineDispatcher: CoroutineDispatcher,
     private val errorMapper: ErrorMapper
-) : DeleteCategoryRepository {
-    override suspend fun deleteCategory(id: String) = withContext(coroutineDispatcher) {
+) : DeleteProjectRepository {
+    override suspend fun deleteProject(id: String) = withContext(coroutineDispatcher) {
         runLoading(errorMapper) {
-            networkService.deleteCategory(id = id)
+            networkService.deleteProject(id = id)
             Unit
         }
     }

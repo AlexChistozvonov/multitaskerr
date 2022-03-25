@@ -54,6 +54,11 @@ class EditProjectFragment : Fragment(R.layout.edit_project_fragment) {
             }
         }
         etEditName.setText(title)
+        btnDelete.onClick {
+            id?.let {
+                viewModel.deleteProject(it)
+            }
+        }
     }
 
     private fun initObservers() {
@@ -88,6 +93,7 @@ class EditProjectFragment : Fragment(R.layout.edit_project_fragment) {
                 showHide()
             }
             is EditProjectEvent.TitleChanged -> showHide()
+            is EditProjectEvent.ExitProfileError -> showHide()
         }
     }
 }

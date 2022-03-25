@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.domain.project.create.CreateProjectRepository
+import com.aldera.multitasker.domain.project.delete.DeleteProjectRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class EditProjectViewModel @Inject constructor(
-    private val editProjectRepository: CreateProjectRepository
+    private val editProjectRepository: CreateProjectRepository,
+    private val deleteProjectRepository: DeleteProjectRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(EditProjectViewState())
@@ -35,6 +37,16 @@ class EditProjectViewModel @Inject constructor(
                 categoryId = categoryId
             )
             when (result) {
+                is LoadingResult.Error -> emitEvent(EditProjectEvent.Error(result.exception))
+                is LoadingResult.Success -> emitEvent(EditProjectEvent.Success)
+            }
+        }
+    }
+
+    fun deleteProject(id: String) {
+        emitEvent(EditProjectEvent.Loading)
+        viewModelScope.launch {
+            when (val result = deleteProjectRepository.deleteProject(id)) {
                 is LoadingResult.Error -> emitEvent(EditProjectEvent.Error(result.exception))
                 is LoadingResult.Success -> emitEvent(EditProjectEvent.Success)
             }
