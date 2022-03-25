@@ -1,4 +1,4 @@
-package com.aldera.multitasker.domain.listCategory
+package com.aldera.multitasker.domain.category.list
 
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.data.models.CategoryResponse

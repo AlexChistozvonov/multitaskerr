@@ -73,14 +73,19 @@
     <string name="delete">Удалить</string>
     <string name="categories">Категории</string>
     <string name="create_category">Создание категории</string>
+    <string name="create_project_">Создание проекта</string>
     <string name="create_project">Создать проект</string>
     <string name="name_category">НАЗВАНИЕ КАТЕГОРИИ</string>
+    <string name="name_project">НАЗВАНИЕ ПРОЕКТА</string>
     <string name="select_color_category">ВЫБЕРИТЕ ЦВЕТ КАТЕГОРИИ</string>
     <string name="name_category_hint">Введите название категории</string>
+    <string name="name_project_hint">Введите название проекта</string>
     <string name="create_category_">Создать категорию</string>
     <string name="cancel_">Отменить</string>
     <string name="delete_category">Удалить категорию</string>
     <string name="edit">Редактирование</string>
+
+
 
     <plurals name="plurals_project">
         <item quantity="one">%1$d проект</item>

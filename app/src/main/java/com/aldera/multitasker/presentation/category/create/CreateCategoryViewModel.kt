@@ -3,7 +3,7 @@ package com.aldera.multitasker.presentation.category.create
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
-import com.aldera.multitasker.domain.createCategory.CreateCategoryRepository
+import com.aldera.multitasker.domain.category.create.CreateCategoryRepository
 import com.aldera.multitasker.presentation.category.ColorItem
 import com.aldera.multitasker.presentation.category.CreateCategoryEvent
 import com.aldera.multitasker.presentation.category.CreateCategoryViewState

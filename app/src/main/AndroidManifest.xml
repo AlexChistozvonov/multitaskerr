@@ -16,6 +16,7 @@
         android:theme="@style/Theme.Multitasker.Launcher"
         android:usesCleartextTraffic="true">
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>

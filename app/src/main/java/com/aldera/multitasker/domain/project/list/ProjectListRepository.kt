@@ -1,4 +1,4 @@
-package com.aldera.multitasker.domain.projectList
+package com.aldera.multitasker.domain.project.list
 
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.data.models.ProjectResponse

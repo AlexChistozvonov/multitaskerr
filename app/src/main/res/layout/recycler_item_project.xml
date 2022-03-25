@@ -8,7 +8,7 @@
     android:background="@drawable/background_constraintlayout">
 
     <TextView
-        android:id="@+id/tv_title_project"
+        android:id="@+id/tv_name_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -33,10 +33,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_project">
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_category">
 
         <TextView
-            android:id="@+id/tv_name_category"
+            android:id="@+id/tv_title_project"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"

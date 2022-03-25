@@ -1,4 +1,4 @@
-package com.aldera.multitasker.domain.createCategory
+package com.aldera.multitasker.domain.category.create
 
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.data.models.CreateCategoryResponse

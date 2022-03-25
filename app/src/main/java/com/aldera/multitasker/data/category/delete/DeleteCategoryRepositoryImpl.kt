@@ -1,10 +1,10 @@
-package com.aldera.multitasker.data.deleteCategory
+package com.aldera.multitasker.data.category.delete
 
 import com.aldera.multitasker.core.ErrorMapper
 import com.aldera.multitasker.core.di.IoDispatcher
 import com.aldera.multitasker.core.network.Api
 import com.aldera.multitasker.core.runLoading
-import com.aldera.multitasker.domain.deleteCategory.DeleteCategoryRepository
+import com.aldera.multitasker.domain.category.delete.DeleteCategoryRepository
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

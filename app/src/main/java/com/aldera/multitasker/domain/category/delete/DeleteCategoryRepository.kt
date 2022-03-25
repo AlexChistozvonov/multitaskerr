@@ -1,4 +1,4 @@
-package com.aldera.multitasker.domain.deleteCategory
+package com.aldera.multitasker.domain.category.delete
 
 import com.aldera.multitasker.core.LoadingResult
 

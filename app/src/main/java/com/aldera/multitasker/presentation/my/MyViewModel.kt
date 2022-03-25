@@ -3,7 +3,7 @@ package com.aldera.multitasker.presentation.my
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
-import com.aldera.multitasker.domain.listCategory.ListCategoryRepository
+import com.aldera.multitasker.domain.category.list.ListCategoryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:fontFamily="@font/ubuntu_medium"
-            android:hint="@string/name_category_hint"
+            android:hint="@string/name_project_hint"
             android:maxLength="100"
             android:padding="16dp"
             android:textColor="@color/light_black"
@@ -44,37 +44,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/ubuntu_medium"
-        android:text="@string/name_category"
+        android:text="@string/name_project"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/til_name"
         app:layout_constraintStart_toStartOf="@+id/til_name" />
 
-    <TextView
-        android:id="@+id/tv_select_color_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/ubuntu_medium"
-        android:text="@string/select_color_category"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/til_name"
-        app:layout_constraintTop_toBottomOf="@+id/til_name" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_color_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_select_color_category"
-        app:layout_goneMarginTop="16dp"
-        app:spanCount="5"
-        tools:itemCount="10"
-        tools:listitem="@layout/recyclerview_item_color" />
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_create_category"
+        android:id="@+id/btn_create_project"
         style="@style/ColoredButton"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -82,7 +58,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/background_black_button_enabled"
         android:paddingVertical="18dp"
-        android:text="@string/create_category_"
+        android:text="@string/create_project"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btn_cancel"

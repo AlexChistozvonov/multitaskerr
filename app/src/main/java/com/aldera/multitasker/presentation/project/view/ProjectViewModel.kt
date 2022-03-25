@@ -1,9 +1,11 @@
-package com.aldera.multitasker.presentation.project
+package com.aldera.multitasker.presentation.project.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
-import com.aldera.multitasker.domain.projectList.ProjectListRepository
+import com.aldera.multitasker.domain.project.list.ProjectListRepository
+import com.aldera.multitasker.presentation.project.ProjectEvent
+import com.aldera.multitasker.presentation.project.ProjectViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow

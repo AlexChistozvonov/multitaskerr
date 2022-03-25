@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.project
+package com.aldera.multitasker.presentation.project.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.ProjectFragmentBinding
+import com.aldera.multitasker.presentation.project.CustomRecyclerAdapterProject
+import com.aldera.multitasker.presentation.project.ProjectEvent
+import com.aldera.multitasker.presentation.project.ProjectViewState
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
@@ -39,6 +42,11 @@ class ProjectFragment : Fragment(R.layout.project_fragment) {
     private fun init() = with(binding) {
         val id = args.category.id
         val title = args.category.title
+        llCreate.onClick {
+            findNavController().navigateSafe(
+                ProjectFragmentDirections.openCreateProjectFragment(args.category)
+            )
+        }
         id?.let { viewModel.getProject(it) }
         toolbar.apply {
             tvTitle.text = title

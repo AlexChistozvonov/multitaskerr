@@ -3,8 +3,8 @@ package com.aldera.multitasker.presentation.category.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
-import com.aldera.multitasker.domain.createCategory.CreateCategoryRepository
-import com.aldera.multitasker.domain.deleteCategory.DeleteCategoryRepository
+import com.aldera.multitasker.domain.category.create.CreateCategoryRepository
+import com.aldera.multitasker.domain.category.delete.DeleteCategoryRepository
 import com.aldera.multitasker.presentation.category.ColorItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
