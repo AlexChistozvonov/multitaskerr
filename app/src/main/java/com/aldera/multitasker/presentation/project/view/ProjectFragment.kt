@@ -29,7 +29,16 @@ import kotlinx.coroutines.flow.onEach
 class ProjectFragment : Fragment(R.layout.project_fragment) {
     private val binding by viewBinding(ProjectFragmentBinding::bind)
     private val viewModel by viewModels<ProjectViewModel>()
-    private val projectAdapter by lazy { CustomRecyclerAdapterProject() }
+    private val projectAdapter by lazy {
+        CustomRecyclerAdapterProject {
+            findNavController().navigateSafe(
+                ProjectFragmentDirections.openEditProjectFragment(
+                    it,
+                    args.category
+                )
+            )
+        }
+    }
     private val args: ProjectFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

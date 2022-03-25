@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 import com.aldera.multitasker.data.models.ProjectResponse
 
-class CustomRecyclerAdapterProject :
+class CustomRecyclerAdapterProject(private val onClick: (ProjectResponse) -> Unit) :
     RecyclerView.Adapter<CustomRecyclerAdapterProject.MyViewHolder>() {
 
     private var projectList = mutableListOf<ProjectResponse>()
@@ -24,10 +24,19 @@ class CustomRecyclerAdapterProject :
         this.title = title.toString()
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         val titleProject: TextView = itemView.findViewById(R.id.tv_title_project)
         val nameCategory: TextView = itemView.findViewById(R.id.tv_name_category)
         val colorCategory: LinearLayout = itemView.findViewById(R.id.ll_name_category)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            onClick(projectList[layoutPosition])
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

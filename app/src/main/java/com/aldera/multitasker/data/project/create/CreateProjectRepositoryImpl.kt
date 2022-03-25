@@ -28,4 +28,20 @@ class CreateProjectRepositoryImpl @Inject constructor(
             )
         }
     }
+
+    override suspend fun editProject(
+        id: String,
+        title: String?,
+        categoryId: String?
+    ) = withContext(coroutineDispatcher) {
+        runLoading(errorMapper) {
+            networkService.editProject(
+                id = id,
+                CreateProjectRequest(
+                    title = title,
+                    categoryId = categoryId
+                )
+            )
+        }
+    }
 }

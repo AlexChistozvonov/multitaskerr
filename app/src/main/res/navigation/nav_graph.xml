@@ -217,13 +217,24 @@
             app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
         <action
             android:id="@+id/openEditCategory"
-            app:destination="@id/editCategoryFragment" />
+            app:destination="@id/editCategoryFragment">
+            <argument
+                android:name="category"
+                app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        </action>
         <action
             android:id="@+id/openCreateProjectFragment"
             app:destination="@id/createProjectFragment">
             <argument
                 android:name="category"
                 app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        </action>
+        <action
+            android:id="@+id/openEditProjectFragment"
+            app:destination="@id/editProjectFragment">
+            <argument
+                android:name="project"
+                app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
         </action>
     </fragment>
 
@@ -267,5 +278,18 @@
         <argument
             android:name="category"
             app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProjectFragment"
+        android:name="com.aldera.multitasker.presentation.project.edit.EditProjectFragment"
+        android:label="EditProjectFragment"
+        tools:layout="@layout/edit_project_fragment">
+        <argument
+            android:name="category"
+            app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        <argument
+            android:name="project"
+            app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
     </fragment>
 </navigation>
