@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/main_toolbar"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="164dp" />
+
+            <TextView
+                android:id="@+id/tv_name_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="@string/name_task"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/til_name"
+                app:layout_constraintStart_toStartOf="@+id/til_name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_name"
+                style="@style/TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_edit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:hint="@string/name_task_hint"
+                    android:maxLength="100"
+                    android:padding="16dp"
+                    android:textColor="@color/light_black"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_executor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="@string/executor_task"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/til_name"
+                app:layout_constraintStart_toStartOf="@+id/til_name" />
+
+            <Spinner
+                android:id="@+id/sp_executor"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="24dp"
+                android:background="@drawable/spinner_executor"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:id="@+id/tv_description_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="@string/description_task"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/til_name"
+                app:layout_constraintStart_toStartOf="@+id/til_name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_description_task"
+                style="@style/TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <EditText
+                    android:id="@+id/et_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="176dp"
+                    android:ems="10"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:gravity="start|top"
+                    android:hint="@string/description_task_hint"
+                    android:inputType="textMultiLine"
+                    android:maxLength="10000"
+                    android:padding="16dp"
+                    android:textColor="@color/light_black"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_period_of_execution_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="@string/period_of_execution_task"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/til_name"
+                app:layout_constraintStart_toStartOf="@+id/til_name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_period_of_execution_task"
+                style="@style/TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_period_of_execution_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableEnd="@drawable/ic_calendar_edittext"
+                    android:focusable="false"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:hint="@string/period_of_execution_task_hint"
+                    android:padding="16dp"
+                    android:textColor="@color/light_black"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_importance_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="@string/importance_task"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/til_name"
+                app:layout_constraintStart_toStartOf="@+id/til_name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="24dp"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/rg_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rb_urgently4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/background_ll_urgently"
+                        android:button="@null"
+                        android:drawableStart="@drawable/ic_urgently_4"
+                        android:drawableEnd="@drawable/urgently_check"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:paddingStart="16dp"
+                        android:text="@string/urgently_4"
+                        android:textColor="@color/logo_color"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:ignore="RtlSymmetry" />
+
+                    <RadioButton
+                        android:id="@+id/rb_urgently3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/background_ll_urgently"
+                        android:button="@null"
+                        android:drawableStart="@drawable/ic_urgently_3"
+                        android:drawableEnd="@drawable/urgently_check"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:paddingStart="16dp"
+                        android:text="@string/urgently_3"
+                        android:textColor="@color/logo_color"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:ignore="RtlSymmetry" />
+
+                    <RadioButton
+                        android:id="@+id/rb_urgently2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/background_ll_urgently"
+                        android:button="@null"
+                        android:drawableStart="@drawable/ic_urgently_2"
+                        android:drawableEnd="@drawable/urgently_check"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:paddingStart="16dp"
+                        android:text="@string/urgently_2"
+                        android:textColor="@color/logo_color"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:ignore="RtlSymmetry" />
+
+                    <RadioButton
+                        android:id="@+id/rb_urgently1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/background_ll_urgently"
+                        android:button="@null"
+                        android:drawableStart="@drawable/ic_urgently_1"
+                        android:drawableEnd="@drawable/urgently_check"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:paddingStart="16dp"
+                        android:text="@string/urgently_1"
+                        android:textColor="@color/logo_color"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:ignore="RtlSymmetry" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_create_task"
+                style="@style/ColoredButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/background_black_button"
+                android:paddingVertical="18dp"
+                android:text="@string/create_task"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/btn_cancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_cancel"
+                style="@style/buttonH100"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/background_gray_button"
+                android:paddingVertical="18dp"
+                android:text="@string/cancel_"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>

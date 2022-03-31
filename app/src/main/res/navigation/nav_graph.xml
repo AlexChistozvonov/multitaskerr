@@ -230,8 +230,8 @@
                 app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
         </action>
         <action
-            android:id="@+id/openEditProjectFragment"
-            app:destination="@id/editProjectFragment">
+            android:id="@+id/openTaskFragment"
+            app:destination="@id/taskFragment">
             <argument
                 android:name="project"
                 app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
@@ -286,10 +286,51 @@
         android:label="EditProjectFragment"
         tools:layout="@layout/edit_project_fragment">
         <argument
+            android:name="project"
+            app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
+        <argument
             android:name="category"
             app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.aldera.multitasker.presentation.task.view.TaskFragment"
+        android:label="TaskFragment"
+        tools:layout="@layout/task_fragment">
+        <argument
+            android:name="project"
+            app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
+        <argument
+            android:name="category"
+            app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        <action
+            android:id="@+id/openEditProjectFragment"
+            app:destination="@id/editProjectFragment">
+            <argument
+                android:name="project"
+                app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
+            <argument
+                android:name="category"
+                app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        </action>
+        <action
+            android:id="@+id/openCreateTaskFragment"
+            app:destination="@id/createTaskFragment">
+            <argument
+                android:name="project"
+                app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/createTaskFragment"
+        android:name="com.aldera.multitasker.presentation.task.create.CreateTaskFragment"
+        android:label="CreateTaskFregment"
+        tools:layout="@layout/create_task_fragment">
         <argument
             android:name="project"
             app:argType="com.aldera.multitasker.data.models.ProjectResponse" />
     </fragment>
+
 </navigation>

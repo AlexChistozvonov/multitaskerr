@@ -9,7 +9,6 @@ sealed class CreateProjectEvent {
 }
 
 data class CreateProjectViewState(
-    val categoryId: String? = null,
     val error: Exception? = null,
     val titleText: String = "",
     val loading: Boolean = false,

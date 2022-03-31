@@ -32,7 +32,7 @@ class ProjectFragment : Fragment(R.layout.project_fragment) {
     private val projectAdapter by lazy {
         CustomRecyclerAdapterProject {
             findNavController().navigateSafe(
-                ProjectFragmentDirections.openEditProjectFragment(
+                ProjectFragmentDirections.openTaskFragment(
                     it,
                     args.category
                 )
