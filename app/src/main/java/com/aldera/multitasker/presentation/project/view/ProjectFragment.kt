@@ -14,8 +14,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.ProjectFragmentBinding
 import com.aldera.multitasker.presentation.project.CustomRecyclerAdapterProject
-import com.aldera.multitasker.presentation.project.ProjectEvent
-import com.aldera.multitasker.presentation.project.ProjectViewState
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick

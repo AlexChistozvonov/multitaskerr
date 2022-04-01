@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.project
+package com.aldera.multitasker.presentation.project.view
 
 import com.aldera.multitasker.data.models.CategoryResponse
 import com.aldera.multitasker.data.models.ProjectResponse

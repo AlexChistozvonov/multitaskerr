@@ -21,6 +21,7 @@ import com.aldera.multitasker.data.models.RecoveryPasswordEmailRequest
 import com.aldera.multitasker.data.models.RecoveryPasswordEmailResponse
 import com.aldera.multitasker.data.models.RegistrationRequest
 import com.aldera.multitasker.data.models.RegistrationResponse
+import com.aldera.multitasker.data.models.TaskResponse
 import com.aldera.multitasker.data.models.UserResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
@@ -94,6 +95,9 @@ interface Api {
 
     @DELETE("api/project/{id}")
     suspend fun deleteProject(@Path("id") id: String): Response<Unit>
+
+    @GET("api/project/{id}/tasks")
+    suspend fun getTask(@Path("id") id: String): List<TaskResponse>
 
     @GET("api/user/me/tasks")
     suspend fun getExecutor(): ExecutorResponse
