@@ -5,6 +5,7 @@ import com.aldera.multitasker.core.di.IoDispatcher
 import com.aldera.multitasker.core.network.Api
 import com.aldera.multitasker.core.runLoading
 import com.aldera.multitasker.data.models.CreateTaskRequest
+import com.aldera.multitasker.data.models.EditTaskRequest
 import com.aldera.multitasker.domain.task.create.CreateTaskRepository
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -34,6 +35,26 @@ class CreateTaskRepositoryImpl @Inject constructor(
                     performerId = performerId
                 )
             )
+        }
+    }
+
+    override suspend fun editTask(
+        id: String,
+        title: String,
+        description: String,
+        deadline: String,
+        importance: Int
+    ) = withContext(coroutineDispatcher) {
+        runLoading(errorMapper) {
+            networkService.editTask(
+                id = id, EditTaskRequest(
+                    title = title,
+                    description = description,
+                    deadline = deadline,
+                    importance = importance
+                )
+            )
+            Unit
         }
     }
 }

@@ -56,6 +56,15 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
     }
 
     private fun init() = with(binding) {
+        btnEditTask.onClick {
+            findNavController().navigateSafe(
+                ViewTaskFragmentDirections.openEditTaskFragment(
+                    args.task,
+                    args.taskCreate,
+                    args.category
+                )
+            )
+        }
         val id = args.task.id
         id?.let {
             viewModel.getViewTask(it)
