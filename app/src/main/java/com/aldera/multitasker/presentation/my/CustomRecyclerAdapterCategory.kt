@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 import com.aldera.multitasker.data.models.CategoryResponse
@@ -14,10 +15,13 @@ import com.aldera.multitasker.data.models.CategoryResponse
 class CustomRecyclerAdapterCategory(private val listener: (id: CategoryResponse) -> Unit) :
     RecyclerView.Adapter<CustomRecyclerAdapterCategory.MyViewHolder>() {
 
-    private var categoryList = mutableListOf<CategoryResponse>()
+    private var oldCategoryList = listOf<CategoryResponse>()
 
-    fun setCategory(listCategory: List<CategoryResponse>) {
-        this.categoryList = listCategory.toMutableList()
+    fun setCategory(newCategoryList: List<CategoryResponse>) {
+        val diffUtil = DiffUtilCategory(oldCategoryList, newCategoryList)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        oldCategoryList = newCategoryList
+        diffResults.dispatchUpdatesTo(this)
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -31,7 +35,7 @@ class CustomRecyclerAdapterCategory(private val listener: (id: CategoryResponse)
         }
 
         override fun onClick(p0: View?) {
-            listener.invoke(categoryList[absoluteAdapterPosition])
+            listener.invoke(oldCategoryList[layoutPosition])
         }
     }
 
@@ -45,15 +49,15 @@ class CustomRecyclerAdapterCategory(private val listener: (id: CategoryResponse)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) = with(holder) {
 
         colorCategory.backgroundTintList =
-            ColorStateList.valueOf(Color.parseColor(categoryList[position].color))
-        titleCategory.text = categoryList[position].title
-        numberOfProjects.text = categoryList[position].projectsCount?.let {
+            ColorStateList.valueOf(Color.parseColor(oldCategoryList[position].color))
+        titleCategory.text = oldCategoryList[position].title
+        numberOfProjects.text = oldCategoryList[position].projectsCount?.let {
             itemView.resources.getQuantityString(
                 R.plurals.plurals_project,
-                it, categoryList[position].projectsCount
+                it, oldCategoryList[position].projectsCount
             )
         }
     }
 
-    override fun getItemCount() = categoryList.size
+    override fun getItemCount() = oldCategoryList.size
 }

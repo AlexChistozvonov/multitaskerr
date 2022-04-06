@@ -34,4 +34,6 @@
     <color name="category_fucsia">#FF0DF5</color>
     <color name="category_pink">#EA008C</color>
     <color name="trans">#00000000</color>
+    <color name="text">#3D3D3D</color>
+    <color name="label">#A9A9A9</color>
 </resources>

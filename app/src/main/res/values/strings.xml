@@ -76,10 +76,12 @@
     <string name="create_project_">Создание проекта</string>
     <string name="create_task_">Создание задачи</string>
     <string name="create_project">Создать проект</string>
+    <string name="task">Задача</string>
     <string name="name_category">НАЗВАНИЕ КАТЕГОРИИ</string>
     <string name="name_project">НАЗВАНИЕ ПРОЕКТА</string>
     <string name="name_task">НАЗВАНИЕ ЗАДАЧИ</string>
     <string name="description_task">ОПИСАНИЕ ЗАДАЧИ</string>
+    <string name="name_subtask">ПОДЗАДАЧИ</string>
     <string name="period_of_execution_task">СРОК ИСПОЛНЕНИЯ</string>
     <string name="importance_task">ВАЖНОСТЬ ЗАДАЧИ</string>
     <string name="executor_task">ИСПОЛНИТЕЛЬ</string>
@@ -94,10 +96,16 @@
     <string name="cancel_">Отменить</string>
     <string name="delete_category">Удалить категорию</string>
     <string name="edit">Редактирование</string>
+    <string name="edit_task">Редактировать данные</string>
     <string name="urgently_4">Очень срочно</string>
     <string name="urgently_3">Срочно</string>
     <string name="urgently_2">Может подождать</string>
     <string name="urgently_1">Несрочно</string>
+    <string name="executor_task_view">Исполнитель</string>
+    <string name="author_task_view">Автор</string>
+    <string name="edit_executor"> <b>ИЗМЕНИТЬ</b></string>
+    <string name="created">Созданно %1$s</string>
+    <string name="updated">Обновлено %1$s</string>
 
     <plurals name="plurals_project">
         <item quantity="one">%1$d проект</item>

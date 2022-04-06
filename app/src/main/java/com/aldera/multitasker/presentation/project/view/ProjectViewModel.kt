@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ProjectViewModel @Inject constructor(
-    private val projectListRepository: ProjectListRepository,
+    private val projectListRepository: ProjectListRepository
 ) :
     ViewModel() {
     private val _uiState = MutableStateFlow(ProjectViewState())

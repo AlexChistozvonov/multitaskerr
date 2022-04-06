@@ -21,6 +21,7 @@ class CreateTaskRepositoryImpl @Inject constructor(
         deadline: String,
         importance: Int,
         projectId: String,
+        performerId: String
     ) = withContext(coroutineDispatcher) {
         runLoading(errorMapper) {
             networkService.createTask(
@@ -30,6 +31,7 @@ class CreateTaskRepositoryImpl @Inject constructor(
                     deadline = deadline,
                     importance = importance,
                     projectId = projectId,
+                    performerId = performerId
                 )
             )
         }

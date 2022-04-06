@@ -21,7 +21,7 @@ import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
-import com.aldera.multitasker.ui.util.Constants
+import com.aldera.multitasker.ui.util.ConstantGridList
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -107,7 +107,7 @@ class CreateCategoryFragment : Fragment(R.layout.create_category_fragment) {
         recyclerView.layoutManager = GridLayoutManager(context, SPAN_COUNT)
         recyclerView.adapter = adapter
         addGridItem(viewModel.uiState.value.colorId)
-        colorList.addAll(Constants.gridList)
+        colorList.addAll(ConstantGridList.gridList)
     }
 
     @SuppressLint("NotifyDataSetChanged")

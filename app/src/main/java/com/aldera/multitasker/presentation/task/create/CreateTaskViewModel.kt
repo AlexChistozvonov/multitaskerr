@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.domain.task.ExecutorRepository
 import com.aldera.multitasker.domain.task.create.CreateTaskRepository
+import com.aldera.multitasker.ui.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -62,7 +63,7 @@ class CreateTaskViewModel @Inject constructor(
 
     fun createTask(projectId: String) {
         emitEvent(CreateTaskEvent.Loading)
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
         val date = formatter.parse(_uiState.value.deadlineText)
         val zonedDateTime = ZonedDateTime.of(
             LocalDate.from(date).atStartOfDay(),
@@ -75,6 +76,7 @@ class CreateTaskViewModel @Inject constructor(
                 deadline = zonedDateTime.format(DateTimeFormatter.ISO_INSTANT),
                 importance = _uiState.value.importance,
                 projectId = projectId,
+                performerId = _uiState.value.performerId
             )
             when (result) {
                 is LoadingResult.Error -> emitEvent(CreateTaskEvent.Error(result.exception))

@@ -21,7 +21,7 @@ import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
-import com.aldera.multitasker.ui.util.Constants
+import com.aldera.multitasker.ui.util.ConstantGridList
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -58,6 +58,10 @@ class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
             id?.let {
                 viewModel.deleteCategory(it)
             }
+        }
+        val defaultColor = ConstantGridList.gridList.firstOrNull { it.color == args.category.color }
+        defaultColor?.let {
+            viewModel.onSelectedColorChanged(it)
         }
     }
 
@@ -99,13 +103,17 @@ class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
                 tilName.hide()
             }
             EditCategoryEvent.Success -> {
-                findNavController().navigateSafe(EditCategoryFragmentDirections.openMyFragment())
+                findNavController().navigateSafe(
+                    EditCategoryFragmentDirections.openMyFragment()
+                )
                 showHide()
             }
             is EditCategoryEvent.TitleChanged -> showHide()
             EditCategoryEvent.ExitLoading -> {
                 showHide()
-                findNavController().navigateSafe(EditCategoryFragmentDirections.openMyFragment())
+                findNavController().navigateSafe(
+                    EditCategoryFragmentDirections.openMyFragment()
+                )
             }
             is EditCategoryEvent.ExitProfileError -> showHide()
         }
@@ -120,7 +128,7 @@ class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
         recyclerView.layoutManager = GridLayoutManager(context, EditCategoryFragment.SPAN_COUNT)
         recyclerView.adapter = adapter
         addGridItem(args.category.color)
-        colorList.addAll(Constants.gridList)
+        colorList.addAll(ConstantGridList.gridList)
     }
 
     @SuppressLint("NotifyDataSetChanged")

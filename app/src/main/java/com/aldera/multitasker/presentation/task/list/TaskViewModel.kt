@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.task.view
+package com.aldera.multitasker.presentation.task.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.task.view
+package com.aldera.multitasker.presentation.task.list
 
 import com.aldera.multitasker.data.models.TaskResponse
 

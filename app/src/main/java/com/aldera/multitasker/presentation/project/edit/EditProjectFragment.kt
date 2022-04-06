@@ -12,6 +12,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.EditProjectFragmentBinding
 import com.aldera.multitasker.ui.extension.hide
+import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
@@ -89,7 +90,9 @@ class EditProjectFragment : Fragment(R.layout.edit_project_fragment) {
                 tilName.hide()
             }
             EditProjectEvent.Success -> {
-                findNavController().popBackStack()
+                findNavController().navigateSafe(
+                    EditProjectFragmentDirections.openProjectFragment(args.category)
+                )
                 showHide()
             }
             is EditProjectEvent.TitleChanged -> showHide()

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 import com.aldera.multitasker.data.models.ProjectResponse
@@ -14,12 +15,15 @@ import com.aldera.multitasker.data.models.ProjectResponse
 class CustomRecyclerAdapterProject(private val onClick: (ProjectResponse) -> Unit) :
     RecyclerView.Adapter<CustomRecyclerAdapterProject.MyViewHolder>() {
 
-    private var projectList = mutableListOf<ProjectResponse>()
+    private var oldProjectList = listOf<ProjectResponse>()
     private var color: String? = null
     private var title: String? = null
 
-    fun setProject(listProject: List<ProjectResponse>, color: String?, title: String?) {
-        this.projectList = listProject.toMutableList()
+    fun setProject(newProjectList: List<ProjectResponse>, color: String?, title: String?) {
+        val diffUtil = DiffUtilProject(oldProjectList, newProjectList)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        oldProjectList = newProjectList
+        diffResults.dispatchUpdatesTo(this)
         this.color = color.toString()
         this.title = title.toString()
     }
@@ -35,7 +39,7 @@ class CustomRecyclerAdapterProject(private val onClick: (ProjectResponse) -> Uni
         }
 
         override fun onClick(p0: View?) {
-            onClick(projectList[layoutPosition])
+            onClick.invoke(oldProjectList[layoutPosition])
         }
     }
 
@@ -47,10 +51,10 @@ class CustomRecyclerAdapterProject(private val onClick: (ProjectResponse) -> Uni
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) = with(holder) {
-        nameCategory.text = projectList[position].title
+        nameCategory.text = oldProjectList[position].title
         colorCategory.backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
         titleProject.text = title
     }
 
-    override fun getItemCount() = projectList.size
+    override fun getItemCount() = oldProjectList.size
 }

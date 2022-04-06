@@ -10,5 +10,6 @@ interface CreateTaskRepository {
         deadline: String,
         importance: Int,
         projectId: String,
+        performerId: String
     ): LoadingResult<CreateTaskResponse>
 }

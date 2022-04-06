@@ -8,20 +8,25 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 import com.aldera.multitasker.data.models.TaskResponse
+import com.aldera.multitasker.ui.util.Constants
 import com.bumptech.glide.Glide
 
 class CustomRecyclerAdapterTask(private val onClick: (TaskResponse) -> Unit) :
     RecyclerView.Adapter<CustomRecyclerAdapterTask.MyViewHolder>() {
 
-    private var taskList = mutableListOf<TaskResponse>()
+    private var oldTaskList = listOf<TaskResponse>()
     private var nameCategory: String? = null
     private var color: String? = null
 
-    fun setTask(listTask: List<TaskResponse>, color: String?, nameCategory: String?) {
-        this.taskList = listTask.toMutableList()
+    fun setData(newListTask: List<TaskResponse>, color: String?, nameCategory: String?) {
+        val diffUtil = DiffUtilTask(oldTaskList, newListTask)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        oldTaskList = newListTask
+        diffResults.dispatchUpdatesTo(this)
         this.nameCategory = nameCategory.toString()
         this.color = color.toString()
     }
@@ -40,7 +45,7 @@ class CustomRecyclerAdapterTask(private val onClick: (TaskResponse) -> Unit) :
         }
 
         override fun onClick(p0: View?) {
-            onClick(taskList[layoutPosition])
+            onClick(oldTaskList[layoutPosition])
         }
     }
 
@@ -53,36 +58,29 @@ class CustomRecyclerAdapterTask(private val onClick: (TaskResponse) -> Unit) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) = with(holder) {
         titleTask.text = nameCategory
-        nameTask.text = taskList[position].title
+        nameTask.text = oldTaskList[position].title
         colorCategory.backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
 
-        when (taskList[position].importance) {
-            IMPORTANCE_1 -> {
+        when (oldTaskList[position].importance) {
+            Constants.IMPORTANCE_1 -> {
                 Glide.with(itemView.context).load(R.drawable.ic_urgently_1).into(importance)
             }
-            IMPORTANCE_2 -> {
+            Constants.IMPORTANCE_2 -> {
                 Glide.with(itemView.context).load(R.drawable.ic_urgently_2).into(importance)
             }
-            IMPORTANCE_3 -> {
+            Constants.IMPORTANCE_3 -> {
                 Glide.with(itemView.context).load(R.drawable.ic_urgently_3).into(importance)
             }
-            IMPORTANCE_4 -> {
+            Constants.IMPORTANCE_4 -> {
                 Glide.with(itemView.context).load(R.drawable.ic_urgently_4).into(importance)
             }
             else -> {
                 Glide.with(itemView.context).load(R.drawable.ic_urgently_4).into(importance)
             }
         }
-        Glide.with(itemView.context).load(taskList[position].performer?.avatar).into(avatar)
-        executor.text = taskList[position].performer?.name
+        Glide.with(itemView.context).load(oldTaskList[position].performer?.avatar).into(avatar)
+        executor.text = oldTaskList[position].performer?.name
     }
 
-    override fun getItemCount() = taskList.size
-
-    companion object {
-        const val IMPORTANCE_4 = 4
-        const val IMPORTANCE_3 = 3
-        const val IMPORTANCE_2 = 2
-        const val IMPORTANCE_1 = 1
-    }
+    override fun getItemCount() = oldTaskList.size
 }

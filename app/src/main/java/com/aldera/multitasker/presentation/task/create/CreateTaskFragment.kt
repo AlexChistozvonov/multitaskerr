@@ -19,6 +19,7 @@ import com.aldera.multitasker.ui.extension.onClick
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
 import com.aldera.multitasker.ui.util.ConstantDateDialogFragment
+import com.aldera.multitasker.ui.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -38,7 +39,6 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
     }
 
     private fun init() = with(binding) {
-        initSpinner()
         etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onTitleTextChanged(text.toString()) }
         etDescription.doOnTextChanged { text, _, _, _ -> viewModel.onDescriptionTextChanged(text.toString()) }
         etPeriodOfExecutionTask.doOnTextChanged { text, _, _, _ ->
@@ -46,7 +46,7 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
                 text.toString()
             )
         }
-
+        viewModel.getExecutor()
         val id = args.project.id
         btnCreateTask.onClick { id?.let { viewModel.createTask(it) } }
         btnCancel.onClick { findNavController().popBackStack() }
@@ -79,36 +79,34 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
             when (i) {
                 R.id.rb_urgently4 -> {
                     rbUrgently4.isChecked = true
-                    viewModel.onImportanceChanged(IMPORTANCE_4)
+                    viewModel.onImportanceChanged(Constants.IMPORTANCE_4)
                 }
                 R.id.rb_urgently3 -> {
                     rbUrgently3.isChecked = true
-                    viewModel.onImportanceChanged(IMPORTANCE_3)
+                    viewModel.onImportanceChanged(Constants.IMPORTANCE_3)
                 }
                 R.id.rb_urgently2 -> {
                     rbUrgently2.isChecked = true
-                    viewModel.onImportanceChanged(IMPORTANCE_2)
+                    viewModel.onImportanceChanged(Constants.IMPORTANCE_2)
                 }
                 R.id.rb_urgently1 -> {
                     rbUrgently1.isChecked = true
-                    viewModel.onImportanceChanged(IMPORTANCE_1)
+                    viewModel.onImportanceChanged(Constants.IMPORTANCE_1)
                 }
             }
         }
     }
 
-    private fun initSpinner() = with(binding) {
-        val executor = arrayOf("Александр", "Виктор", "Евгений", "Анастасия")
+    private fun initSpinner(data: String) = with(binding) {
+        val executor = arrayOf(data)
         var spinner: Spinner? = null
         spinner = spExecutor
         spinner.adapter =
-            context?.let {
-                ArrayAdapter(
-                    it,
-                    R.layout.spinner_item,
-                    executor
-                )
-            }
+            ArrayAdapter(
+                requireContext(),
+                R.layout.spinner_item,
+                executor
+            )
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 executor[p2]
@@ -137,6 +135,7 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
             is CreateTaskEvent.GetExecutor -> {
                 progressBar.hide()
                 nestedScrollView.show()
+                initSpinner(state.performerId)
             }
             is CreateTaskEvent.GetExecutorError -> {
                 progressBar.hide()
@@ -149,6 +148,7 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
             CreateTaskEvent.Success -> {
                 progressBar.hide()
                 nestedScrollView.show()
+                findNavController().popBackStack()
             }
             is CreateTaskEvent.DeadlineChanged -> {
                 progressBar.hide()
@@ -171,13 +171,17 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
                 progressBar.hide()
                 nestedScrollView.show()
             }
+            CreateTaskEvent.Init -> {
+                progressBar.hide()
+                nestedScrollView.show()
+            }
         }
     }
 
     private fun initImportance() = with(binding) {
         val current = LocalDate.now()
         val selected = etPeriodOfExecutionTask.text.toString()
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
         val selectedDate = LocalDate.from(formatter.parse(selected))
         when (selectedDate.dayOfYear - current.dayOfYear) {
             in 0..1 -> rbUrgently4.isChecked = true
@@ -185,12 +189,5 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
                 rbUrgently2.isChecked = true
             else -> rbUrgently1.isChecked = true
         }
-    }
-
-    companion object {
-        const val IMPORTANCE_4 = 4
-        const val IMPORTANCE_3 = 3
-        const val IMPORTANCE_2 = 2
-        const val IMPORTANCE_1 = 1
     }
 }

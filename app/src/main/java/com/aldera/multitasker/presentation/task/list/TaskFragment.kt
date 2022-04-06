@@ -1,6 +1,5 @@
-package com.aldera.multitasker.presentation.task.view
+package com.aldera.multitasker.presentation.task.list
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -30,11 +29,16 @@ class TaskFragment : Fragment(R.layout.task_fragment) {
     private val viewModel by viewModels<TaskViewModel>()
     private val taskAdapter by lazy {
         CustomRecyclerAdapterTask {
-            findNavController().navigateSafe(
-                TaskFragmentDirections.openCreateTaskFragment(
-                    args.project
+            args.taskCreate?.let { it1 ->
+                TaskFragmentDirections.openViewTaskFragment(
+                    it,
+                    it1, args.category,
                 )
-            )
+            }?.let { it2 ->
+                findNavController().navigateSafe(
+                    it2
+                )
+            }
         }
     }
 
@@ -62,6 +66,11 @@ class TaskFragment : Fragment(R.layout.task_fragment) {
             }
             ibAction.setImageResource(R.drawable.ic_edit)
             ibAction.show()
+            ibAction.onClick {
+                findNavController().navigateSafe(
+                    TaskFragmentDirections.openEditProjectFragment(args.project, args.category)
+                )
+            }
         }
     }
 
@@ -106,11 +115,9 @@ class TaskFragment : Fragment(R.layout.task_fragment) {
         recyclerView.adapter = taskAdapter
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun updateList(state: TaskViewState) {
         state.task?.let {
-            taskAdapter.setTask(it, args.category.color, args.category.title)
-            taskAdapter.notifyDataSetChanged()
+            taskAdapter.setData(it, args.category.color, args.category.title)
         }
     }
 }

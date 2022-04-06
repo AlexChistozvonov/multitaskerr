@@ -1,12 +1,12 @@
 package com.aldera.multitasker.presentation.task.create
 
-import com.aldera.multitasker.data.models.ExecutorResponse
+import com.aldera.multitasker.data.models.UserTaskResponse
 
 sealed class CreateTaskEvent {
     object Loading : CreateTaskEvent()
     object Success : CreateTaskEvent()
     data class Error(val error: Exception?) : CreateTaskEvent()
-    data class GetExecutor(val executor: ExecutorResponse?) : CreateTaskEvent()
+    data class GetExecutor(val userTask: List<UserTaskResponse>?) : CreateTaskEvent()
     data class GetExecutorError(val error: Exception?) : CreateTaskEvent()
     data class TitleChanged(val title: String) : CreateTaskEvent()
     data class DescriptionChanged(val description: String) : CreateTaskEvent()
@@ -22,7 +22,7 @@ data class CreateTaskViewState(
     val deadlineText: String = "",
     val importance: Int = 0,
     val performerId: String = "",
-    val executor: ExecutorResponse? = null,
+    val userTask: List<UserTaskResponse>? = null,
     val error: Exception? = null,
     val loading: Boolean = false,
     val event: CreateTaskEvent = CreateTaskEvent.Init
@@ -30,7 +30,7 @@ data class CreateTaskViewState(
     fun applyEvent(event: CreateTaskEvent) = when (event) {
         is CreateTaskEvent.Error -> copy(error = event.error, loading = false, event = event)
         is CreateTaskEvent.GetExecutor -> copy(
-            executor = event.executor,
+            userTask = event.userTask,
             loading = false,
             event = event
         )

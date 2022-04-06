@@ -7,7 +7,6 @@ import com.aldera.multitasker.data.models.CreateProjectRequest
 import com.aldera.multitasker.data.models.CreateTaskRequest
 import com.aldera.multitasker.data.models.CreateTaskResponse
 import com.aldera.multitasker.data.models.EditPasswordRequest
-import com.aldera.multitasker.data.models.ExecutorResponse
 import com.aldera.multitasker.data.models.ExitProfileResponse
 import com.aldera.multitasker.data.models.LoginRequest
 import com.aldera.multitasker.data.models.LoginResponse
@@ -23,6 +22,7 @@ import com.aldera.multitasker.data.models.RegistrationRequest
 import com.aldera.multitasker.data.models.RegistrationResponse
 import com.aldera.multitasker.data.models.TaskResponse
 import com.aldera.multitasker.data.models.UserResponse
+import com.aldera.multitasker.data.models.UserTaskResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
@@ -100,8 +100,14 @@ interface Api {
     suspend fun getTask(@Path("id") id: String): List<TaskResponse>
 
     @GET("api/user/me/tasks")
-    suspend fun getExecutor(): ExecutorResponse
+    suspend fun getExecutor(): List<UserTaskResponse>
 
     @POST("api/task")
     suspend fun createTask(@Body createTaskRequest: CreateTaskRequest): CreateTaskResponse
+
+    @GET("api/task/{id}")
+    suspend fun getViewTask(@Path("id") id: String): CreateTaskResponse
+
+    @GET("api/task/{id}/sub-tasks")
+    suspend fun getSubTasks(@Path("id") id: String): List<TaskResponse>
 }

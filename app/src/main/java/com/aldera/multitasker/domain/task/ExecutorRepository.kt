@@ -1,8 +1,8 @@
 package com.aldera.multitasker.domain.task
 
 import com.aldera.multitasker.core.LoadingResult
-import com.aldera.multitasker.data.models.ExecutorResponse
+import com.aldera.multitasker.data.models.UserTaskResponse
 
 interface ExecutorRepository {
-    suspend fun getExecutor(): LoadingResult<ExecutorResponse>
+    suspend fun getExecutor(): LoadingResult<List<UserTaskResponse>>
 }

@@ -6,4 +6,5 @@ data class CreateTaskRequest(
     val deadline: String?,
     val importance: Int?,
     val projectId: String?,
+    val performerId: String
 )
