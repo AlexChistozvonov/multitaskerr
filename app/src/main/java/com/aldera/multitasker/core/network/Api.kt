@@ -114,4 +114,7 @@ interface Api {
 
     @PUT("api/task/{id}")
     suspend fun editTask(@Path("id") id: String, editTaskRequest: EditTaskRequest): Response<Unit>
+
+    @DELETE("api/task/{id}")
+    suspend fun deleteTask(@Path("id") id: String): Response<Unit>
 }

@@ -39,6 +39,11 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
     private fun init() = with(binding) {
         val id = args.task?.id
         btnSave.onClick { id?.let { viewModel.editTask(it) } }
+        btnDelete.onClick {
+            id?.let {
+                viewModel.deleteProject(it)
+            }
+        }
         etEditName.setText(args.taskCreate.title)
         etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onTitleTextChanged(text.toString()) }
         etDescription.setText(args.taskCreate.description)
@@ -74,7 +79,10 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
                 ConstantDateDialogFragment.DATE_PICKER_FRAGMENT
             )
         }
+        initRgGroup()
+    }
 
+    private fun initRgGroup() = with(binding) {
         rgGroup.setOnCheckedChangeListener { _, i ->
             when (i) {
                 R.id.rb_urgently4 -> {
