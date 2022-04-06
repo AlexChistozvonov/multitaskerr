@@ -9,6 +9,11 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
+    <style name="TaskCheckUrgently">
+        <item name="android:background">@drawable/urgently_check</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
     <style name="RecyclerCategoryColorCheck">
         <item name="android:background">@drawable/item_color_category_check</item>
 

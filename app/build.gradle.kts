@@ -119,6 +119,7 @@ dependencies {
     implementation(Libs.LIFECYCLE_VIEW_MODEL_KTX)
     implementation(Libs.PREFERENCES)
     implementation(Libs.PAGING)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Libs.LIFECYCLE_COMPILER)
 
     // Navigation

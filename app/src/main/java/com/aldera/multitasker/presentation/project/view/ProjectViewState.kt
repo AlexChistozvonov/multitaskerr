@@ -1,6 +1,5 @@
-package com.aldera.multitasker.presentation.project
+package com.aldera.multitasker.presentation.project.view
 
-import com.aldera.multitasker.data.models.CategoryResponse
 import com.aldera.multitasker.data.models.ProjectResponse
 
 sealed class ProjectEvent {
@@ -12,8 +11,6 @@ sealed class ProjectEvent {
 data class ProjectViewState(
     val error: Exception? = null,
     val loading: Boolean = false,
-    val titleCategory: String? = null,
-    val category: List<CategoryResponse>? = null,
     val project: List<ProjectResponse>? = null,
     val event: ProjectEvent = ProjectEvent.Loading
 ) {

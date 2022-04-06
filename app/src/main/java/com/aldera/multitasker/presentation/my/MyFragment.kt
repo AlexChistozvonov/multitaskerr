@@ -1,6 +1,5 @@
 package com.aldera.multitasker.presentation.my
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -79,11 +78,9 @@ class MyFragment : Fragment(R.layout.my_fragment) {
         recyclerView.adapter = listAdapter
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun updateList(state: MyViewState) {
         state.category?.let {
             listAdapter.setCategory(it)
-            listAdapter.notifyDataSetChanged()
         }
     }
 }

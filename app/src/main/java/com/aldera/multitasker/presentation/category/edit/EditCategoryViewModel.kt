@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class EditCategoryViewModel @Inject constructor(
     private val editCategoryRepository: CreateCategoryRepository,
-    private val deleteCategoryRepository: DeleteCategoryRepository
+    private val deleteCategoryRepository: DeleteCategoryRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(EditCategoryViewState())

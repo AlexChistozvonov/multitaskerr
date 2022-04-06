@@ -14,6 +14,10 @@ import com.aldera.multitasker.data.recovery.code.RecoveryPasswordCodeRepositoryI
 import com.aldera.multitasker.data.recovery.create.RecoveryPasswordCreateRepositoryImpl
 import com.aldera.multitasker.data.recovery.email.RecoveryPasswordEmailRepositoryImpl
 import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
+import com.aldera.multitasker.data.task.ExecutorRepositoryImpl
+import com.aldera.multitasker.data.task.create.CreateTaskRepositoryImpl
+import com.aldera.multitasker.data.task.list.TaskListRepositoryImpl
+import com.aldera.multitasker.data.task.view.ViewTaskRepositoryImpl
 import com.aldera.multitasker.data.user.UserRepositoryImpl
 import com.aldera.multitasker.domain.category.create.CreateCategoryRepository
 import com.aldera.multitasker.domain.category.delete.DeleteCategoryRepository
@@ -29,6 +33,10 @@ import com.aldera.multitasker.domain.recovery.RecoveryPasswordCodeRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCreateRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordEmailRepository
 import com.aldera.multitasker.domain.registration.RegistrationRepository
+import com.aldera.multitasker.domain.task.ExecutorRepository
+import com.aldera.multitasker.domain.task.create.CreateTaskRepository
+import com.aldera.multitasker.domain.task.list.TaskListRepository
+import com.aldera.multitasker.domain.task.view.ViewTaskRepository
 import com.aldera.multitasker.domain.user.UserRepository
 import dagger.Binds
 import dagger.Module
@@ -129,4 +137,28 @@ abstract class RepositoryModule {
     abstract fun deleteProject(
         deleteProjectRepository: DeleteProjectRepositoryImpl
     ): DeleteProjectRepository
+
+    @Singleton
+    @Binds
+    abstract fun getExecutor(
+        getExecutorRepository: ExecutorRepositoryImpl
+    ): ExecutorRepository
+
+    @Singleton
+    @Binds
+    abstract fun createTask(
+        createTaskRepository: CreateTaskRepositoryImpl
+    ): CreateTaskRepository
+
+    @Singleton
+    @Binds
+    abstract fun getTask(
+        getTaskListRepository: TaskListRepositoryImpl
+    ): TaskListRepository
+
+    @Singleton
+    @Binds
+    abstract fun getViewTask(
+        getViewTask: ViewTaskRepositoryImpl
+    ): ViewTaskRepository
 }
