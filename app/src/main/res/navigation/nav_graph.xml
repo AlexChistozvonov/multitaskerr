@@ -381,6 +381,38 @@
         <argument
             android:name="category"
             app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        <action
+            android:id="@+id/openEditTaskFragment"
+            app:destination="@id/editTaskFragment">
+            <argument
+                android:name="task"
+                android:defaultValue="@null"
+                app:argType="com.aldera.multitasker.data.models.TaskResponse"
+                app:nullable="true" />
+            <argument
+                android:name="taskCreate"
+                app:argType="com.aldera.multitasker.data.models.CreateTaskResponse" />
+            <argument
+                android:name="category"
+                app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        </action>
     </fragment>
 
+    <fragment
+        android:id="@+id/editTaskFragment"
+        android:name="com.aldera.multitasker.presentation.task.edit.EditTaskFragment"
+        android:label="EditTaskFragment"
+        tools:layout="@layout/edit_task_fragment">
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="com.aldera.multitasker.data.models.TaskResponse"
+            app:nullable="true" />
+        <argument
+            android:name="taskCreate"
+            app:argType="com.aldera.multitasker.data.models.CreateTaskResponse" />
+        <argument
+            android:name="category"
+            app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+    </fragment>
 </navigation>

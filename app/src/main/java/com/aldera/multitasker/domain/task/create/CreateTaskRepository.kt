@@ -12,4 +12,12 @@ interface CreateTaskRepository {
         projectId: String,
         performerId: String
     ): LoadingResult<CreateTaskResponse>
+
+    suspend fun editTask(
+        id: String,
+        title: String,
+        description: String,
+        deadline: String,
+        importance: Int
+    ): LoadingResult<Unit>
 }

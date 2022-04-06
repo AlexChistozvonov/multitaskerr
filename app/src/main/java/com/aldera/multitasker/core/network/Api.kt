@@ -7,6 +7,7 @@ import com.aldera.multitasker.data.models.CreateProjectRequest
 import com.aldera.multitasker.data.models.CreateTaskRequest
 import com.aldera.multitasker.data.models.CreateTaskResponse
 import com.aldera.multitasker.data.models.EditPasswordRequest
+import com.aldera.multitasker.data.models.EditTaskRequest
 import com.aldera.multitasker.data.models.ExitProfileResponse
 import com.aldera.multitasker.data.models.LoginRequest
 import com.aldera.multitasker.data.models.LoginResponse
@@ -110,4 +111,7 @@ interface Api {
 
     @GET("api/task/{id}/sub-tasks")
     suspend fun getSubTasks(@Path("id") id: String): List<TaskResponse>
+
+    @PUT("api/task/{id}")
+    suspend fun editTask(@Path("id") id: String, editTaskRequest: EditTaskRequest): Response<Unit>
 }

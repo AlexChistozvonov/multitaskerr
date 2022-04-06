@@ -263,7 +263,7 @@
                 android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_create_task"
+                android:id="@+id/btn_edit_task"
                 style="@style/ColoredButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
