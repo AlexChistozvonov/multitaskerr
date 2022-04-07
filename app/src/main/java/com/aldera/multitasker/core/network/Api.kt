@@ -4,6 +4,8 @@ import com.aldera.multitasker.data.models.CategoryResponse
 import com.aldera.multitasker.data.models.CreateCategoryRequest
 import com.aldera.multitasker.data.models.CreateCategoryResponse
 import com.aldera.multitasker.data.models.CreateProjectRequest
+import com.aldera.multitasker.data.models.CreateSubtaskRequest
+import com.aldera.multitasker.data.models.CreateSubtaskResponse
 import com.aldera.multitasker.data.models.CreateTaskRequest
 import com.aldera.multitasker.data.models.CreateTaskResponse
 import com.aldera.multitasker.data.models.EditPasswordRequest
@@ -117,4 +119,7 @@ interface Api {
 
     @DELETE("api/task/{id}")
     suspend fun deleteTask(@Path("id") id: String): Response<Unit>
+
+    @POST("api/sub-task")
+    suspend fun createSubtask(@Body createSubtaskRequest: CreateSubtaskRequest): CreateSubtaskResponse
 }
