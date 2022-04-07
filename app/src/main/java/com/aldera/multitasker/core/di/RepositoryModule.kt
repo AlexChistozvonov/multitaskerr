@@ -14,6 +14,7 @@ import com.aldera.multitasker.data.recovery.code.RecoveryPasswordCodeRepositoryI
 import com.aldera.multitasker.data.recovery.create.RecoveryPasswordCreateRepositoryImpl
 import com.aldera.multitasker.data.recovery.email.RecoveryPasswordEmailRepositoryImpl
 import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
+import com.aldera.multitasker.data.subtask.create.CreateSubtaskRepositoryImpl
 import com.aldera.multitasker.data.task.ExecutorRepositoryImpl
 import com.aldera.multitasker.data.task.create.CreateTaskRepositoryImpl
 import com.aldera.multitasker.data.task.delete.DeleteTaskRepositoryImpl
@@ -34,6 +35,7 @@ import com.aldera.multitasker.domain.recovery.RecoveryPasswordCodeRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordCreateRepository
 import com.aldera.multitasker.domain.recovery.RecoveryPasswordEmailRepository
 import com.aldera.multitasker.domain.registration.RegistrationRepository
+import com.aldera.multitasker.domain.subtask.create.CreateSubtaskRepository
 import com.aldera.multitasker.domain.task.ExecutorRepository
 import com.aldera.multitasker.domain.task.create.CreateTaskRepository
 import com.aldera.multitasker.domain.task.delete.DeleteTaskRepository
@@ -169,4 +171,10 @@ abstract class RepositoryModule {
     abstract fun deleteTask(
         deleteTask: DeleteTaskRepositoryImpl
     ): DeleteTaskRepository
+
+    @Singleton
+    @Binds
+    abstract fun createSubtask(
+        createSubtaskRepository: CreateSubtaskRepositoryImpl
+    ): CreateSubtaskRepository
 }

@@ -1,7 +1,10 @@
-package com.aldera.multitasker.presentation.task.edit
+package com.aldera.multitasker.presentation.subtask.create
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -10,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
-import com.aldera.multitasker.databinding.EditTaskFragmentBinding
+import com.aldera.multitasker.databinding.CreateSubtaskFragmentBinding
 import com.aldera.multitasker.presentation.DatePickerDialogFragment
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.onClick
@@ -25,10 +28,10 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 
 @AndroidEntryPoint
-class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
-    private val binding by viewBinding(EditTaskFragmentBinding::bind)
-    private val viewModel by viewModels<EditTaskViewModel>()
-    private val args: EditTaskFragmentArgs by navArgs()
+class CreateSubtaskFragment : Fragment(R.layout.create_subtask_fragment) {
+    private val binding by viewBinding(CreateSubtaskFragmentBinding::bind)
+    private val viewModel by viewModels<CreateSubtaskViewModel>()
+    private val args: CreateSubtaskFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,32 +40,25 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
     }
 
     private fun init() = with(binding) {
-        val id = args.task?.id
-        btnSave.onClick { id?.let { viewModel.editTask(it) } }
-        btnDelete.onClick {
-            id?.let {
-                viewModel.deleteProject(it)
-            }
-        }
-        etEditName.setText(args.taskCreate.title)
         etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onTitleTextChanged(text.toString()) }
-        etDescription.setText(args.taskCreate.description)
         etDescription.doOnTextChanged { text, _, _, _ -> viewModel.onDescriptionTextChanged(text.toString()) }
-        etPeriodOfExecutionTask.setText(args.taskCreate.deadline)
-        etPeriodOfExecutionTask.doOnTextChanged { text, _, _, _ ->
+        etPeriodOfExecutionSubtask.doOnTextChanged { text, _, _, _ ->
             viewModel.onDeadlineTextChanged(
                 text.toString()
             )
         }
+        viewModel.getExecutor()
+        val id = args.taskCreate.id
+        btnCreateSubtask.onClick { id?.let { viewModel.createSubtask(it) } }
+        btnCancel.onClick { findNavController().popBackStack() }
         toolbar.apply {
-            tvTitle.text = getString(R.string._edit)
+            tvTitle.text = getString(R.string.create_subtask_)
             ibNavigationIcon.setImageResource(R.drawable.ic_chevron_left)
             ibNavigationIcon.onClick {
                 findNavController().popBackStack()
             }
         }
-        etPeriodOfExecutionTask.setText(args.taskCreate.deadline)
-        etPeriodOfExecutionTask.onClick {
+        etPeriodOfExecutionSubtask.onClick {
             val datePickerFragment = DatePickerDialogFragment()
             val supportFragmentManager = requireActivity().supportFragmentManager
             supportFragmentManager.setFragmentResultListener(
@@ -71,7 +67,7 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
             ) { resultKey, bundle ->
                 if (resultKey == ConstantDateDialogFragment.REQUEST_KEY) {
                     val date = bundle.getString(ConstantDateDialogFragment.SELECTED_DATE)
-                    etPeriodOfExecutionTask.setText(date)
+                    etPeriodOfExecutionSubtask.setText(date)
                 }
             }
             datePickerFragment.show(
@@ -79,10 +75,6 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
                 ConstantDateDialogFragment.DATE_PICKER_FRAGMENT
             )
         }
-        initRgGroup()
-    }
-
-    private fun initRgGroup() = with(binding) {
         rgGroup.setOnCheckedChangeListener { _, i ->
             when (i) {
                 R.id.rb_urgently4 -> {
@@ -105,24 +97,34 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
         }
     }
 
+    private fun initSpinner(data: String) = with(binding) {
+        val executor = arrayOf(data)
+        var spinner: Spinner? = null
+        spinner = spExecutor
+        spinner.adapter =
+            ArrayAdapter(
+                requireContext(),
+                R.layout.spinner_item,
+                executor
+            )
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                executor[p2]
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+        }
+    }
+
     private fun initObservers() {
         viewModel.uiState.onEach { handleState(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun handleState(state: EditTaskViewState) = with(binding) {
-        btnSave.isEnabled =
-            !etEditName.text.isNullOrEmpty() && !etPeriodOfExecutionTask.text.isNullOrEmpty()
+    private fun handleState(state: CreateSubtaskViewState) = with(binding) {
+        btnCreateSubtask.isEnabled =
+            !etEditName.text.isNullOrEmpty() && !etPeriodOfExecutionSubtask.text.isNullOrEmpty()
         when (state.event) {
-            is EditTaskEvent.DeadlineChanged -> {
-                progressBar.hide()
-                nestedScrollView.show()
-                initImportance()
-            }
-            is EditTaskEvent.DescriptionChanged -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            is EditTaskEvent.Error -> {
+            is CreateSubtaskEvent.Error -> {
                 progressBar.hide()
                 nestedScrollView.show()
                 showGeneralErrorDialog(
@@ -130,24 +132,46 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
                     exception = state.error
                 )
             }
-            is EditTaskEvent.Importance -> {
+            is CreateSubtaskEvent.GetExecutor -> {
+                progressBar.hide()
+                nestedScrollView.show()
+                initSpinner(state.performerId)
+            }
+            is CreateSubtaskEvent.GetExecutorError -> {
                 progressBar.hide()
                 nestedScrollView.show()
             }
-            EditTaskEvent.Init -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            EditTaskEvent.Loading -> {
+            CreateSubtaskEvent.Loading -> {
                 progressBar.show()
                 nestedScrollView.hide()
             }
-            EditTaskEvent.Success -> {
+            CreateSubtaskEvent.Success -> {
                 progressBar.hide()
                 nestedScrollView.show()
                 findNavController().popBackStack()
             }
-            is EditTaskEvent.TitleChanged -> {
+            is CreateSubtaskEvent.DeadlineChanged -> {
+                progressBar.hide()
+                nestedScrollView.show()
+                initImportance()
+            }
+            is CreateSubtaskEvent.DescriptionChanged -> {
+                progressBar.hide()
+                nestedScrollView.show()
+            }
+            is CreateSubtaskEvent.Importance -> {
+                progressBar.hide()
+                nestedScrollView.show()
+            }
+            is CreateSubtaskEvent.TitleChanged -> {
+                progressBar.hide()
+                nestedScrollView.show()
+            }
+            is CreateSubtaskEvent.PerformerId -> {
+                progressBar.hide()
+                nestedScrollView.show()
+            }
+            CreateSubtaskEvent.Init -> {
                 progressBar.hide()
                 nestedScrollView.show()
             }
@@ -156,7 +180,7 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
 
     private fun initImportance() = with(binding) {
         val current = LocalDate.now()
-        val selected = etPeriodOfExecutionTask.text.toString()
+        val selected = etPeriodOfExecutionSubtask.text.toString()
         val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
         val selectedDate = LocalDate.from(formatter.parse(selected))
         when (selectedDate.dayOfYear - current.dayOfYear) {

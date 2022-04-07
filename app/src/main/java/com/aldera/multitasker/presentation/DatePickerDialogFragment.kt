@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.task.create
+package com.aldera.multitasker.presentation
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -31,7 +31,8 @@ class DatePickerDialogFragment : DialogFragment(), DatePickerDialog.OnDateSetLis
         currentData.set(Calendar.MONTH, month)
         currentData.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-        val selectedDate = SimpleDateFormat(Constants.DATE_FORMAT, Locale.ENGLISH).format(currentData.time)
+        val selectedDate =
+            SimpleDateFormat(Constants.DATE_FORMAT, Locale.ENGLISH).format(currentData.time)
         val selectedDateBundle = Bundle()
         selectedDateBundle.putString(ConstantDateDialogFragment.SELECTED_DATE, selectedDate)
 

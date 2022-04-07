@@ -78,12 +78,47 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
             }
             ibAction.setImageResource(R.drawable.ic_plus)
             ibAction.show()
+            ibAction.onClick {
+                findNavController().navigateSafe(
+                    ViewTaskFragmentDirections.openCreateSubtaskFragment(
+                        args.taskCreate
+                    )
+                )
+            }
         }
         tvNameTask.text = args.taskCreate.title
         tvTitleTask.text = args.category.title
         llNameCategory.backgroundTintList =
             ColorStateList.valueOf(Color.parseColor(args.category.color))
 
+        val itemCount: Int = subTaskAdapter.itemCount
+        tvSubtaskNumber.text = itemCount.toString()
+        if (etDescription.text.isNullOrEmpty()) {
+            etDescription.hide()
+            tvDescriptionTask.hide()
+        } else {
+            etDescription.text = args.taskCreate.description
+        }
+        etPeriodOfExecutionTask.text = args.taskCreate.deadline
+        Glide.with(requireContext()).load(args.taskCreate.performer?.avatar).into(ivAvatarExecutor)
+        tvNameExecutor.text = args.taskCreate.performer?.name
+        initRgGroup()
+    }
+
+    private fun handleSuccess(state: ViewTaskViewState) = with(binding) {
+        state.task?.let { task ->
+            tvNameAuthor.text = task.author?.name
+            Glide.with(requireContext()).load(task.author?.avatar).into(ivAvatarAuthor)
+            tvCreated.text = getString(R.string.created, task.createdAt)
+            if (task.updatedAt != null) {
+                tvUpdated.text = getString(R.string.updated, task.updatedAt)
+            } else {
+                tvUpdated.hide()
+            }
+        }
+    }
+
+    private fun initRgGroup() = with(binding) {
         when (args.task.importance) {
             Constants.IMPORTANCE_1 -> {
                 Glide.with(requireContext()).load(R.drawable.ic_urgently_1).into(ivImportance)
@@ -99,31 +134,6 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
             }
             else -> {
                 Glide.with(requireContext()).load(R.drawable.ic_urgently_4).into(ivImportance)
-            }
-        }
-
-        val itemCount: Int = subTaskAdapter.itemCount
-        tvSubtaskNumber.text = itemCount.toString()
-        if (etDescription.text.isNullOrEmpty()) {
-            etDescription.hide()
-            tvDescriptionTask.hide()
-        } else {
-            etDescription.text = args.taskCreate.description
-        }
-        etPeriodOfExecutionTask.text = args.taskCreate.deadline
-        Glide.with(requireContext()).load(args.taskCreate.performer?.avatar).into(ivAvatarExecutor)
-        tvNameExecutor.text = args.taskCreate.performer?.name
-    }
-
-    private fun handleSuccess(state: ViewTaskViewState) = with(binding) {
-        state.task?.let { task ->
-            tvNameAuthor.text = task.author?.name
-            Glide.with(requireContext()).load(task.author?.avatar).into(ivAvatarAuthor)
-            tvCreated.text = getString(R.string.created, task.createdAt)
-            if (task.updatedAt != null) {
-                tvUpdated.text = getString(R.string.updated, task.updatedAt)
-            } else {
-                tvUpdated.hide()
             }
         }
     }

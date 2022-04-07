@@ -396,6 +396,13 @@
                 android:name="category"
                 app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
         </action>
+        <action
+            android:id="@+id/openCreateSubtaskFragment"
+            app:destination="@id/createSubtaskFragment">
+            <argument
+                android:name="taskCreate"
+                app:argType="com.aldera.multitasker.data.models.CreateTaskResponse" />
+        </action>
     </fragment>
 
     <fragment
@@ -414,5 +421,15 @@
         <argument
             android:name="category"
             app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createSubtaskFragment"
+        android:name="com.aldera.multitasker.presentation.subtask.create.CreateSubtaskFragment"
+        android:label="CreateSubtaskFragment"
+        tools:layout="@layout/create_subtask_fragment">
+        <argument
+            android:name="taskCreate"
+            app:argType="com.aldera.multitasker.data.models.CreateTaskResponse" />
     </fragment>
 </navigation>
