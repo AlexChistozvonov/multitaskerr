@@ -16,6 +16,7 @@ import com.aldera.multitasker.data.recovery.email.RecoveryPasswordEmailRepositor
 import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
 import com.aldera.multitasker.data.task.ExecutorRepositoryImpl
 import com.aldera.multitasker.data.task.create.CreateTaskRepositoryImpl
+import com.aldera.multitasker.data.task.delete.DeleteTaskRepositoryImpl
 import com.aldera.multitasker.data.task.list.TaskListRepositoryImpl
 import com.aldera.multitasker.data.task.view.ViewTaskRepositoryImpl
 import com.aldera.multitasker.data.user.UserRepositoryImpl
@@ -35,6 +36,7 @@ import com.aldera.multitasker.domain.recovery.RecoveryPasswordEmailRepository
 import com.aldera.multitasker.domain.registration.RegistrationRepository
 import com.aldera.multitasker.domain.task.ExecutorRepository
 import com.aldera.multitasker.domain.task.create.CreateTaskRepository
+import com.aldera.multitasker.domain.task.delete.DeleteTaskRepository
 import com.aldera.multitasker.domain.task.list.TaskListRepository
 import com.aldera.multitasker.domain.task.view.ViewTaskRepository
 import com.aldera.multitasker.domain.user.UserRepository
@@ -161,4 +163,10 @@ abstract class RepositoryModule {
     abstract fun getViewTask(
         getViewTask: ViewTaskRepositoryImpl
     ): ViewTaskRepository
+
+    @Singleton
+    @Binds
+    abstract fun deleteTask(
+        deleteTask: DeleteTaskRepositoryImpl
+    ): DeleteTaskRepository
 }
