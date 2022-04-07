@@ -15,7 +15,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.ViewTaskFragmentBinding
 import com.aldera.multitasker.presentation.task.CustomRecyclerAdapterTask
-import com.aldera.multitasker.presentation.task.list.TaskFragmentDirections
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
@@ -35,10 +34,11 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
 
     private val subTaskAdapter by lazy {
         CustomRecyclerAdapterTask {
-            args.taskCreate.let { createTaskResponse ->
-                TaskFragmentDirections.openViewTaskFragment(
+            args.taskCreate.let { _ ->
+                ViewTaskFragmentDirections.openEditTaskFragment(
                     it,
-                    createTaskResponse, args.category,
+                    args.taskCreate,
+                    args.category,
                 )
             }.let { navDirections ->
                 findNavController().navigateSafe(
@@ -119,7 +119,7 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
     }
 
     private fun initRgGroup() = with(binding) {
-        when (args.task.importance) {
+        when (args.taskCreate.importance) {
             Constants.IMPORTANCE_1 -> {
                 Glide.with(requireContext()).load(R.drawable.ic_urgently_1).into(ivImportance)
             }
@@ -146,7 +146,7 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
 
         when (state.event) {
 
-            is ViewTaskViewEvent.Error -> {
+            is ViewTaskEvent.Error -> {
                 nestedScrollView.show()
                 progressBar.hide()
                 showGeneralErrorDialog(
@@ -154,20 +154,20 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
                     exception = state.error
                 )
             }
-            ViewTaskViewEvent.Init -> {
+            ViewTaskEvent.Init -> {
                 nestedScrollView.hide()
                 progressBar.show()
             }
-            ViewTaskViewEvent.Loading -> {
+            ViewTaskEvent.Loading -> {
                 nestedScrollView.hide()
                 progressBar.show()
             }
-            is ViewTaskViewEvent.Success -> {
+            is ViewTaskEvent.Success -> {
                 handleSuccess(state)
                 nestedScrollView.hide()
                 progressBar.show()
             }
-            is ViewTaskViewEvent.UpdateSubTask -> {
+            is ViewTaskEvent.UpdateSubTaskTask -> {
                 nestedScrollView.hide()
                 progressBar.show()
                 updateList(state)

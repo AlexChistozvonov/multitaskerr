@@ -29,10 +29,10 @@ class TaskFragment : Fragment(R.layout.task_fragment) {
     private val viewModel by viewModels<TaskViewModel>()
     private val taskAdapter by lazy {
         CustomRecyclerAdapterTask {
-            args.taskCreate?.let { CreateTaskResponse ->
+            args.taskCreate?.let { createTaskResponse ->
                 TaskFragmentDirections.openViewTaskFragment(
                     it,
-                    CreateTaskResponse, args.category,
+                    createTaskResponse, args.category,
                 )
             }?.let { NavDirections ->
                 findNavController().navigateSafe(

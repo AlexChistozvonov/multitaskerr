@@ -41,7 +41,7 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
         btnSave.onClick { id?.let { viewModel.editTask(it) } }
         btnDelete.onClick {
             id?.let {
-                viewModel.deleteProject(it)
+                viewModel.deleteTask(it)
             }
         }
         etEditName.setText(args.taskCreate.title)

@@ -403,6 +403,21 @@
                 android:name="taskCreate"
                 app:argType="com.aldera.multitasker.data.models.CreateTaskResponse" />
         </action>
+        <action
+            android:id="@+id/openViewSubtaskFragment"
+            app:destination="@id/viewSubtaskFragment">
+            <argument
+                android:name="task"
+                android:defaultValue="@null"
+                app:argType="com.aldera.multitasker.data.models.TaskResponse"
+                app:nullable="true" />
+            <argument
+                android:name="createSubtask"
+                app:argType="com.aldera.multitasker.data.models.CreateSubtaskResponse" />
+            <argument
+                android:name="category"
+                app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
+        </action>
     </fragment>
 
     <fragment
@@ -431,5 +446,23 @@
         <argument
             android:name="taskCreate"
             app:argType="com.aldera.multitasker.data.models.CreateTaskResponse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/viewSubtaskFragment"
+        android:name="com.aldera.multitasker.presentation.subtask.view.ViewSubtaskFragment"
+        android:label="ViewSubtaskFragment"
+        tools:layout="@layout/view_subtask_fragment">
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="com.aldera.multitasker.data.models.TaskResponse"
+            app:nullable="true" />
+        <argument
+            android:name="createSubtask"
+            app:argType="com.aldera.multitasker.data.models.CreateSubtaskResponse" />
+        <argument
+            android:name="category"
+            app:argType="com.aldera.multitasker.data.models.CategoryResponse" />
     </fragment>
 </navigation>
