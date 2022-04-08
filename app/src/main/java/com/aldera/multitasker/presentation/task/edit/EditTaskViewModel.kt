@@ -68,7 +68,7 @@ class EditTaskViewModel @Inject constructor(
         }
     }
 
-    fun deleteProject(id: String) {
+    fun deleteTask(id: String) {
         emitEvent(EditTaskEvent.Loading)
         viewModelScope.launch {
             when (val result = deleteTaskRepository.deleteTask(id)) {

@@ -78,11 +78,13 @@
     <string name="create_subtask_">Создание подзадачи</string>
     <string name="create_project">Создать проект</string>
     <string name="task">Задача</string>
+    <string name="subtask">Подзадача</string>
     <string name="name_category">НАЗВАНИЕ КАТЕГОРИИ</string>
     <string name="name_project">НАЗВАНИЕ ПРОЕКТА</string>
     <string name="name_task">НАЗВАНИЕ ЗАДАЧИ</string>
     <string name="name_subtask_">НАЗВАНИЕ ПОДЗАДАЧИ</string>
     <string name="description_task">ОПИСАНИЕ ЗАДАЧИ</string>
+    <string name="description">ОПИСАНИЕ</string>
     <string name="description_subtask">ОПИСАНИЕ ПОДЗАДАЧИ</string>
     <string name="name_subtask">ПОДЗАДАЧИ</string>
     <string name="period_of_execution_task">СРОК ИСПОЛНЕНИЯ</string>
@@ -90,6 +92,7 @@
     <string name="importance_subtask">ВАЖНОСТЬ ПОДЗАДАЧИ</string>
     <string name="executor_task">ИСПОЛНИТЕЛЬ</string>
     <string name="select_color_category">ВЫБЕРИТЕ ЦВЕТ КАТЕГОРИИ</string>
+    <string name="parent_task">РОДИТЕЛЬСКАЯ ЗАДАЧА</string>
     <string name="name_category_hint">Введите название категории</string>
     <string name="name_project_hint">Введите название проекта</string>
     <string name="name_task_hint">Введите название задачи</string>

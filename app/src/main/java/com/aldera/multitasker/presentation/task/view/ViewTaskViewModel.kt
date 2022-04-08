@@ -18,26 +18,26 @@ class ViewTaskViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ViewTaskViewState())
     val uiState = _uiState.asStateFlow()
 
-    private fun emitEvent(event: ViewTaskViewEvent) {
+    private fun emitEvent(event: ViewTaskEvent) {
         _uiState.value = _uiState.value.applyEvent(event)
     }
 
     fun getViewTask(id: String) {
-        emitEvent(ViewTaskViewEvent.Loading)
+        emitEvent(ViewTaskEvent.Loading)
         viewModelScope.launch {
             when (val result = viewTaskRepository.getViewTask(id = id)) {
-                is LoadingResult.Error -> emitEvent(ViewTaskViewEvent.Error(result.exception))
-                is LoadingResult.Success -> emitEvent(ViewTaskViewEvent.Success(result.data))
+                is LoadingResult.Error -> emitEvent(ViewTaskEvent.Error(result.exception))
+                is LoadingResult.Success -> emitEvent(ViewTaskEvent.Success(result.data))
             }
         }
     }
 
     fun getSubTask(id: String) {
-        emitEvent(ViewTaskViewEvent.Loading)
+        emitEvent(ViewTaskEvent.Loading)
         viewModelScope.launch {
             when (val result = viewTaskRepository.getSubTask(id = id)) {
-                is LoadingResult.Error -> emitEvent(ViewTaskViewEvent.Error(result.exception))
-                is LoadingResult.Success -> emitEvent(ViewTaskViewEvent.UpdateSubTask(result.data))
+                is LoadingResult.Error -> emitEvent(ViewTaskEvent.Error(result.exception))
+                is LoadingResult.Success -> emitEvent(ViewTaskEvent.UpdateSubTaskTask(result.data))
             }
         }
     }
