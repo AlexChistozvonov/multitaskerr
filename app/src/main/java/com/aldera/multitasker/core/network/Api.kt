@@ -125,4 +125,10 @@ interface Api {
 
     @GET("api/sub-task/{id}")
     suspend fun getViewSubtask(@Path("id") id: String): CreateSubtaskResponse
+
+    @PUT("api/sub-task/{id}")
+    suspend fun editSubtask(
+        @Path("id") id: String,
+        editSubtaskRequest: EditTaskRequest
+    ): Response<Unit>
 }

@@ -105,6 +105,7 @@
     <string name="cancel_">Отменить</string>
     <string name="delete_category">Удалить категорию</string>
     <string name="delete_task">Удалить задачу</string>
+    <string name="delete_subtask">Удалить подзадачу</string>
     <string name="edit">Редактирование</string>
     <string name="edit_task">Редактировать данные</string>
     <string name="urgently_4">Очень срочно</string>
