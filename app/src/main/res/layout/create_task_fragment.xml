@@ -36,9 +36,7 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/name_task"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/til_name"
-                app:layout_constraintStart_toStartOf="@+id/til_name" />
+                android:textSize="14sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_name"
@@ -46,14 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                app:boxStrokeErrorColor="@color/red"
-                app:errorEnabled="true"
-                app:errorTextColor="@color/red"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                android:layout_marginBottom="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_edit_name"
@@ -75,9 +66,7 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/executor_task"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/til_name"
-                app:layout_constraintStart_toStartOf="@+id/til_name" />
+                android:textSize="14sp" />
 
             <Spinner
                 android:id="@+id/sp_executor"
@@ -96,9 +85,7 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/description_task"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/til_name"
-                app:layout_constraintStart_toStartOf="@+id/til_name" />
+                android:textSize="14sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_description_task"
@@ -106,13 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                app:boxStrokeErrorColor="@color/red"
-                app:errorEnabled="true"
-                app:errorTextColor="@color/red"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                android:layout_marginBottom="16dp">
 
                 <EditText
                     android:id="@+id/et_description"
@@ -122,6 +103,7 @@
                     android:fontFamily="@font/ubuntu_medium"
                     android:gravity="start|top"
                     android:hint="@string/description_task_hint"
+                    android:importantForAutofill="no"
                     android:inputType="textMultiLine"
                     android:maxLength="10000"
                     android:padding="16dp"
@@ -137,9 +119,7 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/period_of_execution_task"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/til_name"
-                app:layout_constraintStart_toStartOf="@+id/til_name" />
+                android:textSize="14sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_period_of_execution_task"
@@ -147,14 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                app:boxStrokeErrorColor="@color/red"
-                app:errorEnabled="true"
-                app:errorTextColor="@color/red"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                android:layout_marginBottom="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_period_of_execution_task"
@@ -177,9 +150,7 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/importance_task"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/til_name"
-                app:layout_constraintStart_toStartOf="@+id/til_name" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -190,7 +161,8 @@
                 <RadioGroup
                     android:id="@+id/rg_group"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
 
                     <RadioButton
                         android:id="@+id/rb_urgently4"
@@ -207,12 +179,6 @@
                         android:text="@string/urgently_4"
                         android:textColor="@color/logo_color"
                         android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
                         tools:ignore="RtlSymmetry" />
 
                     <RadioButton
@@ -230,12 +196,6 @@
                         android:text="@string/urgently_3"
                         android:textColor="@color/logo_color"
                         android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
                         tools:ignore="RtlSymmetry" />
 
                     <RadioButton
@@ -253,12 +213,6 @@
                         android:text="@string/urgently_2"
                         android:textColor="@color/logo_color"
                         android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
                         tools:ignore="RtlSymmetry" />
 
                     <RadioButton
@@ -276,12 +230,6 @@
                         android:text="@string/urgently_1"
                         android:textColor="@color/logo_color"
                         android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
                         tools:ignore="RtlSymmetry" />
                 </RadioGroup>
             </LinearLayout>
@@ -297,10 +245,7 @@
                 android:paddingVertical="18dp"
                 android:text="@string/create_task"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/btn_cancel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_cancel"
@@ -313,11 +258,7 @@
                 android:paddingVertical="18dp"
                 android:text="@string/cancel_"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/black" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -12,4 +12,12 @@ interface CreateSubtaskRepository {
         taskId: String,
         performerId: String
     ): LoadingResult<CreateSubtaskResponse>
+
+    suspend fun editSubtask(
+        id: String,
+        title: String,
+        description: String,
+        deadline: String,
+        importance: Int
+    ): LoadingResult<Unit>
 }
