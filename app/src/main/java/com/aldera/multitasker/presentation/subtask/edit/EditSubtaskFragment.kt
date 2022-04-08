@@ -38,6 +38,7 @@ class EditSubtaskFragment : Fragment(R.layout.edit_subtask_fragment) {
 
     private fun init() = with(binding) {
         val id = args.task?.id
+        btnDelete.onClick { id?.let { viewModel.deleteTask(it) } }
         btnSave.onClick { id?.let { viewModel.editSubtask(it) } }
         etEditName.setText(args.createSubtask.title)
         etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onTitleTextChanged(text.toString()) }

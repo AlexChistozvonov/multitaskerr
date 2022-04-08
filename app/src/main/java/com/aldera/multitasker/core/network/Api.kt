@@ -131,4 +131,7 @@ interface Api {
         @Path("id") id: String,
         editSubtaskRequest: EditTaskRequest
     ): Response<Unit>
+
+    @DELETE("api/sub-task/{id}")
+    suspend fun deleteSubtask(@Path("id") id: String): Response<Unit>
 }

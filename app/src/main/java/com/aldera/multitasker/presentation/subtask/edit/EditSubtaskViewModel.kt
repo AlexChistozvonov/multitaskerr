@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.domain.subtask.create.CreateSubtaskRepository
+import com.aldera.multitasker.domain.subtask.delete.DeleteSubtaskRepository
 import com.aldera.multitasker.ui.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -17,7 +18,8 @@ import org.threeten.bp.format.DateTimeFormatter
 
 @HiltViewModel
 class EditSubtaskViewModel @Inject constructor(
-    private val editSubtaskRepository: CreateSubtaskRepository
+    private val editSubtaskRepository: CreateSubtaskRepository,
+    private val deleteSubtaskRepository: DeleteSubtaskRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(EditSubtaskViewState())
@@ -60,6 +62,16 @@ class EditSubtaskViewModel @Inject constructor(
                 importance = _uiState.value.importance,
             )
             when (result) {
+                is LoadingResult.Error -> emitEvent(EditSubtaskEvent.Error(result.exception))
+                is LoadingResult.Success -> emitEvent(EditSubtaskEvent.Success)
+            }
+        }
+    }
+
+    fun deleteTask(id: String) {
+        emitEvent(EditSubtaskEvent.Loading)
+        viewModelScope.launch {
+            when (val result = deleteSubtaskRepository.deleteSubtask(id)) {
                 is LoadingResult.Error -> emitEvent(EditSubtaskEvent.Error(result.exception))
                 is LoadingResult.Success -> emitEvent(EditSubtaskEvent.Success)
             }
