@@ -15,7 +15,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.EditCategoryFragmentBinding
 import com.aldera.multitasker.presentation.category.ColorItem
-import com.aldera.multitasker.presentation.category.CustomRecyclerAdapterColorCategory
+import com.aldera.multitasker.presentation.category.RecyclerAdapterColorCategory
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
@@ -32,7 +32,7 @@ class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
     private val viewModel by viewModels<EditCategoryViewModel>()
     private val args: EditCategoryFragmentArgs by navArgs()
     private var colorList = ArrayList<ColorItem>()
-    lateinit var adapter: CustomRecyclerAdapterColorCategory
+    lateinit var adapter: RecyclerAdapterColorCategory
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -120,7 +120,7 @@ class EditCategoryFragment : Fragment(R.layout.edit_category_fragment) {
     }
 
     private fun initRecyclerview() = with(binding) {
-        adapter = CustomRecyclerAdapterColorCategory {
+        adapter = RecyclerAdapterColorCategory {
             viewModel.onSelectedColorChanged(it)
         }
         val recyclerView: RecyclerView = rvColorCategory

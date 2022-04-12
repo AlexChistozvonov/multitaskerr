@@ -1,10 +1,10 @@
 package com.aldera.multitasker.data.models
 
 data class UserTaskResponse(
-    var isCompleted: Boolean?,
-    var id: String?,
-    var title: String?,
-    var performer: UserResponse?,
-    var color: String?,
-    var importance: Int?
+    val isCompleted: Boolean?,
+    val id: String?,
+    val title: String?,
+    val performer: Performer?,
+    val color: String?,
+    val importance: Int?
 )

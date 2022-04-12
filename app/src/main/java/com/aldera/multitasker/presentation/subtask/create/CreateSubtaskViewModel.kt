@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
 import com.aldera.multitasker.domain.subtask.create.CreateSubtaskRepository
-import com.aldera.multitasker.domain.task.ExecutorRepository
+import com.aldera.multitasker.domain.appointed.UserTaskRepository
 import com.aldera.multitasker.ui.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -18,7 +18,7 @@ import org.threeten.bp.format.DateTimeFormatter
 
 @HiltViewModel
 class CreateSubtaskViewModel @Inject constructor(
-    private val executorRepository: ExecutorRepository,
+    private val executorRepository: UserTaskRepository,
     private val createSubtaskRepository: CreateSubtaskRepository
 ) : ViewModel() {
 
@@ -52,7 +52,7 @@ class CreateSubtaskViewModel @Inject constructor(
     fun getExecutor() {
         emitEvent(CreateSubtaskEvent.Loading)
         viewModelScope.launch {
-            when (val result = executorRepository.getExecutor()) {
+            when (val result = executorRepository.getUserTask()) {
                 is LoadingResult.Error -> emitEvent(CreateSubtaskEvent.Error(result.exception))
                 is LoadingResult.Success -> {
                     emitEvent(CreateSubtaskEvent.GetExecutor(result.data))

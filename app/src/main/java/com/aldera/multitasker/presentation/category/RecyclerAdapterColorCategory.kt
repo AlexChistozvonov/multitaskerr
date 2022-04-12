@@ -9,8 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 
-class CustomRecyclerAdapterColorCategory(private val onClick: (ColorItem) -> Unit) :
-    RecyclerView.Adapter<CustomRecyclerAdapterColorCategory.MyViewHolder>() {
+class RecyclerAdapterColorCategory(private val onClick: (ColorItem) -> Unit) :
+    RecyclerView.Adapter<RecyclerAdapterColorCategory.MyViewHolder>() {
 
     private var colorItemList = mutableListOf<ColorItem>()
     private var selectedColorId: Int? = null
@@ -46,7 +46,7 @@ class CustomRecyclerAdapterColorCategory(private val onClick: (ColorItem) -> Uni
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.recyclerview_item_color, parent, false)
+                .inflate(R.layout.recycler_item_color, parent, false)
         return MyViewHolder(itemView)
     }
 

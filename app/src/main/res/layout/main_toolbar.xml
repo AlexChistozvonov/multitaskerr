@@ -24,6 +24,8 @@
 
         <TextView
             android:id="@+id/tv_title"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"

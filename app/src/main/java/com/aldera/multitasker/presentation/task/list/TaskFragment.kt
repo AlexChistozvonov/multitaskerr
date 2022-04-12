@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
 import com.aldera.multitasker.databinding.TaskFragmentBinding
-import com.aldera.multitasker.presentation.task.CustomRecyclerAdapterTask
+import com.aldera.multitasker.presentation.task.RecyclerAdapterTask
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
@@ -28,7 +28,7 @@ class TaskFragment : Fragment(R.layout.task_fragment) {
     private val args: TaskFragmentArgs by navArgs()
     private val viewModel by viewModels<TaskViewModel>()
     private val taskAdapter by lazy {
-        CustomRecyclerAdapterTask {
+        RecyclerAdapterTask {
             args.taskCreate?.let { createTaskResponse ->
                 TaskFragmentDirections.openViewTaskFragment(
                     it,

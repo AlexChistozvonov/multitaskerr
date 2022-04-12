@@ -117,6 +117,9 @@
     <string name="edit_executor"> <b>ИЗМЕНИТЬ</b></string>
     <string name="created">Созданно %1$s</string>
     <string name="updated">Обновлено %1$s</string>
+    <string name="subtaskCount"><u><b>ПОДЗАДАЧИ (%1$s)</b></u></string>
+    <string name="appointed_title">Назначенные</string>
+    <string name="appointment_completed">%1$s задач/ %2$s выполненно</string>
 
     <plurals name="plurals_project">
         <item quantity="one">%1$d проект</item>

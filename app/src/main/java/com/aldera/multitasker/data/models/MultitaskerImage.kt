@@ -6,10 +6,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MultitaskerImage(
-    var id: String,
-    var path: String,
-    var name: String,
-    var type: String,
+    val id: String,
+    val path: String,
+    val name: String,
+    val type: String,
 ) : Parcelable
 
 fun MultitaskerImage.imageUrl(): String {
