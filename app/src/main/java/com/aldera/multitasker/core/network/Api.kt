@@ -23,6 +23,7 @@ import com.aldera.multitasker.data.models.RecoveryPasswordEmailRequest
 import com.aldera.multitasker.data.models.RecoveryPasswordEmailResponse
 import com.aldera.multitasker.data.models.RegistrationRequest
 import com.aldera.multitasker.data.models.RegistrationResponse
+import com.aldera.multitasker.data.models.TaskCountResponse
 import com.aldera.multitasker.data.models.TaskResponse
 import com.aldera.multitasker.data.models.UserResponse
 import com.aldera.multitasker.data.models.UserTaskResponse
@@ -102,9 +103,6 @@ interface Api {
     @GET("api/project/{id}/tasks")
     suspend fun getTask(@Path("id") id: String): List<TaskResponse>
 
-    @GET("api/user/me/tasks")
-    suspend fun getExecutor(): List<UserTaskResponse>
-
     @POST("api/task")
     suspend fun createTask(@Body createTaskRequest: CreateTaskRequest): CreateTaskResponse
 
@@ -134,4 +132,13 @@ interface Api {
 
     @DELETE("api/sub-task/{id}")
     suspend fun deleteSubtask(@Path("id") id: String): Response<Unit>
+
+    @GET("api/user/me/tasks")
+    suspend fun getUserTask(): List<UserTaskResponse>
+
+    @GET("api/user/me/sub-tasks")
+    suspend fun getUserSubtask(): List<UserTaskResponse>
+
+    @GET("api/user/me/count/task")
+    suspend fun getTaskCount(): TaskCountResponse
 }

@@ -5,15 +5,15 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CreateSubtaskResponse(
-    var title: String?,
-    var description: String?,
-    var deadline: String?,
-    var importance: Int?,
-    var isCompleted: Boolean?,
-    var id: String?,
-    var performer: Performer?,
-    var createdAt: String?,
-    var updatedAt: String?,
-    var author: Performer?,
-    var task: CreateTaskResponse?
+    val title: String?,
+    val description: String?,
+    val deadline: String?,
+    val importance: Int?,
+    val isCompleted: Boolean?,
+    val id: String?,
+    val performer: Performer?,
+    val createdAt: String?,
+    val updatedAt: String?,
+    val author: Performer?,
+    val task: CreateTaskResponse?
 ) : Parcelable

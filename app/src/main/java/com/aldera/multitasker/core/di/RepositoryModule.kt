@@ -1,5 +1,8 @@
 package com.aldera.multitasker.core.di
 
+import com.aldera.multitasker.data.appointed.TaskCountRepositoryImpl
+import com.aldera.multitasker.data.appointed.UserSubtaskRepositoryImpl
+import com.aldera.multitasker.data.appointed.UserTaskRepositoryImpl
 import com.aldera.multitasker.data.category.create.CreateCategoryRepositoryImpl
 import com.aldera.multitasker.data.category.delete.DeleteCategoryRepositoryImpl
 import com.aldera.multitasker.data.category.list.ListCategoryRepositoryImpl
@@ -17,12 +20,14 @@ import com.aldera.multitasker.data.registration.RegistrationRepositoryImpl
 import com.aldera.multitasker.data.subtask.create.CreateSubtaskRepositoryImpl
 import com.aldera.multitasker.data.subtask.delete.DeleteSubtaskRepositoryImpl
 import com.aldera.multitasker.data.subtask.view.ViewSubtaskRepositoryImpl
-import com.aldera.multitasker.data.task.ExecutorRepositoryImpl
 import com.aldera.multitasker.data.task.create.CreateTaskRepositoryImpl
 import com.aldera.multitasker.data.task.delete.DeleteTaskRepositoryImpl
 import com.aldera.multitasker.data.task.list.TaskListRepositoryImpl
 import com.aldera.multitasker.data.task.view.ViewTaskRepositoryImpl
 import com.aldera.multitasker.data.user.UserRepositoryImpl
+import com.aldera.multitasker.domain.appointed.TaskCountRepository
+import com.aldera.multitasker.domain.appointed.UserSubtaskRepository
+import com.aldera.multitasker.domain.appointed.UserTaskRepository
 import com.aldera.multitasker.domain.category.create.CreateCategoryRepository
 import com.aldera.multitasker.domain.category.delete.DeleteCategoryRepository
 import com.aldera.multitasker.domain.category.list.ListCategoryRepository
@@ -40,7 +45,6 @@ import com.aldera.multitasker.domain.registration.RegistrationRepository
 import com.aldera.multitasker.domain.subtask.create.CreateSubtaskRepository
 import com.aldera.multitasker.domain.subtask.delete.DeleteSubtaskRepository
 import com.aldera.multitasker.domain.subtask.view.ViewSubtaskRepository
-import com.aldera.multitasker.domain.task.ExecutorRepository
 import com.aldera.multitasker.domain.task.create.CreateTaskRepository
 import com.aldera.multitasker.domain.task.delete.DeleteTaskRepository
 import com.aldera.multitasker.domain.task.list.TaskListRepository
@@ -148,12 +152,6 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun getExecutor(
-        getExecutorRepository: ExecutorRepositoryImpl
-    ): ExecutorRepository
-
-    @Singleton
-    @Binds
     abstract fun createTask(
         createTaskRepository: CreateTaskRepositoryImpl
     ): CreateTaskRepository
@@ -193,4 +191,22 @@ abstract class RepositoryModule {
     abstract fun deleteSubtask(
         deleteSubtask: DeleteSubtaskRepositoryImpl
     ): DeleteSubtaskRepository
+
+    @Singleton
+    @Binds
+    abstract fun getUserTask(
+        getUserTask: UserTaskRepositoryImpl
+    ): UserTaskRepository
+
+    @Singleton
+    @Binds
+    abstract fun getUserSubtask(
+        getUserSubtask: UserSubtaskRepositoryImpl
+    ): UserSubtaskRepository
+
+    @Singleton
+    @Binds
+    abstract fun getTaskCount(
+        getTaskCount: TaskCountRepositoryImpl
+    ): TaskCountRepository
 }

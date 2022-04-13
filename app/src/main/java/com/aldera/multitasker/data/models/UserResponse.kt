@@ -5,10 +5,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserResponse(
-    var id: String?,
-    var createdAt: String?,
-    var email: String?,
-    var name: String?,
+    val id: String?,
+    val createdAt: String?,
+    val email: String?,
+    val name: String?,
     var avatar: MultitaskerImage?
 ) : Parcelable
 

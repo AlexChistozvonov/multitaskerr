@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 import com.aldera.multitasker.data.models.CategoryResponse
 
-class CustomRecyclerAdapterCategory(private val listener: (id: CategoryResponse) -> Unit) :
-    RecyclerView.Adapter<CustomRecyclerAdapterCategory.MyViewHolder>() {
+class RecyclerAdapterCategory(private val listener: (id: CategoryResponse) -> Unit) :
+    RecyclerView.Adapter<RecyclerAdapterCategory.MyViewHolder>() {
 
     private var oldCategoryList = listOf<CategoryResponse>()
 
@@ -42,7 +42,7 @@ class CustomRecyclerAdapterCategory(private val listener: (id: CategoryResponse)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.recyclerview_item_category, parent, false)
+                .inflate(R.layout.recycler_item_category, parent, false)
         return MyViewHolder(itemView)
     }
 

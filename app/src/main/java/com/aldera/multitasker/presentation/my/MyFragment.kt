@@ -25,7 +25,7 @@ class MyFragment : Fragment(R.layout.my_fragment) {
     private val binding by viewBinding(MyFragmentBinding::bind)
     private val viewModel by viewModels<MyViewModel>()
     private val listAdapter by lazy {
-        CustomRecyclerAdapterCategory {
+        RecyclerAdapterCategory {
             findNavController().navigateSafe(MyFragmentDirections.openProjectFragment(it))
         }
     }
@@ -67,7 +67,10 @@ class MyFragment : Fragment(R.layout.my_fragment) {
                 recyclerView.show()
                 updateList(state)
             }
-            is MyEvent.Id -> {}
+            is MyEvent.Id -> {
+                progressBar.hide()
+                recyclerView.show()
+            }
         }
     }
 

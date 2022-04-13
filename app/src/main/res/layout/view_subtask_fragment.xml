@@ -143,14 +143,18 @@
 
                 <TextView
                     android:id="@+id/tv_name_task"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/ubuntu_medium"
+                    android:maxLines="1"
                     android:text="@string/categories"
                     android:textColor="@color/black"
                     android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -187,6 +191,8 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="12dp"
                     app:layout_constraintBottom_toBottomOf="@+id/ll_name_category"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/ll_name_category"
                     app:layout_constraintTop_toTopOf="@+id/ll_name_category"
                     app:srcCompat="@drawable/ic_urgently_4" />
@@ -204,12 +210,17 @@
 
                 <TextView
                     android:id="@+id/tv_executor_task"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/period_of_execution_task_hint"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/iv_avatar"
                     app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -241,13 +252,17 @@
 
                 <TextView
                     android:id="@+id/tv_name_executor_subtask"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/period_of_execution_task_hint"
                     android:textColor="@color/text"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_avatar_executor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/iv_avatar_executor"
                     app:layout_constraintTop_toTopOf="@+id/iv_avatar_executor" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -279,13 +294,17 @@
 
                 <TextView
                     android:id="@+id/tv_name_author"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/period_of_execution_task_hint"
                     android:textColor="@color/text"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_avatar_author"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/iv_avatar_author"
                     app:layout_constraintTop_toTopOf="@+id/iv_avatar_author" />
             </androidx.constraintlayout.widget.ConstraintLayout>

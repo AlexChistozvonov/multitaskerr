@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-        tools:listitem="@layout/recyclerview_item_category" />
+        tools:listitem="@layout/recycler_item_category" />
 
     <ProgressBar
         android:id="@+id/progressBar"
