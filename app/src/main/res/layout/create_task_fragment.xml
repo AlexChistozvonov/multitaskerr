@@ -44,7 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_edit_name"
@@ -68,13 +69,26 @@
                 android:text="@string/executor_task"
                 android:textSize="14sp" />
 
-            <Spinner
-                android:id="@+id/sp_executor"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_executor"
+                style="@style/TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:background="@drawable/spinner_executor"
-                android:spinnerMode="dropdown" />
+                app:hintEnabled="false">
+
+                <AutoCompleteTextView
+                    android:id="@+id/atv_executor"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/spinner_executor"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:hint="@string/choose_executor"
+                    android:padding="16dp"
+                    android:spinnerMode="dropdown"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tv_description_task"
@@ -93,7 +107,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:hintEnabled="false">
 
                 <EditText
                     android:id="@+id/et_description"
@@ -127,7 +142,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_period_of_execution_task"

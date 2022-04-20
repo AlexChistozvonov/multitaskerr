@@ -2,9 +2,7 @@ package com.aldera.multitasker.presentation.subtask.create
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -48,7 +46,7 @@ class CreateSubtaskFragment : Fragment(R.layout.create_subtask_fragment) {
             )
         }
         viewModel.getExecutor()
-        val id = args.taskCreate.id
+        val id = args.task?.id
         btnCreateSubtask.onClick { id?.let { viewModel.createSubtask(it) } }
         btnCancel.onClick { findNavController().popBackStack() }
         toolbar.apply {
@@ -97,22 +95,16 @@ class CreateSubtaskFragment : Fragment(R.layout.create_subtask_fragment) {
         }
     }
 
-    private fun initSpinner(data: String) = with(binding) {
-        val executor = arrayOf(data)
-        var spinner: Spinner? = null
-        spinner = spExecutor
-        spinner.adapter =
-            ArrayAdapter(
-                requireContext(),
-                R.layout.spinner_item,
-                executor
-            )
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                executor[p2]
-            }
+    private fun chooseExecutor(data: List<String?>) = with(binding) {
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.spinner_item,
+            data
+        )
 
-            override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+        atvExecutor.setAdapter(adapter)
+        atvExecutor.setOnItemClickListener { _, _, _, _ ->
+            viewModel.onEmailChange(atvExecutor.text.toString())
         }
     }
 
@@ -135,7 +127,7 @@ class CreateSubtaskFragment : Fragment(R.layout.create_subtask_fragment) {
             is CreateSubtaskEvent.GetExecutor -> {
                 progressBar.hide()
                 nestedScrollView.show()
-                initSpinner(state.performerId)
+                state.userList?.let { it -> chooseExecutor(it.map { it.email }) }
             }
             is CreateSubtaskEvent.GetExecutorError -> {
                 progressBar.hide()
@@ -155,23 +147,7 @@ class CreateSubtaskFragment : Fragment(R.layout.create_subtask_fragment) {
                 nestedScrollView.show()
                 initImportance()
             }
-            is CreateSubtaskEvent.DescriptionChanged -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            is CreateSubtaskEvent.Importance -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            is CreateSubtaskEvent.TitleChanged -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            is CreateSubtaskEvent.PerformerId -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            CreateSubtaskEvent.Init -> {
+            else -> {
                 progressBar.hide()
                 nestedScrollView.show()
             }
@@ -183,9 +159,10 @@ class CreateSubtaskFragment : Fragment(R.layout.create_subtask_fragment) {
         val selected = etPeriodOfExecutionSubtask.text.toString()
         val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
         val selectedDate = LocalDate.from(formatter.parse(selected))
-        when (selectedDate.dayOfYear - current.dayOfYear) {
-            in 0..1 -> rbUrgently4.isChecked = true
-            in 1..2 ->
+        val diff = selectedDate.dayOfYear - current.dayOfYear
+        when {
+            diff < 0 || diff in 0..1 -> rbUrgently4.isChecked = true
+            diff in 1..2 ->
                 rbUrgently2.isChecked = true
             else -> rbUrgently1.isChecked = true
         }

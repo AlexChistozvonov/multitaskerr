@@ -130,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/parent_task"
                 android:textSize="14sp" />
@@ -159,7 +159,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/ll_name_category"
+                    android:id="@+id/ll_name_category_task"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginStart="16dp"
@@ -190,11 +190,11 @@
                     android:layout_width="60dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="12dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ll_name_category"
+                    app:layout_constraintBottom_toBottomOf="@+id/ll_name_category_task"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/ll_name_category"
-                    app:layout_constraintTop_toTopOf="@+id/ll_name_category"
+                    app:layout_constraintStart_toEndOf="@+id/ll_name_category_task"
+                    app:layout_constraintTop_toTopOf="@+id/ll_name_category_task"
                     app:srcCompat="@drawable/ic_urgently_4" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -205,8 +205,8 @@
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/background_circle_light_gray"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/ll_name_category"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_name_category" />
+                    app:layout_constraintStart_toStartOf="@+id/ll_name_category_task"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_name_category_task" />
 
                 <TextView
                     android:id="@+id/tv_executor_task"
@@ -230,7 +230,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="36dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/executor_task_view"
@@ -326,7 +326,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="40dp"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/executor_task_view"
                 android:textColor="@color/label"
@@ -337,13 +336,27 @@
                 style="@style/ColoredButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginHorizontal="24dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/background_black_button"
                 android:paddingVertical="18dp"
                 android:text="@string/edit_task"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_delete"
+                style="@style/buttonH100"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/background_light_red_button"
+                android:paddingVertical="18dp"
+                android:text="@string/delete_subtask"
+                android:textAllCaps="false"
+                android:textColor="@color/red_text" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -17,6 +17,17 @@ data class CreateTaskResponse(
     val author: Performer?
 ) : Parcelable
 
+fun CreateTaskResponse.toCreateTaskRequest() = this.performer?.id?.let {
+    CreateTaskRequest(
+        title = this.title,
+        description = this.description,
+        deadline = this.deadline,
+        importance = this.importance,
+        performerId = it,
+        projectId = this.id
+    )
+}
+
 @Parcelize
 data class Performer(
     val id: String?,

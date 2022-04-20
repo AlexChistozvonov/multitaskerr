@@ -55,11 +55,6 @@ class AppointedFragment : Fragment(R.layout.appointed_fragment) {
                     exception = state.error
                 )
             }
-            is AppointedEvent.Id -> {
-                progressBar.hide()
-                tvTaskCount.show()
-                recyclerViewTask.show()
-            }
             AppointedEvent.Loading -> {
                 progressBar.show()
                 tvTaskCount.hide()
@@ -71,16 +66,16 @@ class AppointedFragment : Fragment(R.layout.appointed_fragment) {
                 recyclerViewTask.show()
                 updateListTask(state)
             }
-            is AppointedEvent.GetUserSubtask -> {
-                tvTaskCount.show()
-                progressBar.hide()
-                recyclerViewTask.show()
-            }
             is AppointedEvent.GetTaskCount -> {
                 progressBar.hide()
                 tvTaskCount.show()
                 recyclerViewTask.show()
                 stateCount()
+            }
+            else -> {
+                progressBar.hide()
+                tvTaskCount.show()
+                recyclerViewTask.show()
             }
         }
     }

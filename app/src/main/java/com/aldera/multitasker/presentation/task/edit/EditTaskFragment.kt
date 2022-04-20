@@ -2,6 +2,7 @@ package com.aldera.multitasker.presentation.task.edit
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,6 +20,8 @@ import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
 import com.aldera.multitasker.ui.util.ConstantDateDialogFragment
 import com.aldera.multitasker.ui.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Locale
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.threeten.bp.LocalDate
@@ -37,18 +40,8 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
     }
 
     private fun init() = with(binding) {
-        val id = args.task?.id
+        val id = args.createTask?.id
         btnSave.onClick { id?.let { viewModel.editTask(it) } }
-        btnDelete.onClick {
-            id?.let {
-                viewModel.deleteTask(it)
-            }
-        }
-        etEditName.setText(args.taskCreate.title)
-        etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onTitleTextChanged(text.toString()) }
-        etDescription.setText(args.taskCreate.description)
-        etDescription.doOnTextChanged { text, _, _, _ -> viewModel.onDescriptionTextChanged(text.toString()) }
-        etPeriodOfExecutionTask.setText(args.taskCreate.deadline)
         etPeriodOfExecutionTask.doOnTextChanged { text, _, _, _ ->
             viewModel.onDeadlineTextChanged(
                 text.toString()
@@ -61,7 +54,7 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
                 findNavController().popBackStack()
             }
         }
-        etPeriodOfExecutionTask.setText(args.taskCreate.deadline)
+
         etPeriodOfExecutionTask.onClick {
             val datePickerFragment = DatePickerDialogFragment()
             val supportFragmentManager = requireActivity().supportFragmentManager
@@ -80,6 +73,34 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
             )
         }
         initRgGroup()
+
+        val parser = SimpleDateFormat(Constants.DATE_FORMAT_PARSER, Locale.ENGLISH)
+        val formatter = SimpleDateFormat(Constants.DATE_FORMAT, Locale.ENGLISH)
+        val selected = args.createTask?.deadline
+        val outputDeadline = formatter.format(parser.parse(selected))
+        etPeriodOfExecutionTask.setText(outputDeadline.toString())
+
+        atvExecutor.setText(args.createTask?.performer?.email)
+        etEditName.setText(args.createTask?.title)
+        etEditName.doOnTextChanged { text, _, _, _ -> viewModel.onTitleTextChanged(text.toString()) }
+        etDescription.setText(args.createTask?.description)
+        etDescription.doOnTextChanged { text, _, _, _ -> viewModel.onDescriptionTextChanged(text.toString()) }
+        viewModel.getExecutor()
+    }
+
+    private fun chooseExecutor(data: List<String?>) = with(binding) {
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.spinner_item,
+            data
+        )
+
+        atvExecutor.setAdapter(adapter)
+        atvExecutor.doOnTextChanged { text, _, _, _ ->
+            viewModel.onPerformerIdChanged(
+                text.toString()
+            )
+        }
     }
 
     private fun initRgGroup() = with(binding) {
@@ -118,10 +139,6 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
                 nestedScrollView.show()
                 initImportance()
             }
-            is EditTaskEvent.DescriptionChanged -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
             is EditTaskEvent.Error -> {
                 progressBar.hide()
                 nestedScrollView.show()
@@ -130,24 +147,22 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
                     exception = state.error
                 )
             }
-            is EditTaskEvent.Importance -> {
+            is EditTaskEvent.GetExecutor -> {
                 progressBar.hide()
                 nestedScrollView.show()
-            }
-            EditTaskEvent.Init -> {
-                progressBar.hide()
-                nestedScrollView.show()
+                state.userList?.let { it -> chooseExecutor(it.map { it.email }) }
             }
             EditTaskEvent.Loading -> {
                 progressBar.show()
                 nestedScrollView.hide()
+                initImportance()
             }
             EditTaskEvent.Success -> {
                 progressBar.hide()
                 nestedScrollView.show()
                 findNavController().popBackStack()
             }
-            is EditTaskEvent.TitleChanged -> {
+            else -> {
                 progressBar.hide()
                 nestedScrollView.show()
             }
@@ -159,9 +174,10 @@ class EditTaskFragment : Fragment(R.layout.edit_task_fragment) {
         val selected = etPeriodOfExecutionTask.text.toString()
         val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
         val selectedDate = LocalDate.from(formatter.parse(selected))
-        when (selectedDate.dayOfYear - current.dayOfYear) {
-            in 0..1 -> rbUrgently4.isChecked = true
-            in 1..2 ->
+        val diff = selectedDate.dayOfYear - current.dayOfYear
+        when {
+            diff < 0 || diff in 0..1 -> rbUrgently4.isChecked = true
+            diff in 1..2 ->
                 rbUrgently2.isChecked = true
             else -> rbUrgently1.isChecked = true
         }

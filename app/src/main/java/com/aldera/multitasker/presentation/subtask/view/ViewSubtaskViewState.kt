@@ -5,6 +5,7 @@ import com.aldera.multitasker.data.models.CreateSubtaskResponse
 sealed class ViewSubtaskEvent {
     object Loading : ViewSubtaskEvent()
     data class Success(val subTask: CreateSubtaskResponse?) : ViewSubtaskEvent()
+    object DeleteSubtask : ViewSubtaskEvent()
     data class Error(val error: Exception?) : ViewSubtaskEvent()
     object Init : ViewSubtaskEvent()
 }
@@ -28,5 +29,6 @@ data class ViewSubtaskViewState(
             loading = false,
             event = event
         )
+        ViewSubtaskEvent.DeleteSubtask -> copy(loading = false, event = event)
     }
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 import com.aldera.multitasker.data.models.UserTaskResponse
+import com.aldera.multitasker.data.models.imageUrl
 import com.aldera.multitasker.ui.extension.show
 import com.aldera.multitasker.ui.util.Constants
 import com.bumptech.glide.Glide
@@ -100,7 +101,8 @@ class RecyclerAdapterAppointedTask(private val listener: (id: UserTaskResponse) 
                     .into(holder.importance)
             }
         }
-        Glide.with(holder.itemView.context).load(oldTaskList[position].performer?.avatar)
+        Glide.with(holder.itemView.context)
+            .load(oldTaskList[position].performer?.avatar?.imageUrl()).circleCrop()
             .into(holder.avatar)
         holder.executor.text = oldTaskList[position].performer?.name
         itemCount?.let {

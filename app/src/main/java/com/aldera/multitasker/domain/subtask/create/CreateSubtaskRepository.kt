@@ -1,6 +1,7 @@
 package com.aldera.multitasker.domain.subtask.create
 
 import com.aldera.multitasker.core.LoadingResult
+import com.aldera.multitasker.data.models.CreateSubtaskRequest
 import com.aldera.multitasker.data.models.CreateSubtaskResponse
 
 interface CreateSubtaskRepository {
@@ -15,9 +16,6 @@ interface CreateSubtaskRepository {
 
     suspend fun editSubtask(
         id: String,
-        title: String,
-        description: String,
-        deadline: String,
-        importance: Int
+        data: CreateSubtaskRequest
     ): LoadingResult<Unit>
 }

@@ -8,6 +8,7 @@ import com.aldera.multitasker.data.category.delete.DeleteCategoryRepositoryImpl
 import com.aldera.multitasker.data.category.list.ListCategoryRepositoryImpl
 import com.aldera.multitasker.data.common.CommonRepositoryImpl
 import com.aldera.multitasker.data.editPassword.EditPasswordRepositoryImpl
+import com.aldera.multitasker.data.executor.ExecutorRepositoryImpl
 import com.aldera.multitasker.data.exitProfile.ExitProfileRepositoryImpl
 import com.aldera.multitasker.data.login.LoginRepositoryImpl
 import com.aldera.multitasker.data.project.create.CreateProjectRepositoryImpl
@@ -25,6 +26,7 @@ import com.aldera.multitasker.data.task.delete.DeleteTaskRepositoryImpl
 import com.aldera.multitasker.data.task.list.TaskListRepositoryImpl
 import com.aldera.multitasker.data.task.view.ViewTaskRepositoryImpl
 import com.aldera.multitasker.data.user.UserRepositoryImpl
+import com.aldera.multitasker.data.user.list.UserListRepositoryImpl
 import com.aldera.multitasker.domain.appointed.TaskCountRepository
 import com.aldera.multitasker.domain.appointed.UserSubtaskRepository
 import com.aldera.multitasker.domain.appointed.UserTaskRepository
@@ -33,6 +35,7 @@ import com.aldera.multitasker.domain.category.delete.DeleteCategoryRepository
 import com.aldera.multitasker.domain.category.list.ListCategoryRepository
 import com.aldera.multitasker.domain.common.CommonRepository
 import com.aldera.multitasker.domain.editPassword.EditPasswordRepository
+import com.aldera.multitasker.domain.executor.ExecutorRepository
 import com.aldera.multitasker.domain.exitProfile.ExitProfileRepository
 import com.aldera.multitasker.domain.login.LoginRepository
 import com.aldera.multitasker.domain.project.create.CreateProjectRepository
@@ -50,6 +53,7 @@ import com.aldera.multitasker.domain.task.delete.DeleteTaskRepository
 import com.aldera.multitasker.domain.task.list.TaskListRepository
 import com.aldera.multitasker.domain.task.view.ViewTaskRepository
 import com.aldera.multitasker.domain.user.UserRepository
+import com.aldera.multitasker.domain.user.list.UserListRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -209,4 +213,16 @@ abstract class RepositoryModule {
     abstract fun getTaskCount(
         getTaskCount: TaskCountRepositoryImpl
     ): TaskCountRepository
+
+    @Singleton
+    @Binds
+    abstract fun getUserList(
+        getUserList: UserListRepositoryImpl
+    ): UserListRepository
+
+    @Singleton
+    @Binds
+    abstract fun editTaskExecutor(
+        editTaskExecutor: ExecutorRepositoryImpl
+    ): ExecutorRepository
 }
