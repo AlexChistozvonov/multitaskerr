@@ -97,8 +97,8 @@
     <string name="name_project_hint">Введите название проекта</string>
     <string name="name_task_hint">Введите название задачи</string>
     <string name="name_subtask_hint">Введите название подзадачи</string>
-    <string name="description_task_hint">Введите название задачи</string>
-    <string name="description_subtask_hint">Введите название подзадачи</string>
+    <string name="description_task_hint">Введите описание задачи</string>
+    <string name="description_subtask_hint">Введите описание подзадачи</string>
     <string name="period_of_execution_task_hint">Выберите срок исполнения</string>
     <string name="create_category_">Создать категорию</string>
     <string name="create_task">Создать задачу</string>
@@ -113,6 +113,7 @@
     <string name="urgently_2">Может подождать</string>
     <string name="urgently_1">Несрочно</string>
     <string name="executor_task_view">Исполнитель</string>
+    <string name="choose_executor">Выберите исполнителя</string>
     <string name="author_task_view">Автор</string>
     <string name="edit_executor"> <b>ИЗМЕНИТЬ</b></string>
     <string name="created">Созданно %1$s</string>

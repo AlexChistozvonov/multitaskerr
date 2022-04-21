@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.aldera.multitasker.R
+import com.aldera.multitasker.data.models.imageUrl
 import com.aldera.multitasker.databinding.ViewTaskFragmentBinding
-import com.aldera.multitasker.presentation.task.RecyclerAdapterTask
+import com.aldera.multitasker.presentation.task.list.RecyclerAdapterTask
 import com.aldera.multitasker.ui.extension.hide
 import com.aldera.multitasker.ui.extension.navigateSafe
 import com.aldera.multitasker.ui.extension.onClick
@@ -23,6 +24,8 @@ import com.aldera.multitasker.ui.extension.showGeneralErrorDialog
 import com.aldera.multitasker.ui.util.Constants
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Locale
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -34,17 +37,9 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
 
     private val subTaskAdapter by lazy {
         RecyclerAdapterTask {
-            args.taskCreate.let { _ ->
-                ViewTaskFragmentDirections.openEditTaskFragment(
-                    it,
-                    args.taskCreate,
-                    args.category,
-                )
-            }.let { navDirections ->
-                findNavController().navigateSafe(
-                    navDirections
-                )
-            }
+            findNavController().navigateSafe(
+                ViewTaskFragmentDirections.openViewSubtaskFragment(args.task, args.category, it)
+            )
         }
     }
 
@@ -56,19 +51,15 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
     }
 
     private fun init() = with(binding) {
-        btnEditTask.onClick {
-            findNavController().navigateSafe(
-                ViewTaskFragmentDirections.openEditTaskFragment(
-                    args.task,
-                    args.taskCreate,
-                    args.category
-                )
-            )
-        }
-        val id = args.task.id
+        val id = args.task?.id
         id?.let {
             viewModel.getViewTask(it)
             viewModel.getSubTask(it)
+        }
+        btnDelete.onClick {
+            id?.let {
+                viewModel.deleteTask(it)
+            }
         }
         toolbar.apply {
             tvTitle.text = getString(R.string.task)
@@ -80,46 +71,66 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
             ibAction.show()
             ibAction.onClick {
                 findNavController().navigateSafe(
-                    ViewTaskFragmentDirections.openCreateSubtaskFragment(
-                        args.taskCreate
-                    )
+                    ViewTaskFragmentDirections.openCreateSubtaskFragment(args.task)
                 )
             }
         }
-        tvNameTask.text = args.taskCreate.title
         tvTitleTask.text = args.category.title
         llNameCategory.backgroundTintList =
             ColorStateList.valueOf(Color.parseColor(args.category.color))
-
-        val itemCount: Int = subTaskAdapter.itemCount
-        tvSubtaskNumber.text = itemCount.toString()
-        if (etDescription.text.isNullOrEmpty()) {
-            etDescription.hide()
-            tvDescriptionTask.hide()
-        } else {
-            etDescription.text = args.taskCreate.description
-        }
-        etPeriodOfExecutionTask.text = args.taskCreate.deadline
-        Glide.with(requireContext()).load(args.taskCreate.performer?.avatar).into(ivAvatarExecutor)
-        tvNameExecutor.text = args.taskCreate.performer?.name
-        initRgGroup()
     }
 
     private fun handleSuccess(state: ViewTaskViewState) = with(binding) {
+        btnEditTask.onClick {
+            findNavController().navigateSafe(
+                ViewTaskFragmentDirections.openEditTaskFragment(
+                    state.task,
+                    args.category
+                )
+            )
+        }
+
+        tvNameTask.text = state.task?.title
+
+        if (state.task?.description.isNullOrEmpty()) {
+            etDescription.hide()
+            tvDescriptionTask.hide()
+        } else {
+            etDescription.text = args.task?.description
+        }
+
+        val parser = SimpleDateFormat(Constants.DATE_FORMAT_PARSER, Locale(Constants.DATE_LOCALE))
+        val formatter = SimpleDateFormat(Constants.DATE_FORMAT_MMMM, Locale(Constants.DATE_LOCALE))
+        val formatterTime =
+            SimpleDateFormat(Constants.DATE_FORMAT_HH, Locale(Constants.DATE_LOCALE))
+        val outputDeadline = formatter.format(parser.parse(state.task?.deadline))
+        val outputCreated = formatterTime.format(parser.parse(state.task?.createdAt))
+        etPeriodOfExecutionTask.text = outputDeadline.toString()
+
         state.task?.let { task ->
             tvNameAuthor.text = task.author?.name
-            Glide.with(requireContext()).load(task.author?.avatar).into(ivAvatarAuthor)
-            tvCreated.text = getString(R.string.created, task.createdAt)
-            if (task.updatedAt != null) {
-                tvUpdated.text = getString(R.string.updated, task.updatedAt)
-            } else {
+            Glide.with(requireContext()).load(task.author?.avatar?.imageUrl()).circleCrop()
+                .into(ivAvatarAuthor)
+            tvCreated.text = getString(R.string.created, outputCreated)
+            if (task.updatedAt == null) {
                 tvUpdated.hide()
+            } else {
+                val outputUpdated = formatterTime.format(parser.parse(state.task.updatedAt))
+                tvUpdated.text = getString(R.string.updated, outputUpdated)
             }
         }
+        Glide.with(requireContext()).load(state.task?.performer?.avatar?.imageUrl()).circleCrop()
+            .into(ivAvatarExecutor)
+        if (state.task?.performer?.name == null) {
+            tvNameExecutor.text = state.task?.performer?.email
+        } else {
+            tvNameExecutor.text = state.task.performer.name
+        }
+        initImportance(state)
     }
 
-    private fun initRgGroup() = with(binding) {
-        when (args.taskCreate.importance) {
+    private fun initImportance(state: ViewTaskViewState) = with(binding) {
+        when (state.task?.importance) {
             Constants.IMPORTANCE_1 -> {
                 Glide.with(requireContext()).load(R.drawable.ic_urgently_1).into(ivImportance)
             }
@@ -145,7 +156,6 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
     private fun handleState(state: ViewTaskViewState) = with(binding) {
 
         when (state.event) {
-
             is ViewTaskEvent.Error -> {
                 nestedScrollView.show()
                 progressBar.hide()
@@ -155,8 +165,8 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
                 )
             }
             ViewTaskEvent.Init -> {
-                nestedScrollView.hide()
-                progressBar.show()
+                nestedScrollView.show()
+                progressBar.hide()
             }
             ViewTaskEvent.Loading -> {
                 nestedScrollView.hide()
@@ -164,20 +174,24 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
             }
             is ViewTaskEvent.Success -> {
                 handleSuccess(state)
-                nestedScrollView.hide()
-                progressBar.show()
+                nestedScrollView.show()
+                progressBar.hide()
             }
-            is ViewTaskEvent.UpdateSubTaskTask -> {
-                nestedScrollView.hide()
-                progressBar.show()
+            is ViewTaskEvent.UpdateSubTask -> {
+                nestedScrollView.show()
+                progressBar.hide()
                 updateList(state)
+            }
+            ViewTaskEvent.DeleteTask -> {
+                nestedScrollView.show()
+                progressBar.hide()
+                findNavController().popBackStack()
             }
         }
     }
 
     private fun initRecyclerview() = with(binding) {
         val recyclerView: RecyclerView = recyclerview
-        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = subTaskAdapter
     }
@@ -186,5 +200,7 @@ class ViewTaskFragment : Fragment(R.layout.view_task_fragment) {
         state.subTask?.let {
             subTaskAdapter.setData(it, args.category.color, args.category.title)
         }
+        val itemCount: Int = subTaskAdapter.itemCount
+        binding.tvSubtaskNumber.text = itemCount.toString()
     }
 }

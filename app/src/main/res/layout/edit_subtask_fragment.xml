@@ -43,6 +43,7 @@
                 style="@style/TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:hintEnabled="false"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginBottom="16dp">
 
@@ -68,13 +69,26 @@
                 android:text="@string/executor_task"
                 android:textSize="14sp" />
 
-            <Spinner
-                android:id="@+id/sp_executor"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_executor"
+                style="@style/TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:background="@drawable/spinner_executor"
-                android:spinnerMode="dropdown" />
+                app:hintEnabled="false">
+
+                <AutoCompleteTextView
+                    android:id="@+id/atv_executor"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/spinner_executor"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:hint="@string/choose_executor"
+                    android:padding="16dp"
+                    android:spinnerMode="dropdown"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tv_description_subtask"
@@ -93,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
+                app:hintEnabled="false"
                 android:layout_marginBottom="16dp">
 
                 <EditText
@@ -129,6 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
+                app:hintEnabled="false"
                 android:layout_marginBottom="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -248,19 +264,6 @@
                 android:text="@string/save"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_delete"
-                style="@style/buttonH100"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginBottom="100dp"
-                android:background="@drawable/background_light_red_button"
-                android:paddingVertical="18dp"
-                android:text="@string/delete_subtask"
-                android:textAllCaps="false"
-                android:textColor="@color/red_text" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

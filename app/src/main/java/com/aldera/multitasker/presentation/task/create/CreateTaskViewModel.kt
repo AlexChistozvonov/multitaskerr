@@ -3,8 +3,8 @@ package com.aldera.multitasker.presentation.task.create
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aldera.multitasker.core.LoadingResult
-import com.aldera.multitasker.domain.appointed.UserTaskRepository
 import com.aldera.multitasker.domain.task.create.CreateTaskRepository
+import com.aldera.multitasker.domain.user.list.UserListRepository
 import com.aldera.multitasker.ui.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -12,13 +12,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 @HiltViewModel
 class CreateTaskViewModel @Inject constructor(
-    private val executorRepository: UserTaskRepository,
+    private val executorRepository: UserListRepository,
     private val createTaskRepository: CreateTaskRepository
 ) : ViewModel() {
 
@@ -45,14 +43,21 @@ class CreateTaskViewModel @Inject constructor(
         emitEvent(CreateTaskEvent.Importance(importance))
     }
 
-    fun onPerformerIdChanged(text: String) {
-        emitEvent(CreateTaskEvent.PerformerId(text))
+    private fun onPerformerIdChanged(text: String) {
+        emitEvent(CreateTaskEvent.ExecutorEmail(text))
+    }
+
+    fun onEmailChange(text: String?) {
+        val performerId = _uiState.value.userList?.firstOrNull { it.email == text }?.id
+        performerId?.let {
+            onPerformerIdChanged(it)
+        }
     }
 
     fun getExecutor() {
         emitEvent(CreateTaskEvent.Loading)
         viewModelScope.launch {
-            when (val result = executorRepository.getUserTask()) {
+            when (val result = executorRepository.getUserList()) {
                 is LoadingResult.Error -> emitEvent(CreateTaskEvent.Error(result.exception))
                 is LoadingResult.Success -> {
                     emitEvent(CreateTaskEvent.GetExecutor(result.data))
@@ -65,22 +70,20 @@ class CreateTaskViewModel @Inject constructor(
         emitEvent(CreateTaskEvent.Loading)
         val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
         val date = formatter.parse(_uiState.value.deadlineText)
-        val zonedDateTime = ZonedDateTime.of(
-            LocalDate.from(date).atStartOfDay(),
-            ZoneId.systemDefault()
-        )
+        val dateTime = LocalDate.from(date).atStartOfDay()
+            .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         viewModelScope.launch {
             val result = createTaskRepository.createTask(
                 title = _uiState.value.titleText,
                 description = _uiState.value.descriptionText,
-                deadline = zonedDateTime.format(DateTimeFormatter.ISO_INSTANT),
+                deadline = dateTime,
                 importance = _uiState.value.importance,
                 projectId = projectId,
-                performerId = _uiState.value.performerId
+                performerId = _uiState.value.executorId
             )
             when (result) {
                 is LoadingResult.Error -> emitEvent(CreateTaskEvent.Error(result.exception))
-                is LoadingResult.Success -> emitEvent(CreateTaskEvent.Success)
+                is LoadingResult.Success -> emitEvent(CreateTaskEvent.Success(result.data))
             }
         }
     }

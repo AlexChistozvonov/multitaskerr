@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.task
+package com.aldera.multitasker.presentation.task.list
 
 import androidx.recyclerview.widget.DiffUtil
 import com.aldera.multitasker.data.models.TaskResponse

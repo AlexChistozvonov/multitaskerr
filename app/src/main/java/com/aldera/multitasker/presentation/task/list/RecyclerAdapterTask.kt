@@ -1,4 +1,4 @@
-package com.aldera.multitasker.presentation.task
+package com.aldera.multitasker.presentation.task.list
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aldera.multitasker.R
 import com.aldera.multitasker.data.models.TaskResponse
+import com.aldera.multitasker.data.models.imageUrl
 import com.aldera.multitasker.ui.util.Constants
 import com.bumptech.glide.Glide
 
-class RecyclerAdapterTask(private val onClick: (TaskResponse) -> Unit) :
+class RecyclerAdapterTask(private val listener: (id: TaskResponse) -> Unit) :
     RecyclerView.Adapter<RecyclerAdapterTask.MyViewHolder>() {
 
     private var oldTaskList = listOf<TaskResponse>()
@@ -45,7 +46,7 @@ class RecyclerAdapterTask(private val onClick: (TaskResponse) -> Unit) :
         }
 
         override fun onClick(p0: View?) {
-            onClick(oldTaskList[layoutPosition])
+            listener.invoke(oldTaskList[layoutPosition])
         }
     }
 
@@ -78,8 +79,13 @@ class RecyclerAdapterTask(private val onClick: (TaskResponse) -> Unit) :
                 Glide.with(itemView.context).load(R.drawable.ic_urgently_4).into(importance)
             }
         }
-        Glide.with(itemView.context).load(oldTaskList[position].performer?.avatar).into(avatar)
-        executor.text = oldTaskList[position].performer?.name
+        Glide.with(itemView.context).load(oldTaskList[position].performer?.avatar?.imageUrl())
+            .circleCrop().into(avatar)
+        if (oldTaskList[position].performer?.name != null) {
+            executor.text = oldTaskList[position].performer?.name
+        } else {
+            executor.text = oldTaskList[position].performer?.email
+        }
     }
 
     override fun getItemCount() = oldTaskList.size

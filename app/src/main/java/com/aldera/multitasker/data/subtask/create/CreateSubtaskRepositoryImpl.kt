@@ -5,7 +5,6 @@ import com.aldera.multitasker.core.di.IoDispatcher
 import com.aldera.multitasker.core.network.Api
 import com.aldera.multitasker.core.runLoading
 import com.aldera.multitasker.data.models.CreateSubtaskRequest
-import com.aldera.multitasker.data.models.EditTaskRequest
 import com.aldera.multitasker.domain.subtask.create.CreateSubtaskRepository
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -38,23 +37,14 @@ class CreateSubtaskRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun editSubtask(
-        id: String,
-        title: String,
-        description: String,
-        deadline: String,
-        importance: Int
-    ) = withContext(coroutineDispatcher) {
-        runLoading(errorMapper) {
-            networkService.editSubtask(
-                id = id, EditTaskRequest(
-                    title = title,
-                    description = description,
-                    deadline = deadline,
-                    importance = importance
+    override suspend fun editSubtask(id: String, data: CreateSubtaskRequest) =
+        withContext(coroutineDispatcher) {
+            runLoading(errorMapper) {
+                networkService.editSubtask(
+                    id = id,
+                    data
                 )
-            )
-            Unit
+                Unit
+            }
         }
-    }
 }

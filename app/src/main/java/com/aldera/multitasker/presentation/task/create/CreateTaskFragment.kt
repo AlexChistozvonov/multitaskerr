@@ -2,9 +2,7 @@ package com.aldera.multitasker.presentation.task.create
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -98,22 +96,16 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
         }
     }
 
-    private fun initSpinner(data: String) = with(binding) {
-        val executor = arrayOf(data)
-        var spinner: Spinner? = null
-        spinner = spExecutor
-        spinner.adapter =
-            ArrayAdapter(
-                requireContext(),
-                R.layout.spinner_item,
-                executor
-            )
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                executor[p2]
-            }
+    private fun chooseExecutor(data: List<String?>) = with(binding) {
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.spinner_item,
+            data
+        )
 
-            override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+        atvExecutor.setAdapter(adapter)
+        atvExecutor.setOnItemClickListener { _, _, _, _ ->
+            viewModel.onEmailChange(atvExecutor.text.toString())
         }
     }
 
@@ -122,6 +114,7 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
     }
 
     private fun handleState(state: CreateTaskViewState) = with(binding) {
+
         btnCreateTask.isEnabled =
             !etEditName.text.isNullOrEmpty() && !etPeriodOfExecutionTask.text.isNullOrEmpty()
         when (state.event) {
@@ -136,17 +129,9 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
             is CreateTaskEvent.GetExecutor -> {
                 progressBar.hide()
                 nestedScrollView.show()
-                initSpinner(state.performerId)
+                state.userList?.let { it -> chooseExecutor(it.map { it.email }) }
             }
-            is CreateTaskEvent.GetExecutorError -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            CreateTaskEvent.Loading -> {
-                progressBar.show()
-                nestedScrollView.hide()
-            }
-            CreateTaskEvent.Success -> {
+            is CreateTaskEvent.Success -> {
                 progressBar.hide()
                 nestedScrollView.show()
                 findNavController().popBackStack()
@@ -156,23 +141,11 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
                 nestedScrollView.show()
                 initImportance()
             }
-            is CreateTaskEvent.DescriptionChanged -> {
-                progressBar.hide()
-                nestedScrollView.show()
+            is CreateTaskEvent.Loading -> {
+                progressBar.show()
+                nestedScrollView.hide()
             }
-            is CreateTaskEvent.Importance -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            is CreateTaskEvent.TitleChanged -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            is CreateTaskEvent.PerformerId -> {
-                progressBar.hide()
-                nestedScrollView.show()
-            }
-            CreateTaskEvent.Init -> {
+            else -> {
                 progressBar.hide()
                 nestedScrollView.show()
             }
@@ -184,9 +157,10 @@ class CreateTaskFragment : Fragment(R.layout.create_task_fragment) {
         val selected = etPeriodOfExecutionTask.text.toString()
         val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
         val selectedDate = LocalDate.from(formatter.parse(selected))
-        when (selectedDate.dayOfYear - current.dayOfYear) {
-            in 0..1 -> rbUrgently4.isChecked = true
-            in 1..2 ->
+        val diff = selectedDate.dayOfYear - current.dayOfYear
+        when {
+            diff < 0 || diff in 0..1 -> rbUrgently4.isChecked = true
+            diff in 1..2 ->
                 rbUrgently2.isChecked = true
             else -> rbUrgently1.isChecked = true
         }

@@ -8,8 +8,8 @@ import com.aldera.multitasker.data.models.CreateSubtaskRequest
 import com.aldera.multitasker.data.models.CreateSubtaskResponse
 import com.aldera.multitasker.data.models.CreateTaskRequest
 import com.aldera.multitasker.data.models.CreateTaskResponse
+import com.aldera.multitasker.data.models.EditExecutorRequest
 import com.aldera.multitasker.data.models.EditPasswordRequest
-import com.aldera.multitasker.data.models.EditTaskRequest
 import com.aldera.multitasker.data.models.ExitProfileResponse
 import com.aldera.multitasker.data.models.LoginRequest
 import com.aldera.multitasker.data.models.LoginResponse
@@ -25,6 +25,7 @@ import com.aldera.multitasker.data.models.RegistrationRequest
 import com.aldera.multitasker.data.models.RegistrationResponse
 import com.aldera.multitasker.data.models.TaskCountResponse
 import com.aldera.multitasker.data.models.TaskResponse
+import com.aldera.multitasker.data.models.UserListResponse
 import com.aldera.multitasker.data.models.UserResponse
 import com.aldera.multitasker.data.models.UserTaskResponse
 import okhttp3.MultipartBody
@@ -113,7 +114,10 @@ interface Api {
     suspend fun getSubTasks(@Path("id") id: String): List<TaskResponse>
 
     @PUT("api/task/{id}")
-    suspend fun editTask(@Path("id") id: String, editTaskRequest: EditTaskRequest): Response<Unit>
+    suspend fun editTask(
+        @Path("id") id: String,
+        @Body editTaskRequest: CreateTaskRequest
+    ): Response<Unit>
 
     @DELETE("api/task/{id}")
     suspend fun deleteTask(@Path("id") id: String): Response<Unit>
@@ -127,7 +131,7 @@ interface Api {
     @PUT("api/sub-task/{id}")
     suspend fun editSubtask(
         @Path("id") id: String,
-        editSubtaskRequest: EditTaskRequest
+        @Body editSubtaskRequest: CreateSubtaskRequest
     ): Response<Unit>
 
     @DELETE("api/sub-task/{id}")
@@ -141,4 +145,19 @@ interface Api {
 
     @GET("api/user/me/count/task")
     suspend fun getTaskCount(): TaskCountResponse
+
+    @GET("api/user")
+    suspend fun getUserList(): List<UserListResponse>
+
+    @PUT("api/task/{id}/performer")
+    suspend fun editTaskExecutor(
+        @Path("id") id: String,
+        @Body editExecutorRequest: EditExecutorRequest
+    ): CreateTaskResponse
+
+    @PUT("api/sub-task/{id}/performer")
+    suspend fun editSubtaskExecutor(
+        @Path("id") id: String,
+        @Body editExecutorRequest: EditExecutorRequest
+    ): CreateSubtaskResponse
 }

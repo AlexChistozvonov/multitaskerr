@@ -17,3 +17,14 @@ data class CreateSubtaskResponse(
     val author: Performer?,
     val task: CreateTaskResponse?
 ) : Parcelable
+
+fun CreateSubtaskResponse.toCreateSubtaskRequest() = this.performer?.id?.let {
+    CreateSubtaskRequest(
+        title = this.title,
+        description = this.description,
+        deadline = this.deadline,
+        importance = this.importance,
+        performerId = it,
+        taskId = it
+    )
+}

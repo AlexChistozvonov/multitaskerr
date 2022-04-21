@@ -82,7 +82,7 @@ class EditProjectFragment : Fragment(R.layout.edit_project_fragment) {
                     exception = state.error
                 )
             }
-            EditProjectEvent.Init -> showHide()
+
             EditProjectEvent.Loading -> {
                 progressBar.show()
                 btnSave.hide()
@@ -95,8 +95,8 @@ class EditProjectFragment : Fragment(R.layout.edit_project_fragment) {
                 )
                 showHide()
             }
-            is EditProjectEvent.TitleChanged -> showHide()
-            is EditProjectEvent.ExitProfileError -> showHide()
+
+            else -> showHide()
         }
     }
 }

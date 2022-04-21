@@ -1,6 +1,7 @@
 package com.aldera.multitasker.domain.task.create
 
 import com.aldera.multitasker.core.LoadingResult
+import com.aldera.multitasker.data.models.CreateTaskRequest
 import com.aldera.multitasker.data.models.CreateTaskResponse
 
 interface CreateTaskRepository {
@@ -15,9 +16,6 @@ interface CreateTaskRepository {
 
     suspend fun editTask(
         id: String,
-        title: String,
-        description: String,
-        deadline: String,
-        importance: Int
+        data: CreateTaskRequest
     ): LoadingResult<Unit>
 }

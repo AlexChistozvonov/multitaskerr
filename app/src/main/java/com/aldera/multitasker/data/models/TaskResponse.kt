@@ -10,5 +10,6 @@ data class TaskResponse(
     val title: String?,
     val performer: Performer?,
     val color: String?,
-    val importance: Int?
+    val importance: Int?,
+    val description: String?
 ) : Parcelable
